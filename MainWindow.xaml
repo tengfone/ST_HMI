@@ -7,7 +7,7 @@
         mc:Ignorable="d"
         Title="MainWindow" 
         Height="768" 
-        Width="1024"
+        Width="1676"
         WindowState="Normal"
         Topmost="False"
         WindowStyle="SingleBorderWindow"
@@ -175,7 +175,13 @@
                                 Stretch="Fill"/>
 
                 </Grid.Background>
-
+                <Rectangle Height="47" VerticalAlignment="Top" Fill="#384955" Margin="10,0,0,0" HorizontalAlignment="Stretch"/>
+                <Label x:Name="datetime_text" Content="Thursday, Mar 18 2021, 02:25:06" HorizontalContentAlignment="Center" HorizontalAlignment="Right" Height="37" Margin="0,5,50,0" VerticalAlignment="Top" Width="244" FontFamily="Ebrima" FontSize="13" FontWeight="Bold" Foreground="White" VerticalContentAlignment="Center"/>
+                <Label Content="Platform Overview" HorizontalContentAlignment="Left" HorizontalAlignment="Left" Margin="80,4,0,0" VerticalAlignment="Top" FontFamily="Ebrima" FontSize="22" Foreground="White" FontWeight="Bold"/>
+                <Button Click="change_language" x:Name="language_btn" BorderBrush="Transparent" Background="Transparent" HorizontalAlignment="Right" Margin="0,9,370,0" VerticalAlignment="Top">
+                    <Image Source="Assets/img_language.png"/>
+                </Button>
+                <Label x:Name="language_text" Content="EN" HorizontalAlignment="Right" Margin="0,11,350,0" VerticalAlignment="Top" FontFamily="Ebrima" Foreground="White" FontSize="13" FontWeight="Bold"/>
             </Grid>
 
             <!--// App Close Button //-->
@@ -183,24 +189,22 @@
             <Grid>
 
                 <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="*"/>
-                    <ColumnDefinition Width="60"/>
-                    <ColumnDefinition Width="30"/>
+                    <ColumnDefinition/>
+                    <ColumnDefinition Width="61"/>
+                    <ColumnDefinition Width="5"/>
                 </Grid.ColumnDefinitions>
 
                 <Grid.RowDefinitions>
-                    <RowDefinition Height="30"/>
-                    <RowDefinition Height="60"/>
-                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="0"/>
+                    <RowDefinition Height="18*"/>
+                    <RowDefinition Height="351*"/>
                 </Grid.RowDefinitions>
 
                 <Button x:Name="CloseBtn"
                         Grid.Column="1"
                         Grid.Row="1"
-                        Height="40"
-                        Width="40"
                         BorderThickness="0"
-                        Style="{StaticResource Close_btn}" Click="CloseBtn_Click">
+                        Style="{StaticResource Close_btn}" Click="CloseBtn_Click" RenderTransformOrigin="0.649,-0.882" Margin="27,14,10,13">
 
                     <Button.Background>
 

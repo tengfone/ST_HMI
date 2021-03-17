@@ -23,6 +23,25 @@ namespace ST_HMI
         public MainWindow()
         {
             InitializeComponent();
+            System.Windows.Threading.DispatcherTimer LiveTime = new System.Windows.Threading.DispatcherTimer();
+            LiveTime.Interval = TimeSpan.FromSeconds(1);
+            LiveTime.Tick += timer_Tick;
+            LiveTime.Start();
+        }
+
+        void timer_Tick(object sender, EventArgs e)
+        {
+            datetime_text.Content = DateTime.Now.ToString("dddd , MMM dd yyyy,hh:mm:ss");
+        }
+
+        void change_language(object sender, EventArgs e)
+        {
+            if (language_text.Content.Equals("EN")) {
+                language_text.Content = "CN";
+            } else
+            {
+                language_text.Content = "EN";
+            }
         }
 
         private void ListViewItem_MouseEnter(object sender, MouseEventArgs e)

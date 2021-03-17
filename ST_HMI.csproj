@@ -19,12 +19,14 @@
     <None Remove="Assets\img_background.png" />
     <None Remove="Assets\img_contact.png" />
     <None Remove="Assets\img_home.png" />
+    <None Remove="Assets\img_language.png" />
     <None Remove="Assets\img_map.png" />
     <None Remove="Assets\img_message.png" />
     <None Remove="Assets\img_setting.png" />
     <None Remove="Assets\img_signout.png" />
     <None Remove="Assets\tgBtn_default.png" />
     <None Remove="Assets\tgBtn_MouseOver.png" />
+    <None Remove="img_language.png" />
   </ItemGroup>
 
   <ItemGroup>
@@ -44,12 +46,14 @@
     <Resource Include="Assets\img_background.png" />
     <Resource Include="Assets\img_contact.png" />
     <Resource Include="Assets\img_home.png" />
+    <Resource Include="Assets\img_language.png" />
     <Resource Include="Assets\img_map.png" />
     <Resource Include="Assets\img_message.png" />
     <Resource Include="Assets\img_setting.png" />
     <Resource Include="Assets\img_signout.png" />
     <Resource Include="Assets\tgBtn_default.png" />
     <Resource Include="Assets\tgBtn_MouseOver.png" />
+    <Resource Include="img_language.png" />
   </ItemGroup>
 
 </Project>
