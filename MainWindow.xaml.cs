@@ -24,5 +24,54 @@ namespace ST_HMI
         {
             InitializeComponent();
         }
+
+        private void ListViewItem_MouseEnter(object sender, MouseEventArgs e)
+        {
+            // Set tooltip visibility
+
+            if (Tg_Btn.IsChecked == true)
+            {
+                tt_home.Visibility = Visibility.Collapsed;
+                tt_slidingdoor.Visibility = Visibility.Collapsed;
+                tt_dashboard.Visibility = Visibility.Collapsed;
+                tt_piechart.Visibility = Visibility.Collapsed;
+                tt_notifications.Visibility = Visibility.Collapsed;
+                tt_profile.Visibility = Visibility.Collapsed;
+            }
+            else
+            {
+                tt_home.Visibility = Visibility.Visible;
+                tt_slidingdoor.Visibility = Visibility.Visible;
+                tt_dashboard.Visibility = Visibility.Visible;
+                tt_piechart.Visibility = Visibility.Visible;
+                tt_notifications.Visibility = Visibility.Visible;
+                tt_profile.Visibility = Visibility.Visible;
+            }
+        }
+
+        private void Tg_Btn_Unchecked(object sender, RoutedEventArgs e)
+        {
+            img_bg.Opacity = 1;
+        }
+
+        private void Tg_Btn_Checked(object sender, RoutedEventArgs e)
+        {
+            img_bg.Opacity = 0.3;
+        }
+
+        private void BG_PreviewMouseLeftButtonDown(object sender, MouseButtonEventArgs e)
+        {
+            Tg_Btn.IsChecked = false;
+        }
+
+        private void CloseBtn_Click(object sender, RoutedEventArgs e)
+        {
+            Close();
+        }
+
+        private void LV_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+
+        }
     }
 }

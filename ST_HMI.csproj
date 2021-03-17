@@ -7,7 +7,23 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <None Remove="image1.jpg" />
+    <None Remove="Assets\closeBtn_default.png" />
+    <None Remove="Assets\closeBtn_MouseOver.png" />
+    <None Remove="Assets\Icons\account_circle.png" />
+    <None Remove="Assets\Icons\dashboard.png" />
+    <None Remove="Assets\Icons\home.png" />
+    <None Remove="Assets\Icons\notifications.png" />
+    <None Remove="Assets\Icons\piechart.png" />
+    <None Remove="Assets\Icons\SlidingDoor.png" />
+    <None Remove="Assets\img_background.png" />
+    <None Remove="Assets\img_contact.png" />
+    <None Remove="Assets\img_home.png" />
+    <None Remove="Assets\img_map.png" />
+    <None Remove="Assets\img_message.png" />
+    <None Remove="Assets\img_setting.png" />
+    <None Remove="Assets\img_signout.png" />
+    <None Remove="Assets\tgBtn_default.png" />
+    <None Remove="Assets\tgBtn_MouseOver.png" />
   </ItemGroup>
 
   <ItemGroup>
@@ -15,7 +31,23 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Resource Include="image1.jpg" />
+    <Resource Include="Assets\closeBtn_default.png" />
+    <Resource Include="Assets\closeBtn_MouseOver.png" />
+    <Resource Include="Assets\Icons\account_circle.png" />
+    <Resource Include="Assets\Icons\dashboard.png" />
+    <Resource Include="Assets\Icons\home.png" />
+    <Resource Include="Assets\Icons\notifications.png" />
+    <Resource Include="Assets\Icons\piechart.png" />
+    <Resource Include="Assets\Icons\SlidingDoor.png" />
+    <Resource Include="Assets\img_background.png" />
+    <Resource Include="Assets\img_contact.png" />
+    <Resource Include="Assets\img_home.png" />
+    <Resource Include="Assets\img_map.png" />
+    <Resource Include="Assets\img_message.png" />
+    <Resource Include="Assets\img_setting.png" />
+    <Resource Include="Assets\img_signout.png" />
+    <Resource Include="Assets\tgBtn_default.png" />
+    <Resource Include="Assets\tgBtn_MouseOver.png" />
   </ItemGroup>
 
 </Project>
