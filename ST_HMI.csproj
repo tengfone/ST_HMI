@@ -12,6 +12,7 @@
     <None Remove="Assets\Icons\account_circle.png" />
     <None Remove="Assets\Icons\dashboard.png" />
     <None Remove="Assets\Icons\home.png" />
+    <None Remove="Assets\Icons\largeBackground.png" />
     <None Remove="Assets\Icons\notifications.png" />
     <None Remove="Assets\Icons\piechart.png" />
     <None Remove="Assets\Icons\SlidingDoor.png" />
@@ -36,6 +37,7 @@
     <Resource Include="Assets\Icons\account_circle.png" />
     <Resource Include="Assets\Icons\dashboard.png" />
     <Resource Include="Assets\Icons\home.png" />
+    <Resource Include="Assets\Images\img_background.png" />
     <Resource Include="Assets\Icons\notifications.png" />
     <Resource Include="Assets\Icons\piechart.png" />
     <Resource Include="Assets\Icons\SlidingDoor.png" />

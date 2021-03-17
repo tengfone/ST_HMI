@@ -27,6 +27,8 @@ namespace ST_HMI
 
         private void ListViewItem_MouseEnter(object sender, MouseEventArgs e)
         {
+
+
             // Set tooltip visibility
 
             if (Tg_Btn.IsChecked == true)
