@@ -182,6 +182,17 @@
                     <Image Source="Assets/img_language.png"/>
                 </Button>
                 <Label x:Name="language_text" Content="EN" HorizontalAlignment="Right" Margin="0,11,350,0" VerticalAlignment="Top" FontFamily="Ebrima" Foreground="White" FontSize="13" FontWeight="Bold"/>
+                <Grid HorizontalAlignment="Left" Margin="80,52,0,0" VerticalAlignment="Top" Height="690" Width="1586">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="1*" />
+                        <RowDefinition Height="1*" />
+                        <RowDefinition Height="1*" />
+                    </Grid.RowDefinitions>
+                    <Rectangle  Stroke="Black" Margin="50 20"/>
+
+                </Grid>
+
+
             </Grid>
 
             <!--// App Close Button //-->
