@@ -182,17 +182,41 @@
                     <Image Source="Assets/img_language.png"/>
                 </Button>
                 <Label x:Name="language_text" Content="EN" HorizontalAlignment="Right" Margin="0,11,350,0" VerticalAlignment="Top" FontFamily="Ebrima" Foreground="White" FontSize="13" FontWeight="Bold"/>
-                <Grid HorizontalAlignment="Left" Margin="80,52,0,0" VerticalAlignment="Top" Height="690" Width="1586">
+                <Grid HorizontalAlignment="Stretch" Margin="80,52,0,0" VerticalAlignment="Stretch">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="2*"></ColumnDefinition>
+                        <ColumnDefinition Width="*"></ColumnDefinition>
+                    </Grid.ColumnDefinitions>
                     <Grid.RowDefinitions>
-                        <RowDefinition Height="1*" />
-                        <RowDefinition Height="1*" />
-                        <RowDefinition Height="1*" />
+                        <RowDefinition Height="*"></RowDefinition>
+                        <RowDefinition Height="2*"></RowDefinition>
                     </Grid.RowDefinitions>
-                    <Rectangle  Stroke="Black" Margin="50 20"/>
+                    <ScrollViewer HorizontalScrollBarVisibility="Visible" VerticalScrollBarVisibility="Auto" 
+                          Grid.Row="0" Grid.Column="0" Margin="50 10" Background="#DADDE2">
+                        <ItemsControl Name="DoorsDataBinding" Grid.Row="0">
+                            <ItemsControl.ItemsPanel>
+                                <ItemsPanelTemplate>
+                                    <WrapPanel/>
+                                </ItemsPanelTemplate>
+                            </ItemsControl.ItemsPanel>
+                            <ItemsControl.ItemTemplate>
+                                <DataTemplate>
+                                    <Border BorderBrush="Black" BorderThickness="1" Margin="50 30" Padding="30">
+                                        <StackPanel Orientation="Vertical">
+                                            <Image Source="{Binding URI}"></Image>
+                                            <TextBlock Text="{Binding DoorNum}" FontSize="20" HorizontalAlignment="Center"/>
+                                        </StackPanel>
+                                    </Border>
+                                </DataTemplate>
+                            </ItemsControl.ItemTemplate>
+                        </ItemsControl>
+                    </ScrollViewer>
 
+                    <Rectangle  Stroke="Black"  Grid.Row="1" Grid.ColumnSpan="2" Margin="50 10"/>
+                    <Label Content="Doors Failed to Open/close" Background="White" Grid.Column="1" HorizontalAlignment="Left" VerticalAlignment="Top" Height="93" Width="228" Margin="137,50,0,0"/>
+                    <Button Content="&lt;" Grid.Column="1" HorizontalAlignment="Left" Margin="188,168,0,0" Background="White" Foreground="Black" VerticalAlignment="Top"/>
+                    <Button Content="&gt;" Grid.Column="1" HorizontalAlignment="Left" Margin="284,168,0,0" Background="White" Foreground="Black" VerticalAlignment="Top"/>
                 </Grid>
-
-
             </Grid>
 
             <!--// App Close Button //-->

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Caliburn.Micro;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -23,10 +24,25 @@ namespace ST_HMI
         public MainWindow()
         {
             InitializeComponent();
+            List<DoorModel> items = new List<DoorModel>();
+            items.Add(new DoorModel() { DoorNum = "PSD1", URI = "Assets/PSDOpening.png" });
+            items.Add(new DoorModel() { DoorNum = "PSD2", URI = "Assets/PSDLock.png" });
+            items.Add(new DoorModel() { DoorNum = "PSD3", URI = "Assets/PSDInhibit.png" });
+            items.Add(new DoorModel() { DoorNum = "PSD4", URI = "Assets/EEDLock.png" });
+            items.Add(new DoorModel() { DoorNum = "PSD5", URI = "Assets/PSDerror.png" });
+            items.Add(new DoorModel() { DoorNum = "PSD5", URI = "Assets/PSDOpening.png" });
+            DoorsDataBinding.ItemsSource = items;
             System.Windows.Threading.DispatcherTimer LiveTime = new System.Windows.Threading.DispatcherTimer();
             LiveTime.Interval = TimeSpan.FromSeconds(1);
             LiveTime.Tick += timer_Tick;
             LiveTime.Start();
+        }
+
+        class DoorModel
+        {
+            public string DoorNum { get; set; }
+            public string URI { get; set; }
+
         }
 
         void timer_Tick(object sender, EventArgs e)
