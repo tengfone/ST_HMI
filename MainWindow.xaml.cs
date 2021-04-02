@@ -1,5 +1,4 @@
-﻿using Caliburn.Micro;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -21,6 +20,8 @@ namespace ST_HMI
     /// </summary>
     public partial class MainWindow : Window
     {
+        List<SummaryValues> platformValues;
+        int summaryValuesCounter = 0;
         public MainWindow()
         {
             InitializeComponent();
@@ -31,6 +32,11 @@ namespace ST_HMI
             items.Add(new DoorModel() { DoorNum = "PSD4", URI = "Assets/EEDLock.png" });
             items.Add(new DoorModel() { DoorNum = "PSD5", URI = "Assets/PSDerror.png" });
             items.Add(new DoorModel() { DoorNum = "PSD5", URI = "Assets/PSDOpening.png" });
+            platformValues = new List<SummaryValues>();
+            platformValues.Add(new SummaryValues() { titleLabel = "Doors Failed to Open/close", valueLabel = "1" });
+            platformValues.Add(new SummaryValues() { titleLabel = "Platform Voltage", valueLabel = "80V" });
+            titleLabel.Content = platformValues[0].titleLabel;
+            valueLabel.Content =  platformValues[0].valueLabel;
             DoorsDataBinding.ItemsSource = items;
             System.Windows.Threading.DispatcherTimer LiveTime = new System.Windows.Threading.DispatcherTimer();
             LiveTime.Interval = TimeSpan.FromSeconds(1);
@@ -42,6 +48,12 @@ namespace ST_HMI
         {
             public string DoorNum { get; set; }
             public string URI { get; set; }
+        }
+
+        class SummaryValues
+        {
+            public string titleLabel { get; set; }
+            public string valueLabel { get; set; }
 
         }
 
@@ -59,6 +71,35 @@ namespace ST_HMI
                 language_text.Content = "EN";
             }
         }
+
+        void nextLabel(object sender, EventArgs e)
+        {
+            summaryValuesCounter++;
+            if (summaryValuesCounter == platformValues.Count - 1)
+            {
+                nextbtn.IsEnabled = false;
+                backbtn.IsEnabled = true;
+            }
+ 
+            titleLabel.Content = platformValues[summaryValuesCounter].titleLabel;
+            valueLabel.Content = platformValues[summaryValuesCounter].valueLabel;
+            
+        }
+
+        void previousLabel(object sender, EventArgs e)
+        {
+            summaryValuesCounter--;
+            if (summaryValuesCounter == 0)
+            {
+                backbtn.IsEnabled = false;
+                nextbtn.IsEnabled = true;
+            }
+   
+            titleLabel.Content = platformValues[summaryValuesCounter].titleLabel;
+            valueLabel.Content = platformValues[summaryValuesCounter].valueLabel;
+            
+        }
+
 
         private void ListViewItem_MouseEnter(object sender, MouseEventArgs e)
         {

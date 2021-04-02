@@ -213,9 +213,18 @@
                     </ScrollViewer>
 
                     <Rectangle  Stroke="Black"  Grid.Row="1" Grid.ColumnSpan="2" Margin="50 10"/>
-                    <Label Content="Doors Failed to Open/close" Background="White" Grid.Column="1" HorizontalAlignment="Left" VerticalAlignment="Top" Height="93" Width="228" Margin="137,50,0,0"/>
-                    <Button Content="&lt;" Grid.Column="1" HorizontalAlignment="Left" Margin="188,168,0,0" Background="White" Foreground="Black" VerticalAlignment="Top"/>
-                    <Button Content="&gt;" Grid.Column="1" HorizontalAlignment="Left" Margin="284,168,0,0" Background="White" Foreground="Black" VerticalAlignment="Top"/>
+                    <StackPanel Grid.Column="1"  Orientation="Horizontal" Background="White" Margin="100 50 100 90">
+                        <Grid>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="1*" />
+                                <RowDefinition Height="1*" />
+                            </Grid.RowDefinitions>
+                            <Label Name="titleLabel" Content="" Grid.Row="0"  FontSize="25" FontWeight="Bold"/>
+                            <Label Name="valueLabel" Content=""  HorizontalAlignment="Center" FontSize="50" VerticalAlignment="Top" Margin="0,27,0,0" Grid.RowSpan="1"/>
+                        </Grid>
+                    </StackPanel>
+                    <Button Name="backbtn" Click="previousLabel" Content="&lt;" Grid.Column="1" HorizontalAlignment="Left" Margin="200,250,0,0" Background="White" Foreground="Black" VerticalAlignment="Top"/>
+                    <Button  Name="nextbtn" Click="nextLabel" Content="&gt;" Grid.Column="1" HorizontalAlignment="Left" Margin="350,250,0,0" Background="White" Foreground="Black" VerticalAlignment="Top"/>
                 </Grid>
             </Grid>
 
