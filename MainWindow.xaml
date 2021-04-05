@@ -47,8 +47,8 @@
 
             <Setter Property="Placement" Value="Right"/>
             <Setter Property="Height" Value="40"/>
-            <Setter Property="Width" Value="100"/>
-            <Setter Property="Margin" Value="20,0,0,0"/>
+            <Setter Property="Width" Value="150"/>
+            <Setter Property="Margin" Value="150,0,0,0"/>
             <Setter Property="Background" Value="#4A5668"/>
             <Setter Property="BorderBrush" Value="Transparent"/>
             <Setter Property="Foreground" Value="White"/>
@@ -100,6 +100,15 @@
 
             </Setter>
 
+        </Style>
+
+        <Style x:Key="verticalScroll_hide" TargetType='{x:Type ListView}'>
+            <Setter Property="ScrollViewer.VerticalScrollBarVisibility" Value="Hidden"/>
+            <Style.Triggers>
+                <Trigger Property="IsMouseOver" Value="True">
+                    <Setter Property="ScrollViewer.VerticalScrollBarVisibility" Value="Auto"/>
+                </Trigger>
+            </Style.Triggers>
         </Style>
 
 
@@ -213,6 +222,23 @@
                         </ItemsControl>
                     </ScrollViewer>
 
+                    <Grid Grid.Column="1"
+                          Background="White"
+                          Margin="20 20 20 20">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="3*" />
+                            <RowDefinition Height="2*" />
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="8*" />
+                        </Grid.ColumnDefinitions>
+                        <Label Name="titleLabel" Content="Top" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0 -30 0 0" Grid.Row="0"  FontSize="25" FontWeight="Bold"/>
+                        <Label Name="valueLabel" Content="Bottom"  HorizontalAlignment="Center" VerticalAlignment="Bottom" FontSize="50" Grid.RowSpan="1"/>
+                        <Button Name="backbtn" Click="previousLabel" Content="&lt;" Grid.Row="1" Grid.Column="0" Margin="-200 0 0 0" HorizontalAlignment="Center" Background="Green" Foreground="Black"/>
+                        <Button  Name="nextbtn" Click="nextLabel" Content="&gt;" Grid.Row="1" Grid.Column="0" Margin="200 0 0 0" HorizontalAlignment="Center"  Background="Green" Foreground="Black"/>
+
+                    </Grid>
+
                     <Grid  Grid.Row="1" Grid.ColumnSpan="2" Margin="50 10">
                         <Grid.RowDefinitions>
                             <RowDefinition Height="*"></RowDefinition>
@@ -223,7 +249,7 @@
                             <ColumnDefinition Width="*"></ColumnDefinition>
                             <ColumnDefinition Width="6*"></ColumnDefinition>
                         </Grid.ColumnDefinitions>
-                        
+
                         <!-- Row 1 -->
                         <StackPanel MouseLeftButtonDown="ChangePlatform1" Grid.Row="0" Grid.Column="0"  Orientation="Horizontal" Background="White" Margin="10 10 10 10" HorizontalAlignment="Stretch">
                             <Grid>
@@ -254,7 +280,7 @@
                                 </ItemsControl>
                             </StackPanel>
                         </ScrollViewer>
-                        
+
                         <!-- Row 2 -->
                         <StackPanel MouseLeftButtonDown="ChangePlatform2" Grid.Row="1" Grid.Column="0"  Orientation="Horizontal" Background="White" Margin="10 10 10 10" HorizontalAlignment="Stretch">
                             <Grid>
@@ -316,21 +342,7 @@
                                 </ItemsControl>
                             </StackPanel>
                         </ScrollViewer>
-
                     </Grid>
-
-                    <StackPanel Grid.Column="1"  Orientation="Horizontal" Background="White" Margin="100 50 100 90">
-                        <Grid>
-                            <Grid.RowDefinitions>
-                                <RowDefinition Height="1*" />
-                                <RowDefinition Height="1*" />
-                            </Grid.RowDefinitions>
-                            <Label Name="titleLabel" Content="" Grid.Row="0"  FontSize="25" FontWeight="Bold"/>
-                            <Label Name="valueLabel" Content=""  HorizontalAlignment="Center" FontSize="50" VerticalAlignment="Top" Margin="0,27,0,0" Grid.RowSpan="1"/>
-                        </Grid>
-                    </StackPanel>
-                    <Button Name="backbtn" Click="previousLabel" Content="&lt;" Grid.Column="1" HorizontalAlignment="Left" Margin="200,250,0,0" Background="White" Foreground="Black" VerticalAlignment="Top"/>
-                    <Button  Name="nextbtn" Click="nextLabel" Content="&gt;" Grid.Column="1" HorizontalAlignment="Left" Margin="350,250,0,0" Background="White" Foreground="Black" VerticalAlignment="Top"/>
                 </Grid>
             </Grid>
 
@@ -374,16 +386,21 @@
                     Width="65"
                     Background="#2E333A">
 
-                <StackPanel x:Name="st_pnl">
+                <Grid 
+                    x:Name="st_pnl">
+
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="90"/>
+                        <RowDefinition Height="*"/>
+                    </Grid.RowDefinitions>
 
                     <!--// Grid for the Menu Toggle Button //-->
 
-                    <Grid Height="90">
+                    <Grid Grid.Row="0">
 
                         <!--// Menu title text //-->
 
-                        <TextBlock  Grid.Row="1"
-                                    Grid.Column="0"
+                        <TextBlock
                                     Margin="73,-20,0,0"
                                     Text="ST Engineering"
                                     Foreground="White"
@@ -484,14 +501,19 @@
 
                     <!--// ListView with menu list items //-->
 
-                    <ListView  x:Name="LV"
+                    <ListView
+                        Grid.Row="1"
+                        x:Name="LV"
                                Background="Transparent"
                                BorderBrush="Transparent"
-                               ScrollViewer.HorizontalScrollBarVisibility="Disabled" Height="676">
-
+                        Style="{StaticResource verticalScroll_hide}"
+                               ScrollViewer.HorizontalScrollBarVisibility="Disabled" 
+                               Margin="0,-20,0,0"
+                               Height="Auto" SelectionChanged="LV_SelectionChanged_1">
                         <!--// Home //-->
 
                         <ListViewItem HorizontalAlignment="Left"
+                                      
                                       Margin="0,0,0,15" MouseEnter="ListViewItem_MouseEnter"
                                       >
 
@@ -592,7 +614,7 @@
                                 </Image>
 
                                 <TextBlock Text="Interface"
-                                           Margin="25,0,0,0"
+                                           Margin="35,0,0,0"
                                            Style="{StaticResource font_style}"/>
 
                             </StackPanel>
@@ -672,7 +694,7 @@
                                 </Image>
 
                                 <TextBlock Text="Notifications"
-                                           Margin="25,0,0,0"
+                                           Margin="23,0,0,0"
                                            Style="{StaticResource font_style}"/>
 
                             </StackPanel>
@@ -712,7 +734,7 @@
                                 </Image>
 
                                 <TextBlock Text="Firmware Update"
-                                           Margin="25,0,0,0"
+                                           Margin="27,0,0,0"
                                            Style="{StaticResource font_style}"/>
 
                             </StackPanel>
@@ -829,7 +851,7 @@
 
                     </ListView>
 
-                </StackPanel>
+                </Grid>
 
 
             </Grid>

@@ -91,6 +91,9 @@ namespace ST_HMI
             LiveTime.Interval = TimeSpan.FromSeconds(1);
             LiveTime.Tick += timer_Tick;
             LiveTime.Start();
+
+            // Initialize for Counter
+            backbtn.IsEnabled = false;
         }
 
         class DoorModel
@@ -219,6 +222,11 @@ namespace ST_HMI
         }
 
         private void LV_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+
+        }
+
+        private void LV_SelectionChanged_1(object sender, SelectionChangedEventArgs e)
         {
 
         }
