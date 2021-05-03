@@ -1,9 +1,10 @@
-﻿<Window x:Class="ST_HMI.MainWindow"
+﻿<Window
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:ST_HMI"
+        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes" x:Class="ST_HMI.MainWindow"
         mc:Ignorable="d"
         Title="MainWindow" 
         Height="768" 
@@ -22,7 +23,7 @@
 
         <!--// Text font style //-->
 
-        <Style x:Key="font_style" TargetType="TextBlock">
+        <Style x:Key="font_style" TargetType="{x:Type TextBlock}">
 
             <Setter Property="FontFamily"
                     Value="Fonts/Roboto-Light.ttf #Roboto"/>
@@ -43,7 +44,7 @@
 
         <!--// Tooltip Style Template //-->
 
-        <Style TargetType="ToolTip" x:Key="tt_style">
+        <Style TargetType="{x:Type ToolTip}" x:Key="tt_style">
 
             <Setter Property="Placement" Value="Right"/>
             <Setter Property="Height" Value="40"/>
@@ -77,9 +78,7 @@
                         <Border x:Name="button"
                                 BorderThickness="0"
                                 Background="{TemplateBinding Background}"
-                                SnapsToDevicePixels="True">
-
-                        </Border>
+                                SnapsToDevicePixels="True"/>
 
                         <ControlTemplate.Triggers>
 
@@ -125,9 +124,7 @@
                         <Border  x:Name="border"
                                  BorderThickness="{TemplateBinding BorderThickness}"
                                  Background="{TemplateBinding Background}"
-                                 SnapsToDevicePixels="True">
-
-                        </Border>
+                                 SnapsToDevicePixels="True"/>
 
                         <ControlTemplate.Triggers>
 
@@ -192,158 +189,20 @@
                 </Button>
                 <Label x:Name="language_text" Content="EN" HorizontalAlignment="Right" Margin="0,11,350,0" VerticalAlignment="Top" FontFamily="Ebrima" Foreground="White" FontSize="13" FontWeight="Bold"/>
 
-                <Grid HorizontalAlignment="Stretch" Margin="80,52,0,0" VerticalAlignment="Stretch">
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="2*"></ColumnDefinition>
-                        <ColumnDefinition Width="*"></ColumnDefinition>
-                    </Grid.ColumnDefinitions>
-                    <Grid.RowDefinitions>
-                        <RowDefinition Height="*"></RowDefinition>
-                        <RowDefinition Height="2*"></RowDefinition>
-                    </Grid.RowDefinitions>
-                    <ScrollViewer HorizontalScrollBarVisibility="Visible" VerticalScrollBarVisibility="Auto" 
-                          Grid.Row="0" Grid.Column="0" Margin="50 10" Background="#DADDE2">
-                        <ItemsControl Name="DoorsDataBinding" Grid.Row="0">
-                            <ItemsControl.ItemsPanel>
-                                <ItemsPanelTemplate>
-                                    <WrapPanel/>
-                                </ItemsPanelTemplate>
-                            </ItemsControl.ItemsPanel>
-                            <ItemsControl.ItemTemplate>
-                                <DataTemplate>
-                                    <Border BorderBrush="Black" BorderThickness="1" Margin="50 30" Padding="30">
-                                        <StackPanel Orientation="Vertical">
-                                            <Image Source="{Binding URI}"></Image>
-                                            <TextBlock Text="{Binding DoorNum}" FontSize="20" HorizontalAlignment="Center"/>
-                                        </StackPanel>
-                                    </Border>
-                                </DataTemplate>
-                            </ItemsControl.ItemTemplate>
-                        </ItemsControl>
-                    </ScrollViewer>
-
-                    <Grid Grid.Column="1"
-                          Background="White"
-                          Margin="20 20 20 20">
-                        <Grid.RowDefinitions>
-                            <RowDefinition Height="3*" />
-                            <RowDefinition Height="2*" />
-                        </Grid.RowDefinitions>
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="8*" />
-                        </Grid.ColumnDefinitions>
-                        <Label Name="titleLabel" Content="Top" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0 -30 0 0" Grid.Row="0"  FontSize="25" FontWeight="Bold"/>
-                        <Label Name="valueLabel" Content="Bottom"  HorizontalAlignment="Center" VerticalAlignment="Bottom" FontSize="50" Grid.RowSpan="1"/>
-                        <Button Name="backbtn" Click="previousLabel" Content="&lt;" Grid.Row="1" Grid.Column="0" Margin="-200 0 0 0" HorizontalAlignment="Center" Background="Green" Foreground="Black"/>
-                        <Button  Name="nextbtn" Click="nextLabel" Content="&gt;" Grid.Row="1" Grid.Column="0" Margin="200 0 0 0" HorizontalAlignment="Center"  Background="Green" Foreground="Black"/>
-
-                    </Grid>
-
-                    <Grid  Grid.Row="1" Grid.ColumnSpan="2" Margin="50 10">
-                        <Grid.RowDefinitions>
-                            <RowDefinition Height="*"></RowDefinition>
-                            <RowDefinition Height="*"></RowDefinition>
-                            <RowDefinition Height="*"></RowDefinition>
-                        </Grid.RowDefinitions>
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="*"></ColumnDefinition>
-                            <ColumnDefinition Width="6*"></ColumnDefinition>
-                        </Grid.ColumnDefinitions>
-
-                        <!-- Row 1 -->
-                        <StackPanel MouseLeftButtonDown="ChangePlatform1" Grid.Row="0" Grid.Column="0"  Orientation="Horizontal" Background="White" Margin="10 10 10 10" HorizontalAlignment="Stretch">
-                            <Grid>
-                                <Label Content="Signaling Status" FontSize="20" FontWeight="Bold"/>
-                                <Label Content="last twenty seconds" FontSize="15" FontWeight="Light" Margin="0,24,0,-24"/>
-                                <Label Content="HEALTHY" FontSize="20" FontWeight="Bold" Margin="46,56,-48,-56" Foreground="Green"/>
-                            </Grid>
-                        </StackPanel>
-                        <ScrollViewer HorizontalScrollBarVisibility="Visible" VerticalScrollBarVisibility="Auto" 
-                          Grid.Row="0" Grid.Column="1" Margin="0 0 0 5" Background="#DADDE2">
-                            <StackPanel Orientation="Horizontal">
-                                <ItemsControl Name="IndicatorsDataBinding" Grid.Row="0">
-                                    <ItemsControl.ItemsPanel>
-                                        <ItemsPanelTemplate>
-                                            <WrapPanel/>
-                                        </ItemsPanelTemplate>
-                                    </ItemsControl.ItemsPanel>
-                                    <ItemsControl.ItemTemplate>
-                                        <DataTemplate>
-                                            <Border BorderBrush="Black" BorderThickness="1" Margin="50 30 0 0" Padding="30">
-                                                <StackPanel Orientation="Vertical" VerticalAlignment="Bottom">
-                                                    <Image Source="{Binding URI}"></Image>
-                                                    <TextBlock Text="{Binding DoorNum}" FontSize="10" HorizontalAlignment="Center"/>
-                                                </StackPanel>
-                                            </Border>
-                                        </DataTemplate>
-                                    </ItemsControl.ItemTemplate>
-                                </ItemsControl>
-                            </StackPanel>
-                        </ScrollViewer>
-
-                        <!-- Row 2 -->
-                        <StackPanel MouseLeftButtonDown="ChangePlatform2" Grid.Row="1" Grid.Column="0"  Orientation="Horizontal" Background="White" Margin="10 10 10 10" HorizontalAlignment="Stretch">
-                            <Grid>
-                                <Label Content="Input Status" FontSize="20" FontWeight="Bold"/>
-                                <Label Content="last twenty seconds" FontSize="15" FontWeight="Light" Margin="0,24,0,-24"/>
-                                <Label Content="LIVE" FontSize="20" FontWeight="Bold" Margin="65,54,-67,-54" Foreground="Green"/>
-                            </Grid>
-                        </StackPanel>
-                        <ScrollViewer HorizontalScrollBarVisibility="Visible" VerticalScrollBarVisibility="Auto" 
-                          Grid.Row="1" Grid.Column="1" Margin="0 0 0 5" Background="#DADDE2">
-                            <StackPanel Orientation="Horizontal">
-                                <ItemsControl Name="IndicatorsDataBinding2" Grid.Row="0">
-                                    <ItemsControl.ItemsPanel>
-                                        <ItemsPanelTemplate>
-                                            <WrapPanel/>
-                                        </ItemsPanelTemplate>
-                                    </ItemsControl.ItemsPanel>
-                                    <ItemsControl.ItemTemplate>
-                                        <DataTemplate>
-                                            <Border BorderBrush="Black" BorderThickness="1" Margin="50 30 0 0" Padding="30">
-                                                <StackPanel Orientation="Vertical" VerticalAlignment="Bottom">
-                                                    <Image Source="{Binding URI}"></Image>
-                                                    <TextBlock Text="{Binding DoorNum}" FontSize="10" HorizontalAlignment="Center"/>
-                                                </StackPanel>
-                                            </Border>
-                                        </DataTemplate>
-                                    </ItemsControl.ItemTemplate>
-                                </ItemsControl>
-                            </StackPanel>
-                        </ScrollViewer>
-
-                        <!-- Row 3 -->
-                        <StackPanel MouseLeftButtonDown="ChangePlatform3" Grid.Row="2" Grid.Column="0"  Orientation="Horizontal" Background="White" Margin="10 10 10 10" HorizontalAlignment="Stretch">
-                            <Grid>
-                                <Label Content="C and L Status" FontSize="20" FontWeight="Bold"/>
-                                <Label Content="last twenty seconds" FontSize="15" FontWeight="Light" Margin="0,24,0,-24"/>
-                                <Label Content="-" FontSize="20" FontWeight="Bold" Margin="74,58,-78,-58" />
-                            </Grid>
-                        </StackPanel>
-                        <ScrollViewer HorizontalScrollBarVisibility="Visible" VerticalScrollBarVisibility="Auto" 
-                          Grid.Row="3" Grid.Column="1" Margin="0 0 0 5" Background="#DADDE2">
-                            <StackPanel Orientation="Horizontal">
-                                <ItemsControl Name="IndicatorsDataBinding3" Grid.Row="0">
-                                    <ItemsControl.ItemsPanel>
-                                        <ItemsPanelTemplate>
-                                            <WrapPanel/>
-                                        </ItemsPanelTemplate>
-                                    </ItemsControl.ItemsPanel>
-                                    <ItemsControl.ItemTemplate>
-                                        <DataTemplate>
-                                            <Border BorderBrush="Black" BorderThickness="1" Margin="50 30 0 0" Padding="30">
-                                                <StackPanel Orientation="Vertical" VerticalAlignment="Bottom">
-                                                    <Image Source="{Binding URI}"></Image>
-                                                    <TextBlock Text="{Binding DoorNum}" FontSize="10" HorizontalAlignment="Center"/>
-                                                </StackPanel>
-                                            </Border>
-                                        </DataTemplate>
-                                    </ItemsControl.ItemTemplate>
-                                </ItemsControl>
-                            </StackPanel>
-                        </ScrollViewer>
-                    </Grid>
+                <Grid Margin="80,52,0,0" x:Name="xGrid" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+                    <Canvas Width="{Binding ElementName=xGrid,Path=ActualWidth}" Height="{Binding ElementName=xGrid,Path=ActualHeight}">
+                        <Grid Panel.ZIndex="2" x:Name="GridSysOver">
+                            <local:SystemOverview></local:SystemOverview>
+                        </Grid>
+                        <Grid Panel.ZIndex="1" x:Name="GridSysInt">
+                            <local:SystemInterface></local:SystemInterface>
+                        </Grid>
+                        <Grid Panel.ZIndex="1" x:Name="GridPlatOver">
+                            <local:PlatformOverview></local:PlatformOverview>
+                        </Grid>
+                    </Canvas>
                 </Grid>
+                
             </Grid>
 
             <!--// App Close Button //-->
@@ -460,9 +319,7 @@
                                                 Storyboard.TargetProperty="Width"
                                                 BeginTime="0:0:0"
                                                 From="230" To="65"
-                                                Duration="0:0:0.2">
-
-                                            </DoubleAnimation>
+                                                Duration="0:0:0.2"/>
 
                                         </Storyboard>
 
@@ -482,9 +339,7 @@
                                                 Storyboard.TargetProperty="Width"
                                                 BeginTime="0:0:0"
                                                 From="65" To="230"
-                                                Duration="0:0:0.3">
-
-                                            </DoubleAnimation>
+                                                Duration="0:0:0.3"/>
 
                                         </Storyboard>
 
@@ -510,292 +365,13 @@
                                ScrollViewer.HorizontalScrollBarVisibility="Disabled" 
                                Margin="0,-20,0,0"
                                Height="Auto" SelectionChanged="LV_SelectionChanged_1">
-                        <!--// Home //-->
-
-                        <ListViewItem HorizontalAlignment="Left"
-                                      
-                                      Margin="0,0,0,15" MouseEnter="ListViewItem_MouseEnter"
-                                      >
-
-                            <StackPanel Orientation="Horizontal"
-                                        Width="230">
-
-                                <Image Source="Assets/Icons/home.png"
-                                       Stretch="None" RenderTransformOrigin="0.5,0.5"
-                                       >
-                                    <Image.RenderTransform>
-                                        <TransformGroup>
-                                            <ScaleTransform ScaleX="0.9" ScaleY="0.9"/>
-                                            <SkewTransform/>
-                                            <RotateTransform/>
-                                            <TranslateTransform X="-5"/>
-                                        </TransformGroup>
-                                    </Image.RenderTransform>
-                                </Image>
-
-                                <TextBlock Text="Home"
-                                           Margin="25,0,0,0"
-                                           Style="{StaticResource font_style}"/>
-
-                            </StackPanel>
-
-                            <!--// Tooltip //-->
-
-                            <ListViewItem.ToolTip>
-
-                                <ToolTip x:Name="tt_home"
-                                         Content="Home"
-                                         Style="{StaticResource tt_style}"/>
-
-                            </ListViewItem.ToolTip>
-
-                        </ListViewItem>
-
-                        <!--// Sliding Door //-->
-
-                        <ListViewItem HorizontalAlignment="Left"
-                                      Margin="0,0,0,15" MouseEnter="ListViewItem_MouseEnter"
-                                      >
-
-                            <StackPanel Orientation="Horizontal"
-                                        Width="230">
-
-                                <Image Source="Assets/Icons/SlidingDoor.png"
-                                       Stretch="None"
-                                       RenderTransformOrigin="0.5,0.5">
-                                    <Image.RenderTransform>
-                                        <TransformGroup>
-                                            <ScaleTransform ScaleX="0.9" ScaleY="0.9"/>
-                                            <SkewTransform/>
-                                            <RotateTransform/>
-                                            <TranslateTransform X="-5"/>
-                                        </TransformGroup>
-                                    </Image.RenderTransform>
-                                </Image>
-
-                                <TextBlock Text="Sliding Door"
-                                           Margin="25,0,0,0"
-                                           Style="{StaticResource font_style}"/>
-
-                            </StackPanel>
-
-                            <!--// Tooltip //-->
-
-                            <ListViewItem.ToolTip>
-
-                                <ToolTip x:Name="tt_slidingdoor"
-                                         Content="Sliding Door"
-                                         Style="{StaticResource tt_style}"/>
-
-                            </ListViewItem.ToolTip>
-
-                        </ListViewItem>
-
-                        <!--// Dashboard //-->
-
-                        <ListViewItem HorizontalAlignment="Left"
-                                      Margin="6,0,0,15" MouseEnter="ListViewItem_MouseEnter"
-                                      >
-
-                            <StackPanel Orientation="Horizontal"
-                                        Width="230">
-
-                                <Image Source="Assets/Icons/sys_interface.png"
-                                       Stretch="None" RenderTransformOrigin="0.5,0.5"
-                                       >
-                                    <Image.RenderTransform>
-                                        <TransformGroup>
-                                            <ScaleTransform ScaleX="0.9" ScaleY="0.9"/>
-                                            <SkewTransform/>
-                                            <RotateTransform/>
-                                            <TranslateTransform X="-5"/>
-                                        </TransformGroup>
-                                    </Image.RenderTransform>
-                                </Image>
-
-                                <TextBlock Text="Interface"
-                                           Margin="35,0,0,0"
-                                           Style="{StaticResource font_style}"/>
-
-                            </StackPanel>
-
-                            <!--// Tooltip //-->
-
-                            <ListViewItem.ToolTip>
-
-                                <ToolTip x:Name="tt_interface"
-                                         Content="Interface"
-                                         Style="{StaticResource tt_style}"/>
-
-                            </ListViewItem.ToolTip>
-
-                        </ListViewItem>
-
-                        <!--// Piechart //-->
-
-                        <ListViewItem HorizontalAlignment="Left"
-                                      Margin="0,0,0,15" MouseEnter="ListViewItem_MouseEnter"
-                                      >
-
-                            <StackPanel Orientation="Horizontal"
-                                        Width="230">
-
-                                <Image Source="Assets/Icons/piechart.png"
-                                       Stretch="None" RenderTransformOrigin="0.5,0.5"
-                                       >
-                                    <Image.RenderTransform>
-                                        <TransformGroup>
-                                            <ScaleTransform ScaleX="0.9" ScaleY="0.9"/>
-                                            <SkewTransform/>
-                                            <RotateTransform/>
-                                            <TranslateTransform X="-4"/>
-                                        </TransformGroup>
-                                    </Image.RenderTransform>
-                                </Image>
-
-                                <TextBlock Text="Pie Chart"
-                                           Margin="25,0,0,0"
-                                           Style="{StaticResource font_style}"/>
-
-                            </StackPanel>
-
-                            <!--// Tooltip //-->
-
-                            <ListViewItem.ToolTip>
-
-                                <ToolTip x:Name="tt_piechart"
-                                         Content="Pie Chart"
-                                         Style="{StaticResource tt_style}"/>
-
-                            </ListViewItem.ToolTip>
-
-                        </ListViewItem>
-
-                        <!--// Notifications //-->
-
-                        <ListViewItem HorizontalAlignment="Left"
-                                      Margin="0,0,0,15" MouseEnter="ListViewItem_MouseEnter"
-                                      >
-
-                            <StackPanel Orientation="Horizontal"
-                                        Width="230">
-
-                                <Image Source="Assets/Icons/notifications.png"
-                                       Stretch="None" RenderTransformOrigin="0,0.5"
-                                       >
-                                    <Image.RenderTransform>
-                                        <TransformGroup>
-                                            <ScaleTransform ScaleX="0.9" ScaleY="0.9"/>
-                                            <SkewTransform/>
-                                            <RotateTransform/>
-                                            <TranslateTransform X="-2"/>
-                                        </TransformGroup>
-                                    </Image.RenderTransform>
-                                </Image>
-
-                                <TextBlock Text="Notifications"
-                                           Margin="23,0,0,0"
-                                           Style="{StaticResource font_style}"/>
-
-                            </StackPanel>
-
-                            <!--// Tooltip //-->
-
-                            <ListViewItem.ToolTip>
-
-                                <ToolTip x:Name="tt_notifications"
-                                         Content="Notifications"
-                                         Style="{StaticResource tt_style}"/>
-
-                            </ListViewItem.ToolTip>
-
-                        </ListViewItem>
-
-                        <!--// Firmware Update //-->
-
-                        <ListViewItem HorizontalAlignment="Left"
-                                      Margin="0,0,0,15" MouseEnter="ListViewItem_MouseEnter"
-                                      >
-
-                            <StackPanel Orientation="Horizontal"
-                                        Width="230">
-
-                                <Image Source="Assets/Icons/firmware_update.png"
-                                       Stretch="None" RenderTransformOrigin="0,0.5"
-                                       >
-                                    <Image.RenderTransform>
-                                        <TransformGroup>
-                                            <ScaleTransform ScaleX="0.9" ScaleY="0.9"/>
-                                            <SkewTransform/>
-                                            <RotateTransform/>
-                                            <TranslateTransform X="-2"/>
-                                        </TransformGroup>
-                                    </Image.RenderTransform>
-                                </Image>
-
-                                <TextBlock Text="Firmware Update"
-                                           Margin="27,0,0,0"
-                                           Style="{StaticResource font_style}"/>
-
-                            </StackPanel>
-
-                            <!--// Tooltip //-->
-
-                            <ListViewItem.ToolTip>
-
-                                <ToolTip x:Name="tt_firmware"
-                                         Content="Firmware Updates"
-                                         Style="{StaticResource tt_style}"/>
-
-                            </ListViewItem.ToolTip>
-
-                        </ListViewItem>
-
-                        <!--// Profile //-->
-
-                        <ListViewItem HorizontalAlignment="Left"
-                                      Margin="0,0,0,15" MouseEnter="ListViewItem_MouseEnter">
-
-                            <StackPanel Orientation="Horizontal"
-                                        Width="230">
-
-                                <Image Source="Assets/Icons/account_circle.png"
-                                       Stretch="None" RenderTransformOrigin="0.5,0.5"
-                                       >
-                                    <Image.RenderTransform>
-                                        <TransformGroup>
-                                            <ScaleTransform ScaleX="0.9" ScaleY="0.9"/>
-                                            <SkewTransform/>
-                                            <RotateTransform/>
-                                            <TranslateTransform X="-5"/>
-                                        </TransformGroup>
-                                    </Image.RenderTransform>
-                                </Image>
-
-                                <TextBlock Text="Profile Page"
-                                           Margin="25,0,0,0"
-                                           Style="{StaticResource font_style}"/>
-
-                            </StackPanel>
-
-                            <!--// Tooltip //-->
-
-                            <ListViewItem.ToolTip>
-
-                                <ToolTip x:Name="tt_profile"
-                                         Content="Profile"
-                                         Style="{StaticResource tt_style}"/>
-
-                            </ListViewItem.ToolTip>
-
-                        </ListViewItem>
 
 
                         <!--// Listview items style template //-->
 
                         <ListView.ItemContainerStyle>
 
-                            <Style TargetType="ListViewItem">
+                            <Style TargetType="{x:Type ListViewItem}">
 
                                 <Setter Property="Template">
 
@@ -848,6 +424,288 @@
                             </Style>
 
                         </ListView.ItemContainerStyle>
+
+                        <!--// Home //-->
+
+                        <ListViewItem HorizontalAlignment="Left"
+                                      Margin="0,0,0,15" MouseEnter="ListViewItem_MouseEnter"
+                                      >
+
+                            <!--// Tooltip //-->
+
+                            <ListViewItem.ToolTip>
+
+                                <ToolTip x:Name="tt_home"
+                                         Content="Home"
+                                         Style="{StaticResource tt_style}"/>
+
+                            </ListViewItem.ToolTip>
+
+                            <StackPanel Orientation="Horizontal"
+                                        Width="230">
+                                
+                                <Image Source="Assets/Icons/home.png"
+                                       Stretch="None" RenderTransformOrigin="0.5,0.5"
+                                       MouseDown="Homebtn_MouseDown"
+                                       >
+                                    <Image.RenderTransform>
+                                        <TransformGroup>
+                                            <ScaleTransform ScaleX="0.9" ScaleY="0.9"/>
+                                            <SkewTransform/>
+                                            <RotateTransform/>
+                                            <TranslateTransform X="-5"/>
+                                        </TransformGroup>
+                                    </Image.RenderTransform>
+                                </Image>
+
+                                <TextBlock Text="Home"
+                                           Margin="25,0,0,0"
+                                           Style="{StaticResource font_style}"/>
+
+                            </StackPanel>
+
+                        </ListViewItem>
+
+                        <!--// Sliding Door //-->
+
+                        <ListViewItem HorizontalAlignment="Left"
+                                      Margin="0,0,0,15" MouseEnter="ListViewItem_MouseEnter"
+                                      >
+                            <!--// Tooltip //-->
+
+                            <ListViewItem.ToolTip>
+
+                                <ToolTip x:Name="tt_slidingdoor"
+                                         Content="Sliding Door"
+                                         Style="{StaticResource tt_style}"/>
+
+                            </ListViewItem.ToolTip>
+
+                            <StackPanel Orientation="Horizontal"
+                                        Width="230">
+
+                                <Image Source="Assets/Icons/SlidingDoor.png"
+                                       Stretch="None"
+                                       RenderTransformOrigin="0.5,0.5"
+                                       MouseDown="SlidingDoorbtn_MouseDown">
+                                    <Image.RenderTransform>
+                                        <TransformGroup>
+                                            <ScaleTransform ScaleX="0.9" ScaleY="0.9"/>
+                                            <SkewTransform/>
+                                            <RotateTransform/>
+                                            <TranslateTransform X="-5"/>
+                                        </TransformGroup>
+                                    </Image.RenderTransform>
+                                </Image>
+
+                                <TextBlock Text="Sliding Door"
+                                           Margin="25,0,0,0"
+                                           Style="{StaticResource font_style}"/>
+
+                            </StackPanel>
+
+                        </ListViewItem>
+
+                        <!--// Dashboard //-->
+
+                        <ListViewItem HorizontalAlignment="Left"
+                                      Margin="6,0,0,15" MouseEnter="ListViewItem_MouseEnter"
+                                      >
+
+                            <!--// Tooltip //-->
+
+                            <ListViewItem.ToolTip>
+
+                                <ToolTip x:Name="tt_interface"
+                                         Content="Interface"
+                                         Style="{StaticResource tt_style}"/>
+
+                            </ListViewItem.ToolTip>
+
+                            <StackPanel Orientation="Horizontal"
+                                        Width="230">
+
+                                <Image Source="Assets/Icons/sys_interface.png"
+                                       Stretch="None" RenderTransformOrigin="0.5,0.5"
+                                       MouseDown="Sysintbtn_MouseDown"
+                                       >
+                                    <Image.RenderTransform>
+                                        <TransformGroup>
+                                            <ScaleTransform ScaleX="0.9" ScaleY="0.9"/>
+                                            <SkewTransform/>
+                                            <RotateTransform/>
+                                            <TranslateTransform X="-5"/>
+                                        </TransformGroup>
+                                    </Image.RenderTransform>
+                                </Image>
+
+                                <TextBlock Text="Interface"
+                                           Margin="35,0,0,0"
+                                           Style="{StaticResource font_style}"/>
+
+                            </StackPanel>
+
+                        </ListViewItem>
+
+                        <!--// Piechart //-->
+
+                        <ListViewItem HorizontalAlignment="Left"
+                                      Margin="0,0,0,15" MouseEnter="ListViewItem_MouseEnter"
+                                      >
+
+                            <!--// Tooltip //-->
+
+                            <ListViewItem.ToolTip>
+
+                                <ToolTip x:Name="tt_piechart"
+                                         Content="Pie Chart"
+                                         Style="{StaticResource tt_style}"/>
+
+                            </ListViewItem.ToolTip>
+
+                            <StackPanel Orientation="Horizontal"
+                                        Width="230">
+
+                                <Image Source="Assets/Icons/piechart.png"
+                                       Stretch="None" RenderTransformOrigin="0.5,0.5"
+                                       >
+                                    <Image.RenderTransform>
+                                        <TransformGroup>
+                                            <ScaleTransform ScaleX="0.9" ScaleY="0.9"/>
+                                            <SkewTransform/>
+                                            <RotateTransform/>
+                                            <TranslateTransform X="-4"/>
+                                        </TransformGroup>
+                                    </Image.RenderTransform>
+                                </Image>
+
+                                <TextBlock Text="Pie Chart"
+                                           Margin="25,0,0,0"
+                                           Style="{StaticResource font_style}"/>
+
+                            </StackPanel>
+
+                        </ListViewItem>
+
+                        <!--// Notifications //-->
+
+                        <ListViewItem HorizontalAlignment="Left"
+                                      Margin="0,0,0,15" MouseEnter="ListViewItem_MouseEnter"
+                                      >
+
+                            <!--// Tooltip //-->
+
+                            <ListViewItem.ToolTip>
+
+                                <ToolTip x:Name="tt_notifications"
+                                         Content="Notifications"
+                                         Style="{StaticResource tt_style}"/>
+
+                            </ListViewItem.ToolTip>
+
+                            <StackPanel Orientation="Horizontal"
+                                        Width="230">
+
+                                <Image Source="Assets/Icons/notifications.png"
+                                       Stretch="None" RenderTransformOrigin="0,0.5"
+                                       >
+                                    <Image.RenderTransform>
+                                        <TransformGroup>
+                                            <ScaleTransform ScaleX="0.9" ScaleY="0.9"/>
+                                            <SkewTransform/>
+                                            <RotateTransform/>
+                                            <TranslateTransform X="-2"/>
+                                        </TransformGroup>
+                                    </Image.RenderTransform>
+                                </Image>
+
+                                <TextBlock Text="Notifications"
+                                           Margin="23,0,0,0"
+                                           Style="{StaticResource font_style}"/>
+
+                            </StackPanel>
+
+                        </ListViewItem>
+
+                        <!--// Firmware Update //-->
+
+                        <ListViewItem HorizontalAlignment="Left"
+                                      Margin="0,0,0,15" MouseEnter="ListViewItem_MouseEnter"
+                                      >
+
+                            <!--// Tooltip //-->
+
+                            <ListViewItem.ToolTip>
+
+                                <ToolTip x:Name="tt_firmware"
+                                         Content="Firmware Updates"
+                                         Style="{StaticResource tt_style}"/>
+
+                            </ListViewItem.ToolTip>
+
+                            <StackPanel Orientation="Horizontal"
+                                        Width="230">
+
+                                <Image Source="Assets/Icons/firmware_update.png"
+                                       Stretch="None" RenderTransformOrigin="0,0.5"
+                                       >
+                                    <Image.RenderTransform>
+                                        <TransformGroup>
+                                            <ScaleTransform ScaleX="0.9" ScaleY="0.9"/>
+                                            <SkewTransform/>
+                                            <RotateTransform/>
+                                            <TranslateTransform X="-2"/>
+                                        </TransformGroup>
+                                    </Image.RenderTransform>
+                                </Image>
+
+                                <TextBlock Text="Firmware Update"
+                                           Margin="27,0,0,0"
+                                           Style="{StaticResource font_style}"/>
+
+                            </StackPanel>
+
+                        </ListViewItem>
+
+                        <!--// Profile //-->
+
+                        <ListViewItem HorizontalAlignment="Left"
+                                      Margin="0,0,0,15" MouseEnter="ListViewItem_MouseEnter">
+
+                            <!--// Tooltip //-->
+
+                            <ListViewItem.ToolTip>
+
+                                <ToolTip x:Name="tt_profile"
+                                         Content="Profile"
+                                         Style="{StaticResource tt_style}"/>
+
+                            </ListViewItem.ToolTip>
+
+                            <StackPanel Orientation="Horizontal"
+                                        Width="230">
+
+                                <Image Source="Assets/Icons/account_circle.png"
+                                       Stretch="None" RenderTransformOrigin="0.5,0.5"
+                                       >
+                                    <Image.RenderTransform>
+                                        <TransformGroup>
+                                            <ScaleTransform ScaleX="0.9" ScaleY="0.9"/>
+                                            <SkewTransform/>
+                                            <RotateTransform/>
+                                            <TranslateTransform X="-5"/>
+                                        </TransformGroup>
+                                    </Image.RenderTransform>
+                                </Image>
+
+                                <TextBlock Text="Profile Page"
+                                           Margin="25,0,0,0"
+                                           Style="{StaticResource font_style}"/>
+
+                            </StackPanel>
+
+                        </ListViewItem>
+
 
                     </ListView>
 
