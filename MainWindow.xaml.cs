@@ -12,6 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using System.Windows.Threading;
 
 namespace ST_HMI
 {
@@ -20,7 +21,11 @@ namespace ST_HMI
     /// </summary>
     public partial class MainWindow : Window
     {
-        List<DoorModel> items = new List<DoorModel>();
+        List<DoorModel> items_1 = new List<DoorModel>();
+        List<DoorModel> items_2 = new List<DoorModel>();
+        List<DoorModel> items_3 = new List<DoorModel>();
+        List<DoorModel> items_4 = new List<DoorModel>();
+        List<DoorModel> items_5 = new List<DoorModel>();
         List<DoorModel> items2 = new List<DoorModel>();
         List<DoorModel> items3 = new List<DoorModel>();
         List<SummaryValues> platformValues;
@@ -28,17 +33,55 @@ namespace ST_HMI
         List<DoorIndicator> indicators2 = new List<DoorIndicator>();
         List<DoorIndicator> indicators3 = new List<DoorIndicator>();
         int summaryValuesCounter = 0;
+
+        DispatcherTimer dispatcherTimer = new DispatcherTimer();
+
         public MainWindow()
         {
             InitializeComponent();
 
             // platform 1 doors
-            items.Add(new DoorModel() { DoorNum = "PSD1", URI = "Assets/PSDOpening.png" });
-            items.Add(new DoorModel() { DoorNum = "PSD2", URI = "Assets/PSDLock.png" });
-            items.Add(new DoorModel() { DoorNum = "PSD3", URI = "Assets/PSDInhibit.png" });
-            items.Add(new DoorModel() { DoorNum = "PSD4", URI = "Assets/EEDLock.png" });
-            items.Add(new DoorModel() { DoorNum = "PSD5", URI = "Assets/PSDerror.png" });
-            items.Add(new DoorModel() { DoorNum = "PSD5", URI = "Assets/PSDOpening.png" });
+            /*            items.Add(new DoorModel() { DoorNum = "PSD1", URI = "Assets/PSDOpening.png" });
+                        items.Add(new DoorModel() { DoorNum = "PSD2", URI = "Assets/PSDLock.png" });
+                        items.Add(new DoorModel() { DoorNum = "PSD3", URI = "Assets/PSDInhibit.png" });
+                        items.Add(new DoorModel() { DoorNum = "PSD4", URI = "Assets/EEDLock.png" });
+                        items.Add(new DoorModel() { DoorNum = "PSD5", URI = "Assets/PSDerror.png" });*/
+
+
+            items_1.Add(new DoorModel() { DoorNum = "PSD1", URI = "Assets/Animation/fd1.png" });
+            items_1.Add(new DoorModel() { DoorNum = "PSD2", URI = "Assets/Animation/fd1.png" });
+            items_1.Add(new DoorModel() { DoorNum = "PSD3", URI = "Assets/Animation/fd1.png" });
+            items_1.Add(new DoorModel() { DoorNum = "PSD4", URI = "Assets/Animation/fd1.png" });
+            items_1.Add(new DoorModel() { DoorNum = "PSD5", URI = "Assets/Animation/fd1.png" });
+            items_1.Add(new DoorModel() { DoorNum = "PSD5", URI = "Assets/Animation/fd1.png" });
+
+            items_2.Add(new DoorModel() { DoorNum = "PSD1", URI = "Assets/Animation/fd2.png" });
+            items_2.Add(new DoorModel() { DoorNum = "PSD2", URI = "Assets/Animation/fd2.png" });
+            items_2.Add(new DoorModel() { DoorNum = "PSD3", URI = "Assets/Animation/fd2.png" });
+            items_2.Add(new DoorModel() { DoorNum = "PSD4", URI = "Assets/Animation/fd2.png" });
+            items_2.Add(new DoorModel() { DoorNum = "PSD5", URI = "Assets/Animation/fd2.png" });
+            items_2.Add(new DoorModel() { DoorNum = "PSD5", URI = "Assets/Animation/fd2.png" });
+
+            items_3.Add(new DoorModel() { DoorNum = "PSD1", URI = "Assets/Animation/fd3.png" });
+            items_3.Add(new DoorModel() { DoorNum = "PSD2", URI = "Assets/Animation/fd3.png" });
+            items_3.Add(new DoorModel() { DoorNum = "PSD3", URI = "Assets/Animation/fd3.png" });
+            items_3.Add(new DoorModel() { DoorNum = "PSD4", URI = "Assets/Animation/fd3.png" });
+            items_3.Add(new DoorModel() { DoorNum = "PSD5", URI = "Assets/Animation/fd3.png" });
+            items_3.Add(new DoorModel() { DoorNum = "PSD5", URI = "Assets/Animation/fd3.png" });
+
+            items_4.Add(new DoorModel() { DoorNum = "PSD1", URI = "Assets/Animation/fd4.png" });
+            items_4.Add(new DoorModel() { DoorNum = "PSD2", URI = "Assets/Animation/fd4.png" });
+            items_4.Add(new DoorModel() { DoorNum = "PSD3", URI = "Assets/Animation/fd4.png" });
+            items_4.Add(new DoorModel() { DoorNum = "PSD4", URI = "Assets/Animation/fd4.png" });
+            items_4.Add(new DoorModel() { DoorNum = "PSD5", URI = "Assets/Animation/fd4.png" });
+            items_4.Add(new DoorModel() { DoorNum = "PSD5", URI = "Assets/Animation/fd4.png" });
+
+            items_5.Add(new DoorModel() { DoorNum = "PSD1", URI = "Assets/Animation/fd5.png" });
+            items_5.Add(new DoorModel() { DoorNum = "PSD2", URI = "Assets/Animation/fd5.png" });
+            items_5.Add(new DoorModel() { DoorNum = "PSD3", URI = "Assets/Animation/fd5.png" });
+            items_5.Add(new DoorModel() { DoorNum = "PSD4", URI = "Assets/Animation/fd5.png" });
+            items_5.Add(new DoorModel() { DoorNum = "PSD5", URI = "Assets/Animation/fd5.png" });
+            items_5.Add(new DoorModel() { DoorNum = "PSD5", URI = "Assets/Animation/fd5.png" });
 
             // platform 1 indicators
             indicators.Add(new DoorIndicator() { DoorNum = "PSD1", URI = "Assets/PSD_fullheight.png" });
@@ -82,7 +125,7 @@ namespace ST_HMI
             titleLabel.Content = platformValues[0].titleLabel;
             valueLabel.Content =  platformValues[0].valueLabel;
 
-            DoorsDataBinding.ItemsSource = items;
+            DoorsDataBinding.ItemsSource = items_1;
             IndicatorsDataBinding.ItemsSource = indicators;
             IndicatorsDataBinding2.ItemsSource = indicators2;
             IndicatorsDataBinding3.ItemsSource = indicators3;
@@ -92,8 +135,36 @@ namespace ST_HMI
             LiveTime.Tick += timer_Tick;
             LiveTime.Start();
 
+            dispatcherTimer.Tick += Animation;
+            dispatcherTimer.Interval = new TimeSpan(0, 0, 1);
+            dispatcherTimer.Start();
+
             // Initialize for Counter
             backbtn.IsEnabled = false;
+        }
+
+        private void Animation(object sender, EventArgs e)
+        {
+            if(DoorsDataBinding.ItemsSource == items_1)
+            {
+                DoorsDataBinding.ItemsSource = items_2;
+            }
+            else if (DoorsDataBinding.ItemsSource == items_2)
+            {
+                DoorsDataBinding.ItemsSource = items_3;
+            }
+            else if (DoorsDataBinding.ItemsSource == items_3)
+            {
+                DoorsDataBinding.ItemsSource = items_4;
+            }
+            else if (DoorsDataBinding.ItemsSource == items_4)
+            {
+                DoorsDataBinding.ItemsSource = items_5;
+            }
+            else if (DoorsDataBinding.ItemsSource == items_5)
+            {
+                DoorsDataBinding.ItemsSource = items_1;
+            }
         }
 
         class DoorModel
@@ -117,7 +188,7 @@ namespace ST_HMI
 
         void ChangePlatform1(object sender, EventArgs e)
         {
-            DoorsDataBinding.ItemsSource = items;
+            DoorsDataBinding.ItemsSource = items_1;
         }
         void ChangePlatform2(object sender, EventArgs e)
         {
