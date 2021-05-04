@@ -5,8 +5,49 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:ST_HMI"
              mc:Ignorable="d" Width="1596" Height="700">
-    <Grid Background="#6A7985">
-        <Label FontSize="80" Content="HELLO System Overview" HorizontalAlignment="Left" VerticalAlignment="Center" Height="124" Width="990" Margin="359,0,0,0"/>
+    <Grid Background="#B5BCC2">
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"></ColumnDefinition>
+                <ColumnDefinition Width="*"></ColumnDefinition>
+                <ColumnDefinition Width="*"></ColumnDefinition>
+                <ColumnDefinition Width="*"></ColumnDefinition>
+                <ColumnDefinition Width="*"></ColumnDefinition>
+                <ColumnDefinition Width="*"></ColumnDefinition>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*"></RowDefinition>
+                <RowDefinition Height="*"></RowDefinition>
+                <RowDefinition Height="*"></RowDefinition>
+                <RowDefinition Height="*"></RowDefinition>
+            </Grid.RowDefinitions>
+            <Rectangle Grid.Row="0" Grid.Column="0"  HorizontalAlignment="Left" VerticalAlignment="Top" Fill="#384955" Margin="20" Height="20" Width="60" Panel.ZIndex='100' ></Rectangle>
+            <Rectangle Grid.Row="0" Grid.Column="0" Grid.RowSpan="2" Grid.ColumnSpan="2" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Fill="#DADDE2" Margin="20" ></Rectangle>
+            <Rectangle Grid.Row="0" Grid.Column="2" Grid.ColumnSpan="2" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="20" Fill="#DADDE2" ></Rectangle>
+            <Rectangle Grid.Row="0" Grid.Column="4" Grid.ColumnSpan="2" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="20" Fill="#DADDE2" ></Rectangle>
+            <Rectangle Grid.Row="1" Grid.Column="2" Grid.ColumnSpan="2" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="20" Fill="#DADDE2"></Rectangle>
+            <Rectangle Grid.Row="1" Grid.Column="4" Grid.ColumnSpan="2" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="20" Fill="#DADDE2"></Rectangle>
+            <Rectangle Grid.Row="2" Grid.ColumnSpan="6" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="20" Fill="#DADDE2"></Rectangle>
+            <Rectangle Grid.Row="3" Grid.ColumnSpan="6" HorizontalAlignment="Stretch" VerticalAlignment="Stretch"  Margin="20" Fill="#DADDE2"></Rectangle>
+            <TextBlock Grid.Row="0" Grid.Column="0" HorizontalAlignment="Stretch"  VerticalAlignment="Stretch" Margin="40,40,20,20" Text="MCD Status" FontSize="20" TextWrapping="Wrap" Background="White"/>
+            <TextBlock Grid.Row="0" Grid.Column="1" HorizontalAlignment="Stretch"  VerticalAlignment="Stretch" Margin="20,40,40,20"  Text="Doors Opened" FontSize="20" TextWrapping="Wrap" Background="White"/>
+            <TextBlock Grid.Row="1" Grid.Column="0" HorizontalAlignment="Stretch"  VerticalAlignment="Stretch" Margin="40,20,20,40" Text="Voltage Status" FontSize="20" TextWrapping="Wrap" Background="White"/>
+            <TextBlock Grid.Row="1" Grid.Column="1" HorizontalAlignment="Stretch"  VerticalAlignment="Stretch" Margin="20,20,40,40" Text="Temperature" FontSize="20" TextWrapping="Wrap" Background="White"/>
+            <TextBlock Grid.Row="0" Grid.Column="2" HorizontalAlignment="Stretch"  VerticalAlignment="Stretch" Margin="40 40 20 40" Text="IPC" FontSize="20" TextWrapping="Wrap" Background="White"/>
+            <TextBlock Grid.Row="0" Grid.Column="3" HorizontalAlignment="Stretch"  VerticalAlignment="Stretch" Margin="20 40 40 40" Text="Power" FontSize="20" TextWrapping="Wrap" Background="White"/>
+            <TextBlock Grid.Row="1" Grid.Column="2" HorizontalAlignment="Stretch"  VerticalAlignment="Stretch" Margin="40 40 20 40" Text="IPC" FontSize="20" TextWrapping="Wrap" Background="White"/>
+            <TextBlock Grid.Row="1" Grid.Column="3" HorizontalAlignment="Stretch"  VerticalAlignment="Stretch" Margin="20 40 40 40" Text="Power" FontSize="20"  TextWrapping="Wrap" Background="White"/>
+            <TextBlock Grid.Row="0" Grid.Column="4" HorizontalAlignment="Stretch"  VerticalAlignment="Stretch" Margin="40 40 20 40"  Text="IPC" FontSize="20" TextWrapping="Wrap" Background="White"/>
+            <TextBlock Grid.Row="0" Grid.Column="5"  HorizontalAlignment="Stretch"  VerticalAlignment="Stretch" Margin="20 40 40 40"  Text="Power" FontSize="20" TextWrapping="Wrap" Background="White"/>
+            <TextBlock Grid.Row="1" Grid.Column="4"  HorizontalAlignment="Stretch"  VerticalAlignment="Stretch" Margin="40 40 20 40" Text="IPC" FontSize="20" TextWrapping="Wrap" Background="White"/>
+            <TextBlock Grid.Row="1" Grid.Column="5"  HorizontalAlignment="Stretch"  VerticalAlignment="Stretch" Margin="20 40 40 40" Text="Power" FontSize="20" TextWrapping="Wrap" Background="White"/>
+            <TextBlock Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="2" HorizontalAlignment="Stretch"  VerticalAlignment="Stretch" Margin="40 40 20 40" Grid.RowSpan="1" Text="Signalling Status" FontSize="20" TextWrapping="Wrap" Background="White"/>
+            <TextBlock Grid.Row="2" Grid.Column="2" Grid.ColumnSpan="2" HorizontalAlignment="Stretch"  VerticalAlignment="Stretch" Margin="20 40 20 40" Grid.RowSpan="1" Text="SCADA Status" FontSize="20" TextWrapping="Wrap" Background="White"/>
+            <TextBlock Grid.Row="2" Grid.Column="4" Grid.ColumnSpan="2" HorizontalAlignment="Stretch"  VerticalAlignment="Stretch" Margin="20 40 40 40" Grid.RowSpan="1" Text="Master Clock Status" FontSize="20" TextWrapping="Wrap" Background="White"/>
+            <TextBlock Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="2" HorizontalAlignment="Stretch"  VerticalAlignment="Stretch" Margin="40 40 20 40" Grid.RowSpan="1" Text="Version" FontSize="20" TextWrapping="Wrap" Background="White"/>
+            <TextBlock Grid.Row="3" Grid.Column="2" Grid.ColumnSpan="2" HorizontalAlignment="Stretch"  VerticalAlignment="Stretch" Margin="20 40 20 40" Grid.RowSpan="1" Text="Last Update" FontSize="20" TextWrapping="Wrap" Background="White"/>
+            <TextBlock Grid.Row="3" Grid.Column="4" Grid.ColumnSpan="2" HorizontalAlignment="Stretch"  VerticalAlignment="Stretch" Margin="20 40 40 40" Grid.RowSpan="1" Text="Next Scheduled Update" FontSize="20" TextWrapping="Wrap" Background="White"/>
+        </Grid>
 
     </Grid>
 </UserControl>
