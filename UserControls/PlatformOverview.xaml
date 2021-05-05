@@ -4,7 +4,7 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:ST_HMI"
-             mc:Ignorable="d" Width="1596" Height="700">
+             mc:Ignorable="d" Width="auto" Height="auto">
     <UserControl.Resources>
         <!--// Text font style //-->
 
@@ -108,7 +108,7 @@
                     </ItemsControl.ItemTemplate>
                 </ItemsControl>
             </ScrollViewer>
-            <Label x:Name="datetime_text" Content="Thursday, Mar 18 2021, 02:25:06" HorizontalContentAlignment="Center" HorizontalAlignment="Right" Height="37" Margin="0,5,50,0" VerticalAlignment="Top" Width="244" FontFamily="Ebrima" FontSize="13" FontWeight="Bold" Foreground="White" VerticalContentAlignment="Center"/>
+            
 
             <Grid Grid.Column="1"
                           Background="White"

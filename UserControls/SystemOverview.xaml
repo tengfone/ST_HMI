@@ -6,7 +6,6 @@
              xmlns:local="clr-namespace:ST_HMI"
              mc:Ignorable="d" Width="1596" Height="700">
     <Grid Background="#6A7985">
-        <Label FontSize="80" Content="HELLO System Overview" HorizontalAlignment="Left" VerticalAlignment="Center" Height="124" Width="990" Margin="359,0,0,0"/>
-
+        <Label FontSize="80" Content="HELLO System Overview" HorizontalAlignment="Center" VerticalAlignment="Center" Height="124" Width="878"/>
     </Grid>
 </UserControl>

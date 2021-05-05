@@ -26,14 +26,6 @@ namespace ST_HMI
         {
             InitializeComponent();
 
-            // platform 1 doors
-            /*            items.Add(new DoorModel() { DoorNum = "PSD1", URI = "Assets/PSDOpening.png" });
-                        items.Add(new DoorModel() { DoorNum = "PSD2", URI = "Assets/PSDLock.png" });
-                        items.Add(new DoorModel() { DoorNum = "PSD3", URI = "Assets/PSDInhibit.png" });
-                        items.Add(new DoorModel() { DoorNum = "PSD4", URI = "Assets/EEDLock.png" });
-                        items.Add(new DoorModel() { DoorNum = "PSD5", URI = "Assets/PSDerror.png" });*/
-
-
         }
 
         void change_language(object sender, EventArgs e)

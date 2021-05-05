@@ -26,7 +26,13 @@ namespace ST_HMI
         List<DoorModel> items_3 = new List<DoorModel>();
         List<DoorModel> items_4 = new List<DoorModel>();
         List<DoorModel> items_5 = new List<DoorModel>();
-        List<DoorModel> items2 = new List<DoorModel>();
+
+        List<DoorModel> items2_1 = new List<DoorModel>();
+        List<DoorModel> items2_2 = new List<DoorModel>();
+        List<DoorModel> items2_3 = new List<DoorModel>();
+        List<DoorModel> items2_4 = new List<DoorModel>();
+        List<DoorModel> items2_5 = new List<DoorModel>();
+
         List<DoorModel> items3 = new List<DoorModel>();
         List<SummaryValues> platformValues;
         List<DoorIndicator> indicators = new List<DoorIndicator>();
@@ -34,72 +40,97 @@ namespace ST_HMI
         List<DoorIndicator> indicators3 = new List<DoorIndicator>();
         int summaryValuesCounter = 0;
 
-        DispatcherTimer dispatcherTimer = new DispatcherTimer();
+        DispatcherTimer dispatcherTimer = new DispatcherTimer(DispatcherPriority.Send);
+
         public PlatformOverview()
         {
             InitializeComponent();
 
-            // platform 1 doors
-            /*            items.Add(new DoorModel() { DoorNum = "PSD1", URI = "Assets/PSDOpening.png" });
-                        items.Add(new DoorModel() { DoorNum = "PSD2", URI = "Assets/PSDLock.png" });
-                        items.Add(new DoorModel() { DoorNum = "PSD3", URI = "Assets/PSDInhibit.png" });
-                        items.Add(new DoorModel() { DoorNum = "PSD4", URI = "Assets/EEDLock.png" });
-                        items.Add(new DoorModel() { DoorNum = "PSD5", URI = "Assets/PSDerror.png" });*/
             items_1.Add(new DoorModel() { DoorNum = "PSD1", URI = "../Assets/Animation/fd1.png" });
             items_1.Add(new DoorModel() { DoorNum = "PSD2", URI = "../Assets/Animation/fd1.png" });
             items_1.Add(new DoorModel() { DoorNum = "PSD3", URI = "../Assets/Animation/fd1.png" });
             items_1.Add(new DoorModel() { DoorNum = "PSD4", URI = "../Assets/Animation/fd1.png" });
             items_1.Add(new DoorModel() { DoorNum = "PSD5", URI = "../Assets/Animation/fd1.png" });
-            items_1.Add(new DoorModel() { DoorNum = "PSD5", URI = "../Assets/Animation/fd1.png" });
+            items_1.Add(new DoorModel() { DoorNum = "PSD6", URI = "../Assets/Animation/fd1.png" });
 
             items_2.Add(new DoorModel() { DoorNum = "PSD1", URI = "../Assets/Animation/fd2.png" });
             items_2.Add(new DoorModel() { DoorNum = "PSD2", URI = "../Assets/Animation/fd2.png" });
             items_2.Add(new DoorModel() { DoorNum = "PSD3", URI = "../Assets/Animation/fd2.png" });
             items_2.Add(new DoorModel() { DoorNum = "PSD4", URI = "../Assets/Animation/fd2.png" });
             items_2.Add(new DoorModel() { DoorNum = "PSD5", URI = "../Assets/Animation/fd2.png" });
-            items_2.Add(new DoorModel() { DoorNum = "PSD5", URI = "../Assets/Animation/fd2.png" });
+            items_2.Add(new DoorModel() { DoorNum = "PSD6", URI = "../Assets/Animation/fd2.png" });
                                                                    
             items_3.Add(new DoorModel() { DoorNum = "PSD1", URI = "../Assets/Animation/fd3.png" });
             items_3.Add(new DoorModel() { DoorNum = "PSD2", URI = "../Assets/Animation/fd3.png" });
             items_3.Add(new DoorModel() { DoorNum = "PSD3", URI = "../Assets/Animation/fd3.png" });
             items_3.Add(new DoorModel() { DoorNum = "PSD4", URI = "../Assets/Animation/fd3.png" });
             items_3.Add(new DoorModel() { DoorNum = "PSD5", URI = "../Assets/Animation/fd3.png" });
-            items_3.Add(new DoorModel() { DoorNum = "PSD5", URI = "../Assets/Animation/fd3.png" });
+            items_3.Add(new DoorModel() { DoorNum = "PSD6", URI = "../Assets/Animation/fd3.png" });
                                                                   
             items_4.Add(new DoorModel() { DoorNum = "PSD1", URI = "../Assets/Animation/fd4.png" });
             items_4.Add(new DoorModel() { DoorNum = "PSD2", URI = "../Assets/Animation/fd4.png" });
             items_4.Add(new DoorModel() { DoorNum = "PSD3", URI = "../Assets/Animation/fd4.png" });
             items_4.Add(new DoorModel() { DoorNum = "PSD4", URI = "../Assets/Animation/fd4.png" });
             items_4.Add(new DoorModel() { DoorNum = "PSD5", URI = "../Assets/Animation/fd4.png" });
-            items_4.Add(new DoorModel() { DoorNum = "PSD5", URI = "../Assets/Animation/fd4.png" });
+            items_4.Add(new DoorModel() { DoorNum = "PSD6", URI = "../Assets/Animation/fd4.png" });
                                                                    
             items_5.Add(new DoorModel() { DoorNum = "PSD1", URI = "../Assets/Animation/fd5.png" });
             items_5.Add(new DoorModel() { DoorNum = "PSD2", URI = "../Assets/Animation/fd5.png" });
             items_5.Add(new DoorModel() { DoorNum = "PSD3", URI = "../Assets/Animation/fd5.png" });
             items_5.Add(new DoorModel() { DoorNum = "PSD4", URI = "../Assets/Animation/fd5.png" });
             items_5.Add(new DoorModel() { DoorNum = "PSD5", URI = "../Assets/Animation/fd5.png" });
-            items_5.Add(new DoorModel() { DoorNum = "PSD5", URI = "../Assets/Animation/fd5.png" });
+            items_5.Add(new DoorModel() { DoorNum = "PSD6", URI = "../Assets/Animation/fd5.png" });
 
             // platform 1 indicators
             indicators.Add(new DoorIndicator() { DoorNum = "PSD1", URI = "../Assets/PSD_fullheight.png" });
             indicators.Add(new DoorIndicator() { DoorNum = "PSD2", URI = "../Assets/PSD_fullheight.png" });
-            indicators.Add(new DoorIndicator() { DoorNum = "PSD3", URI = "../Assets/EED_fullheight.png" });
-            indicators.Add(new DoorIndicator() { DoorNum = "PSD4", URI = "../Assets/EED_halfheight.png" });
-            indicators.Add(new DoorIndicator() { DoorNum = "PSD5", URI = "../Assets/PSD_fullheight_faulty.png" });
+            indicators.Add(new DoorIndicator() { DoorNum = "PSD1", URI = "../Assets/PSD_fullheight.png" });
+            indicators.Add(new DoorIndicator() { DoorNum = "PSD2", URI = "../Assets/PSD_fullheight.png" });
+            indicators.Add(new DoorIndicator() { DoorNum = "PSD1", URI = "../Assets/PSD_fullheight.png" });
+            indicators.Add(new DoorIndicator() { DoorNum = "PSD2", URI = "../Assets/PSD_fullheight.png" });
+
 
             // platform 2 doors
-            items2.Add(new DoorModel() { DoorNum = "PSD1", URI = "../Assets/PSDOpening.png" });
-            items2.Add(new DoorModel() { DoorNum = "PSD3", URI = "../Assets/PSDInhibit.png" });
-            items2.Add(new DoorModel() { DoorNum = "PSD3", URI = "../Assets/PSDOpening.png" });
-            items2.Add(new DoorModel() { DoorNum = "PSD5", URI = "../Assets/PSDerror.png" });
-            items2.Add(new DoorModel() { DoorNum = "PSD5", URI = "../Assets/PSDOpening.png" });
+            items2_1.Add(new DoorModel() { DoorNum = "PSD1", URI = "../Assets/Animation/fd5.png" });
+            items2_1.Add(new DoorModel() { DoorNum = "PSD3", URI = "../Assets/Animation/fd5.png" });
+            items2_1.Add(new DoorModel() { DoorNum = "PSD3", URI = "../Assets/Animation/fd5.png" });
+            items2_1.Add(new DoorModel() { DoorNum = "PSD5", URI = "../Assets/Animation/fd5.png" });
+            items2_1.Add(new DoorModel() { DoorNum = "PSD5", URI = "../Assets/Animation/fd5.png" });
+
+            items2_2.Add(new DoorModel() { DoorNum = "PSD1", URI = "../Assets/Animation/fd4.png" });
+            items2_2.Add(new DoorModel() { DoorNum = "PSD2", URI = "../Assets/Animation/fd4.png" });
+            items2_2.Add(new DoorModel() { DoorNum = "PSD3", URI = "../Assets/Animation/fd4.png" });
+            items2_2.Add(new DoorModel() { DoorNum = "PSD4", URI = "../Assets/Animation/fd4.png" });
+            items2_2.Add(new DoorModel() { DoorNum = "PSD5", URI = "../Assets/Animation/fd4.png" });
+
+
+            items2_3.Add(new DoorModel() { DoorNum = "PSD1", URI = "../Assets/Animation/fd3.png" });
+            items2_3.Add(new DoorModel() { DoorNum = "PSD2", URI = "../Assets/Animation/fd3.png" });
+            items2_3.Add(new DoorModel() { DoorNum = "PSD3", URI = "../Assets/Animation/fd3.png" });
+            items2_3.Add(new DoorModel() { DoorNum = "PSD4", URI = "../Assets/Animation/fd3.png" });
+            items2_3.Add(new DoorModel() { DoorNum = "PSD5", URI = "../Assets/Animation/fd3.png" });
+
+
+            items2_4.Add(new DoorModel() { DoorNum = "PSD1", URI = "../Assets/Animation/fd2.png" });
+            items2_4.Add(new DoorModel() { DoorNum = "PSD2", URI = "../Assets/Animation/fd2.png" });
+            items2_4.Add(new DoorModel() { DoorNum = "PSD3", URI = "../Assets/Animation/fd2.png" });
+            items2_4.Add(new DoorModel() { DoorNum = "PSD4", URI = "../Assets/Animation/fd2.png" });
+            items2_4.Add(new DoorModel() { DoorNum = "PSD5", URI = "../Assets/Animation/fd2.png" });
+
+
+            items2_5.Add(new DoorModel() { DoorNum = "PSD1", URI = "../Assets/Animation/fd1.png" });
+            items2_5.Add(new DoorModel() { DoorNum = "PSD2", URI = "../Assets/Animation/fd1.png" });
+            items2_5.Add(new DoorModel() { DoorNum = "PSD3", URI = "../Assets/Animation/fd1.png" });
+            items2_5.Add(new DoorModel() { DoorNum = "PSD4", URI = "../Assets/Animation/fd1.png" });
+            items2_5.Add(new DoorModel() { DoorNum = "PSD5", URI = "../Assets/Animation/fd1.png" });
+
 
             // platform 2 indicators
-            indicators2.Add(new DoorIndicator() { DoorNum = "PSD5", URI = "../Assets/PSD_fullheight_faulty.png" });
-            indicators2.Add(new DoorIndicator() { DoorNum = "PSD5", URI = "../Assets/PSD_fullheight_faulty.png" });
-            indicators2.Add(new DoorIndicator() { DoorNum = "PSD5", URI = "../Assets/PSD_fullheight_faulty.png" });
-            indicators2.Add(new DoorIndicator() { DoorNum = "PSD5", URI = "../Assets/PSD_fullheight_faulty.png" });
-            indicators2.Add(new DoorIndicator() { DoorNum = "PSD5", URI = "../Assets/PSD_fullheight_faulty.png" });
+            indicators2.Add(new DoorIndicator() { DoorNum = "PSD2", URI = "../Assets/PSD_fullheight.png" });
+            indicators2.Add(new DoorIndicator() { DoorNum = "PSD1", URI = "../Assets/PSD_fullheight.png" });
+            indicators2.Add(new DoorIndicator() { DoorNum = "PSD2", URI = "../Assets/PSD_fullheight.png" });
+            indicators2.Add(new DoorIndicator() { DoorNum = "PSD1", URI = "../Assets/PSD_fullheight.png" });
+            indicators2.Add(new DoorIndicator() { DoorNum = "PSD2", URI = "../Assets/PSD_fullheight.png" });
 
             // platform 3 doors
             items3.Add(new DoorModel() { DoorNum = "PSD3", URI = "../Assets/PSDInhibit.png" });
@@ -127,13 +158,8 @@ namespace ST_HMI
             IndicatorsDataBinding2.ItemsSource = indicators2;
             IndicatorsDataBinding3.ItemsSource = indicators3;
 
-            System.Windows.Threading.DispatcherTimer LiveTime = new System.Windows.Threading.DispatcherTimer();
-            LiveTime.Interval = TimeSpan.FromSeconds(1);
-            LiveTime.Tick += timer_Tick;
-            LiveTime.Start();
-
             dispatcherTimer.Tick += Animation;
-            dispatcherTimer.Interval = new TimeSpan(0, 0, 1);
+            dispatcherTimer.Interval = TimeSpan.FromSeconds(1);
             dispatcherTimer.Start();
 
             // Initialize for Counter
@@ -143,54 +169,77 @@ namespace ST_HMI
 
 
         private void Animation(object sender, EventArgs e)
-    {
-        if (DoorsDataBinding.ItemsSource == items_1)
         {
-            DoorsDataBinding.ItemsSource = items_2;
-        }
-        else if (DoorsDataBinding.ItemsSource == items_2)
-        {
-            DoorsDataBinding.ItemsSource = items_3;
-        }
-        else if (DoorsDataBinding.ItemsSource == items_3)
-        {
-            DoorsDataBinding.ItemsSource = items_4;
-        }
-        else if (DoorsDataBinding.ItemsSource == items_4)
-        {
-            DoorsDataBinding.ItemsSource = items_5;
-        }
-        else if (DoorsDataBinding.ItemsSource == items_5)
+            /*Platform 1 door animation*/
+            if (DoorsDataBinding.ItemsSource == items_1)
             {
-                DoorsDataBinding.ItemsSource = items_1;
+                DoorsDataBinding.ItemsSource = items_2;
+            }
+            else if (DoorsDataBinding.ItemsSource == items_2)
+            {
+                DoorsDataBinding.ItemsSource = items_3;
+            }
+            else if (DoorsDataBinding.ItemsSource == items_3)
+            {
+                DoorsDataBinding.ItemsSource = items_4;
+            }
+            else if (DoorsDataBinding.ItemsSource == items_4)
+            {
+                DoorsDataBinding.ItemsSource = items_5;
+            }
+            else if (DoorsDataBinding.ItemsSource == items_5)
+                {
+                    DoorsDataBinding.ItemsSource = items_1;
+            }
+
+            /*Platform 2 door animtaion*/
+            if (DoorsDataBinding.ItemsSource == items2_1)
+            {
+                DoorsDataBinding.ItemsSource = items2_2;
+            }
+            else if (DoorsDataBinding.ItemsSource == items2_2)
+            {
+                DoorsDataBinding.ItemsSource = items2_3;
+            }
+            else if (DoorsDataBinding.ItemsSource == items2_3)
+            {
+                DoorsDataBinding.ItemsSource = items2_4;
+            }
+            else if (DoorsDataBinding.ItemsSource == items2_4)
+            {
+                DoorsDataBinding.ItemsSource = items2_5;
+            }
+            else if (DoorsDataBinding.ItemsSource == items2_5)
+            {
+                DoorsDataBinding.ItemsSource = items2_1;
+            }
         }
-    }
 
-    class DoorModel
-    {
-        public string DoorNum { get; set; }
-        public string URI { get; set; }
-    }
+        class DoorModel
+        {
+            public string DoorNum { get; set; }
+            public string URI { get; set; }
+        }
 
-    class DoorIndicator
-    {
-        public string DoorNum { get; set; }
-        public string URI { get; set; }
-    }
+        class DoorIndicator
+        {
+            public string DoorNum { get; set; }
+            public string URI { get; set; }
+        }
 
-    class SummaryValues
-    {
-        public string titleLabel { get; set; }
-        public string valueLabel { get; set; }
+        class SummaryValues
+        {
+            public string titleLabel { get; set; }
+            public string valueLabel { get; set; }
 
-    }
-    void ChangePlatform1(object sender, EventArgs e)
+        }
+        void ChangePlatform1(object sender, EventArgs e)
         {
             DoorsDataBinding.ItemsSource = items_1;
         }
         void ChangePlatform2(object sender, EventArgs e)
         {
-            DoorsDataBinding.ItemsSource = items2;
+            DoorsDataBinding.ItemsSource = items2_1;
         }
 
         void ChangePlatform3(object sender, EventArgs e)
@@ -211,10 +260,7 @@ namespace ST_HMI
             valueLabel.Content = platformValues[summaryValuesCounter].valueLabel;
 
         }
-        void timer_Tick(object sender, EventArgs e)
-        {
-            datetime_text.Content = DateTime.Now.ToString("dddd , MMM dd yyyy,hh:mm:ss");
-        }
+
 
         void previousLabel(object sender, EventArgs e)
         {
