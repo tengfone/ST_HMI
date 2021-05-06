@@ -4,7 +4,7 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:ST_HMI"
-             mc:Ignorable="d" Width="auto" Height="auto">
+             mc:Ignorable="d" Width="{Binding ElementName=xGrid,Path=ActualWidth}" Height="{Binding ElementName=xGrid,Path=ActualHeight}">
     <UserControl.Resources>
         <!--// Text font style //-->
 
@@ -79,14 +79,16 @@
     </UserControl.Resources>
     
     <Grid Background="#6A7985">
+
         <Grid HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="2*"/>
                 <ColumnDefinition Width="*"/>
             </Grid.ColumnDefinitions>
             <Grid.RowDefinitions>
+                <RowDefinition Height="3*"/>
+                <RowDefinition Height="6*"/>
                 <RowDefinition Height="*"/>
-                <RowDefinition Height="2*"/>
             </Grid.RowDefinitions>
             <ScrollViewer HorizontalScrollBarVisibility="Visible" VerticalScrollBarVisibility="Auto" 
                           Grid.Row="0" Grid.Column="0" Margin="50 10" Background="#DADDE2">
@@ -101,7 +103,7 @@
                             <Border BorderBrush="Black" BorderThickness="1" Margin="50 30" Padding="30">
                                 <StackPanel Orientation="Vertical">
                                     <Image Source="{Binding URI}"/>
-                                    <TextBlock Text="{Binding DoorNum}" FontSize="20" HorizontalAlignment="Center"/>
+                                    <TextBlock Text="{Binding DoorNum}" FontSize="20" HorizontalAlignment="Center"  MouseLeftButtonDown="Remove_PSD"/>
                                 </StackPanel>
                             </Border>
                         </DataTemplate>
@@ -230,6 +232,18 @@
                         </ItemsControl>
                     </StackPanel>
                 </ScrollViewer>
+            </Grid>
+
+            <Grid Grid.Row="2">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+                <Button Grid.Column="0" Background="BlueViolet" Margin="50,0,0,0" Click="Add_PSD">Add PSD</Button>
+                <Button Grid.Column="1" Background="BlueViolet" Margin="50,0,0,0" Click="Remove_PSD_True">Remove PSD</Button>
             </Grid>
         </Grid>
     </Grid>
