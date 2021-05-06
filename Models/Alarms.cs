@@ -6,11 +6,12 @@ using System.Threading.Tasks;
 
 namespace ST_HMI.Models
 {
-    class DoorModel
+    class Alarms
     {
-        public string DoorNum { get; set; }
-        public string URI { get; set; }
-        
+        public string date { get; set; }
+        public string alarmType { get; set; }
+        public string actionRequired  {get; set;}
+
     }
 }
 

@@ -162,6 +162,11 @@ namespace ST_HMI
         }
 
 
+        private void PSDPopup_click(object sender, MouseButtonEventArgs e)
+        {
+            PSDPopup psdPopupWindow = new PSDPopup("PSD1");
+            psdPopupWindow.Show();
+        }
 
         private void Animation(object sender, EventArgs e)
         {

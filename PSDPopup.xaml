@@ -1,0 +1,43 @@
+﻿<Window x:Class="ST_HMI.PSDPopup"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:ST_HMI"
+        mc:Ignorable="d"
+        Title="PSDPopup" Height="900" Width="1500"
+        Background="#384955">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        <TextBlock Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" VerticalAlignment="Top" HorizontalAlignment="Left" Margin="30 20 0 0" Text="PSD07" FontSize="30" Foreground="White"/>
+        <TextBlock Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" VerticalAlignment="Top" HorizontalAlignment="Center" Text="Door 7 - South Bound" Margin="0,65,0,0" FontSize="40" Foreground="White"/>
+        <Image Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2" Grid.RowSpan="3" Margin="50,50,50,50" Source="Assets/Animation/fd1.png"/>
+        <Rectangle Grid.Row="0" Grid.Column="2"  Grid.ColumnSpan="3" Grid.RowSpan="3" Fill="White" Margin="20,20,20,20" />
+        <TextBlock Grid.Row="3" Grid.Column="2" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Margin="20 10 20 10" Text="Motor Voltage" Background="white" FontSize="30"/>
+        <TextBlock Grid.Row="3" Grid.Column="3" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Margin="20 10 20 10" Text="Door Stroke" Background="white" FontSize="30"/>
+        <TextBlock Grid.Row="3" Grid.Column="4" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Margin="20 10 20 10" Text="Motor Speed" Background="white" FontSize="30"/>
+        <ScrollViewer Grid.Row="4" Grid.RowSpan="2" Grid.Column="0" Grid.ColumnSpan="5"  ScrollViewer.VerticalScrollBarVisibility="Auto" Margin="20">
+            <DataGrid HorizontalScrollBarVisibility="Visible"  VerticalAlignment="Stretch" AutoGenerateColumns="False" Name="alarmsDataGrid">
+                <DataGrid.Columns>
+                    <DataGridTextColumn Width="600" Header="Name" Binding="{Binding date}" />
+                    <DataGridTextColumn Width="300" Header="Name" Binding="{Binding alarmType}" />
+                    <DataGridTextColumn Width= "600" Header="Name" Binding="{Binding actionRequired}" />
+                </DataGrid.Columns>
+            </DataGrid>
+        </ScrollViewer>
+    </Grid>
+</Window>

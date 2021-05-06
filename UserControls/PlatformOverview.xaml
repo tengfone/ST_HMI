@@ -159,9 +159,9 @@
                             </ItemsControl.ItemsPanel>
                             <ItemsControl.ItemTemplate>
                                 <DataTemplate>
-                                    <Border BorderBrush="Black" BorderThickness="1" Margin="50 30 0 0" Padding="30">
+                                        <Border BorderBrush="Black" BorderThickness="1" Margin="50 30 0 0" Padding="30">
                                         <StackPanel Orientation="Vertical" VerticalAlignment="Bottom">
-                                            <Image Source="{Binding URI}"/>
+                                                <Image Source="{Binding URI}"  Cursor="Hand" MouseUp="PSDPopup_click"/>
                                             <TextBlock Text="{Binding DoorNum}" FontSize="10" HorizontalAlignment="Center"/>
                                         </StackPanel>
                                     </Border>
@@ -192,7 +192,7 @@
                                 <DataTemplate>
                                     <Border BorderBrush="Black" BorderThickness="1" Margin="50 30 0 0" Padding="30">
                                         <StackPanel Orientation="Vertical" VerticalAlignment="Bottom">
-                                            <Image Source="{Binding URI}"/>
+                                            <Image Source="{Binding URI}"  Cursor="Hand" MouseUp="PSDPopup_click"/>
                                             <TextBlock Text="{Binding DoorNum}" FontSize="10" HorizontalAlignment="Center"/>
                                         </StackPanel>
                                     </Border>
@@ -223,7 +223,7 @@
                                 <DataTemplate>
                                     <Border BorderBrush="Black" BorderThickness="1" Margin="50 30 0 0" Padding="30">
                                         <StackPanel Orientation="Vertical" VerticalAlignment="Bottom">
-                                            <Image Source="{Binding URI}"/>
+                                            <Image Source="{Binding URI}"  Cursor="Hand" MouseUp="PSDPopup_click"/>
                                             <TextBlock Text="{Binding DoorNum}" FontSize="10" HorizontalAlignment="Center"/>
                                         </StackPanel>
                                     </Border>
