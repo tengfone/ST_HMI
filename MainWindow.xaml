@@ -192,7 +192,7 @@
                 <Grid Margin="80,52,0,0" x:Name="xGrid" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
                     <Canvas Width="{Binding ElementName=xGrid,Path=ActualWidth}" Height="{Binding ElementName=xGrid,Path=ActualHeight}">
                         <Grid Panel.ZIndex="2" x:Name="GridSysOver">
-                            <local:SystemOverview Margin="-2,0,-1594,-700"></local:SystemOverview>
+                            <local:SystemOverview></local:SystemOverview>
                         </Grid>
                         <Grid Panel.ZIndex="1" x:Name="GridSysInt">
                             <local:SystemInterface></local:SystemInterface>
