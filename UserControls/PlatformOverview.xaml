@@ -100,7 +100,7 @@
                     </ItemsControl.ItemsPanel>
                     <ItemsControl.ItemTemplate>
                         <DataTemplate>
-                            <Border BorderBrush="Black" BorderThickness="1" Margin="50 30" Padding="30">
+                            <Border BorderBrush="Transparent" BorderThickness="1" Margin="50 30" Padding="30">
                                 <StackPanel Orientation="Vertical">
                                     <Image Source="{Binding URI}" Tag="{Binding DoorNum}" MouseUp="PSDPopup_click"/>
                                     <TextBlock Text="{Binding DoorNum}" FontSize="20" HorizontalAlignment="Center"  MouseLeftButtonDown="Remove_PSD"/>
@@ -159,7 +159,7 @@
                             </ItemsControl.ItemsPanel>
                             <ItemsControl.ItemTemplate>
                                 <DataTemplate>
-                                        <Border BorderBrush="Black" BorderThickness="1" Margin="50 30 0 0" Padding="30">
+                                        <Border BorderBrush="Transparent" BorderThickness="1" Margin="50 30 0 0" Padding="30">
                                         <StackPanel Orientation="Vertical" VerticalAlignment="Bottom">
                                             <Image Source="{Binding URI}" Tag="{Binding DoorNum}" MouseUp="PSDPopup_click"/>
                                             <TextBlock Text="{Binding DoorNum}" FontSize="10" HorizontalAlignment="Center"/>
@@ -190,7 +190,7 @@
                             </ItemsControl.ItemsPanel>
                             <ItemsControl.ItemTemplate>
                                 <DataTemplate>
-                                    <Border BorderBrush="Black" BorderThickness="1" Margin="50 30 0 0" Padding="30">
+                                    <Border BorderBrush="Transparent" BorderThickness="1" Margin="50 30 0 0" Padding="30">
                                         <StackPanel Orientation="Vertical" VerticalAlignment="Bottom">
                                             <Image Source="{Binding URI}" Tag="{Binding DoorNum}" MouseUp="PSDPopup_click"/>
                                             <TextBlock Text="{Binding DoorNum}" FontSize="10" HorizontalAlignment="Center"/>
@@ -221,7 +221,7 @@
                             </ItemsControl.ItemsPanel>
                             <ItemsControl.ItemTemplate>
                                 <DataTemplate>
-                                    <Border BorderBrush="Black" BorderThickness="1" Margin="50 30 0 0" Padding="30">
+                                    <Border BorderBrush="Transparent" BorderThickness="1" Margin="50 30 0 0" Padding="30">
                                         <StackPanel Orientation="Vertical" VerticalAlignment="Bottom">
                                             <Image Source="{Binding URI}" Tag="{Binding DoorNum}" MouseUp="PSDPopup_click"/>
                                             <TextBlock Text="{Binding DoorNum}" FontSize="10" HorizontalAlignment="Center"/>
