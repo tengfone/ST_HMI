@@ -158,10 +158,10 @@
                                 </ItemsPanelTemplate>
                             </ItemsControl.ItemsPanel>
                             <ItemsControl.ItemTemplate>
-                                <DataTemplate>
+                                <DataTemplate >
                                         <Border BorderBrush="Black" BorderThickness="1" Margin="50 30 0 0" Padding="30">
-                                        <StackPanel Orientation="Vertical" VerticalAlignment="Bottom">
-                                                <Image Source="{Binding URI}"  Cursor="Hand" MouseUp="PSDPopup_click"/>
+                                        <StackPanel Orientation="Vertical" VerticalAlignment="Center">
+                                            <Image Tag="{Binding DoorNum}" Source="{Binding URI}" Cursor="Hand" MouseUp="PSDPopup_click"/>
                                             <TextBlock Text="{Binding DoorNum}" FontSize="10" HorizontalAlignment="Center"/>
                                         </StackPanel>
                                     </Border>

@@ -164,7 +164,11 @@ namespace ST_HMI
 
         private void PSDPopup_click(object sender, MouseButtonEventArgs e)
         {
-            PSDPopup psdPopupWindow = new PSDPopup("PSD1");
+            PSDPopup psdPopupWindow = new PSDPopup();
+            string psdDoor = ((Image)sender).Tag.ToString();
+            psdPopupWindow.psdSubTitlePopup.Text = psdDoor;
+            string doorNum = psdDoor.Substring(3);
+            psdPopupWindow.psdTitlePopup.Text = $"Door {doorNum} - South Bound";
             psdPopupWindow.Show();
         }
 

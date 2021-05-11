@@ -23,8 +23,8 @@
             <RowDefinition Height="*"/>
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
-        <TextBlock Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" VerticalAlignment="Top" HorizontalAlignment="Left" Margin="30 20 0 0" Text="PSD07" FontSize="30" Foreground="White"/>
-        <TextBlock Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" VerticalAlignment="Top" HorizontalAlignment="Center" Text="Door 7 - South Bound" Margin="0,65,0,0" FontSize="40" Foreground="White"/>
+        <TextBlock Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" VerticalAlignment="Top" HorizontalAlignment="Left" Margin="30 20 0 0" Name="psdSubTitlePopup" Text="PSD07" FontSize="30" Foreground="White"/>
+        <TextBlock Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" VerticalAlignment="Top" HorizontalAlignment="Center" Name="psdTitlePopup"  Text="Door 7 - South Bound" Margin="0,65,0,0" FontSize="40" Foreground="White"/>
         <Image Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2" Grid.RowSpan="3" Margin="50,50,50,50" Source="Assets/Animation/fd1.png"/>
         <Rectangle Grid.Row="0" Grid.Column="2"  Grid.ColumnSpan="3" Grid.RowSpan="3" Fill="White" Margin="20,20,20,20" />
         <TextBlock Grid.Row="3" Grid.Column="2" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Margin="20 10 20 10" Text="Motor Voltage" Background="white" FontSize="30"/>

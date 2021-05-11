@@ -21,7 +21,7 @@ namespace ST_HMI
     /// 
     public partial class PSDPopup : Window
     {
-        public PSDPopup(string value)
+        public PSDPopup()
         {
             InitializeComponent();
             List<Alarms> alarms = new List<Alarms>();
@@ -35,5 +35,7 @@ namespace ST_HMI
             alarms.Add(new Alarms() { date = "<ON>    02-08 17:27:07    PSD DSI  FAILURE", alarmType = "GOOD", actionRequired = "Immediate action required by Administrator" });
             alarmsDataGrid.ItemsSource = alarms;
         }
+
     }
+
 }
