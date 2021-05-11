@@ -254,10 +254,27 @@ namespace ST_HMI
 
             indicators.Add(new DoorIndicator() { DoorNum = doorNum, URI = "../Assets/PSD_fullheight.png" });
         }
+
         void Remove_PSD_True(object sender, EventArgs e)
         {
             REMOVE_PSD = !REMOVE_PSD;
             System.Diagnostics.Debug.WriteLine(REMOVE_PSD);
+        }
+
+        void Edit_mode(object sender, RoutedEventArgs e)
+        {
+            btn_editPSD.Visibility = Visibility.Hidden;
+            btn_addPSD.Visibility = Visibility.Visible;
+            btn_removePSD.Visibility = Visibility.Visible;
+            btn_UneditPSD.Visibility = Visibility.Visible;
+        }
+
+        void UnEdit_mode(object sender, RoutedEventArgs e)
+        {
+            btn_UneditPSD.Visibility = Visibility.Hidden;
+            btn_editPSD.Visibility = Visibility.Visible;
+            btn_addPSD.Visibility = Visibility.Hidden;
+            btn_removePSD.Visibility = Visibility.Hidden;
         }
 
         void Remove_PSD(object sender, EventArgs e)
