@@ -23,5 +23,10 @@ namespace ST_HMI {
         {
             InitializeComponent();
         }
+
+        private void LoginBtn_Click(object sender, RoutedEventArgs e)
+        {
+            MessageBox.Show("Hello, world!");
+        }
     }
 }
