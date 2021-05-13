@@ -183,7 +183,7 @@
                 </Grid.Background>
                 <Rectangle Height="47" VerticalAlignment="Top" Fill="#384955" Margin="10,0,0,0" HorizontalAlignment="Stretch"/>
                 <Label x:Name="datetime_text" Content="Thursday, Mar 18 2021, 02:25:06" HorizontalContentAlignment="Center" HorizontalAlignment="Right" Height="37" Margin="0,5,50,0" VerticalAlignment="Top" Width="244" FontFamily="Ebrima" FontSize="13" FontWeight="Bold" Foreground="White" VerticalContentAlignment="Center"/>
-                <Label Content="Platform Overview" HorizontalContentAlignment="Left" HorizontalAlignment="Left" Margin="80,4,0,0" VerticalAlignment="Top" FontFamily="Ebrima" FontSize="22" Foreground="White" FontWeight="Bold"/>
+                <Label Content="Loading..." HorizontalContentAlignment="Left" HorizontalAlignment="Left" Margin="80,4,0,0" VerticalAlignment="Top" FontFamily="Ebrima" FontSize="22" Foreground="White" FontWeight="Bold"/>
                 <Button Click="change_language" x:Name="language_btn" BorderBrush="Transparent" Background="Transparent" HorizontalAlignment="Right" Margin="0,9,370,0" VerticalAlignment="Top">
                     <Image Source="Assets/img_language.png"/>
                 </Button>
@@ -199,6 +199,18 @@
                         </Grid>
                         <Grid Panel.ZIndex="1" x:Name="GridPlatOver">
                             <local:PlatformOverview></local:PlatformOverview>
+                        </Grid>
+                        <Grid Panel.ZIndex="1" x:Name="GridAnalyticsOver">
+                            <local:AnalyticsOverview></local:AnalyticsOverview>
+                        </Grid>
+                        <Grid Panel.ZIndex="1" x:Name="GridAlarmsOver">
+                            <local:AlarmsOverview></local:AlarmsOverview>
+                        </Grid>
+                        <Grid Panel.ZIndex="1" x:Name="GridFirmwareUpdate">
+                            <local:FirmwareUpdate></local:FirmwareUpdate>
+                        </Grid>
+                        <Grid Panel.ZIndex="1" x:Name="GridUserProf">
+                            <local:UserProfile></local:UserProfile>
                         </Grid>
                     </Canvas>
                 </Grid>
@@ -568,6 +580,7 @@
 
                                 <Image Source="Assets/Icons/piechart.png"
                                        Stretch="None" RenderTransformOrigin="0.5,0.5"
+                                       MouseDown="AnalyticsOverviewbtn_MouseDown"
                                        >
                                     <Image.RenderTransform>
                                         <TransformGroup>
@@ -608,6 +621,7 @@
 
                                 <Image Source="Assets/Icons/notifications.png"
                                        Stretch="None" RenderTransformOrigin="0,0.5"
+                                       MouseDown="AlarmsOverviewbtn_MouseDown"
                                        >
                                     <Image.RenderTransform>
                                         <TransformGroup>
@@ -648,6 +662,7 @@
 
                                 <Image Source="Assets/Icons/firmware_update.png"
                                        Stretch="None" RenderTransformOrigin="0,0.5"
+                                       MouseDown="FirmwareUpdatebtn_MouseDown"
                                        >
                                     <Image.RenderTransform>
                                         <TransformGroup>
@@ -687,6 +702,7 @@
 
                                 <Image Source="Assets/Icons/account_circle.png"
                                        Stretch="None" RenderTransformOrigin="0.5,0.5"
+                                       MouseDown="UserProfilebtn_MouseDown"
                                        >
                                     <Image.RenderTransform>
                                         <TransformGroup>

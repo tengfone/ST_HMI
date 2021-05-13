@@ -242,6 +242,8 @@
                     <ColumnDefinition Width="*"/>
                     <ColumnDefinition Width="*"/>
                     <ColumnDefinition Width="*"/>
+                    
+                    
                 </Grid.ColumnDefinitions>
                 <Button Grid.Column="0" x:Name="btn_editPSD" Background="BlueViolet" Margin="50,0,0,0" Click="Edit_mode">Edit</Button>
                 <Button Grid.Column="0" x:Name="btn_UneditPSD" Visibility="Hidden" Background="BlueViolet" Margin="50,0,0,0" Click="UnEdit_mode">Back</Button>

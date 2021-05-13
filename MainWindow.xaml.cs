@@ -107,7 +107,11 @@ namespace ST_HMI
             Canvas.SetZIndex(GridSysOver, 99);
             Canvas.SetZIndex(GridSysInt, 1);
             Canvas.SetZIndex(GridPlatOver, 1);
-
+            Canvas.SetZIndex(GridUserProf, 1);
+            Canvas.SetZIndex(GridAnalyticsOver, 1);
+            Canvas.SetZIndex(GridAlarmsOver, 1);
+            Canvas.SetZIndex(GridFirmwareUpdate, 1);
+            Canvas.SetZIndex(GridUserProf, 1);
         }
 
         private void Sysintbtn_MouseDown(object sender, MouseButtonEventArgs e)
@@ -115,14 +119,64 @@ namespace ST_HMI
             Canvas.SetZIndex(GridSysInt, 99);
             Canvas.SetZIndex(GridSysOver, 1);
             Canvas.SetZIndex(GridPlatOver, 1);
+            Canvas.SetZIndex(GridAlarmsOver, 1);
+            Canvas.SetZIndex(GridAnalyticsOver, 1);
+            Canvas.SetZIndex(GridFirmwareUpdate, 1);
+            Canvas.SetZIndex(GridUserProf, 1);
         }
         private void SlidingDoorbtn_MouseDown(object sender, MouseButtonEventArgs e)
         {
             Canvas.SetZIndex(GridPlatOver, 99);
             Canvas.SetZIndex(GridSysInt, 1);
             Canvas.SetZIndex(GridSysOver, 1);
+            Canvas.SetZIndex(GridAlarmsOver, 1);
+            Canvas.SetZIndex(GridAnalyticsOver, 1);
+            Canvas.SetZIndex(GridFirmwareUpdate, 1);
+            Canvas.SetZIndex(GridUserProf, 1);
         }
 
-        
+        private void UserProfilebtn_MouseDown(object sender, MouseButtonEventArgs e)
+        {
+            Canvas.SetZIndex(GridPlatOver, 1);
+            Canvas.SetZIndex(GridSysInt, 1);
+            Canvas.SetZIndex(GridSysOver, 1);
+            Canvas.SetZIndex(GridAnalyticsOver, 1);
+            Canvas.SetZIndex(GridAlarmsOver, 1);
+            Canvas.SetZIndex(GridFirmwareUpdate, 1);
+            Canvas.SetZIndex(GridUserProf, 99);
+        }
+
+        private void AlarmsOverviewbtn_MouseDown(object sender, MouseButtonEventArgs e)
+        {
+            Canvas.SetZIndex(GridPlatOver, 1);
+            Canvas.SetZIndex(GridSysInt, 1);
+            Canvas.SetZIndex(GridSysOver, 1);
+            Canvas.SetZIndex(GridAnalyticsOver, 1);
+            Canvas.SetZIndex(GridAlarmsOver, 99);
+            Canvas.SetZIndex(GridFirmwareUpdate, 1);
+            Canvas.SetZIndex(GridUserProf, 1);
+        }
+
+        private void AnalyticsOverviewbtn_MouseDown(object sender, MouseButtonEventArgs e)
+        {
+            Canvas.SetZIndex(GridPlatOver, 1);
+            Canvas.SetZIndex(GridSysInt, 1);
+            Canvas.SetZIndex(GridSysOver, 1);
+            Canvas.SetZIndex(GridAnalyticsOver, 99);
+            Canvas.SetZIndex(GridAlarmsOver, 1);
+            Canvas.SetZIndex(GridFirmwareUpdate, 1);
+            Canvas.SetZIndex(GridUserProf, 1);
+        }
+
+        private void FirmwareUpdatebtn_MouseDown(object sender, MouseButtonEventArgs e)
+        {
+            Canvas.SetZIndex(GridPlatOver, 1);
+            Canvas.SetZIndex(GridSysInt, 1);
+            Canvas.SetZIndex(GridSysOver, 1);
+            Canvas.SetZIndex(GridAnalyticsOver, 1);
+            Canvas.SetZIndex(GridAlarmsOver, 1);
+            Canvas.SetZIndex(GridFirmwareUpdate, 99);
+            Canvas.SetZIndex(GridUserProf, 1);
+        }
     }
 }

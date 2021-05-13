@@ -1,0 +1,24 @@
+﻿<UserControl x:Class="ST_HMI.UserProfile"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:ST_HMI"
+             mc:Ignorable="d" Width="{Binding ElementName=xGrid,Path=ActualWidth}" Height="{Binding ElementName=xGrid,Path=ActualHeight}">
+    <Grid Background="#B5BCC2">
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"></ColumnDefinition>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*"></RowDefinition>
+            </Grid.RowDefinitions>
+            <Rectangle Grid.Row="0" Grid.Column="0"  HorizontalAlignment="Left" VerticalAlignment="Top" Fill="#384955" Margin="20" Height="20" Width="60" Panel.ZIndex='100' ></Rectangle>
+            <Rectangle Grid.Row="0" Grid.Column="0" Grid.RowSpan="2" Grid.ColumnSpan="2" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Fill="#DADDE2" Margin="20" ></Rectangle>
+            <Rectangle Grid.Row="0" Grid.Column="2" Grid.ColumnSpan="2" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="20" Fill="#DADDE2" ></Rectangle>
+            <Rectangle Grid.Row="0" Grid.Column="4" Grid.ColumnSpan="2" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="20" Fill="#DADDE2" ></Rectangle>
+            <Rectangle Grid.Row="1" Grid.Column="2" Grid.ColumnSpan="2" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="20" Fill="#DADDE2"></Rectangle>
+            
+        </Grid>
+    </Grid>
+</UserControl>

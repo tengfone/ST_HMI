@@ -1,0 +1,11 @@
+﻿<UserControl x:Class="ST_HMI.AnalyticsOverview"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:ST_HMI"
+             mc:Ignorable="d" Width="{Binding ElementName=xGrid,Path=ActualWidth}" Height="{Binding ElementName=xGrid,Path=ActualHeight}">
+    <Grid Background="#6A7985">
+        <Label FontSize="80" Content="HELLO AnalyticsOverview" HorizontalAlignment="Center" VerticalAlignment="Center" Height="124" Width="878"/>
+    </Grid>
+</UserControl>
