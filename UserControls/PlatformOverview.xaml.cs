@@ -235,12 +235,15 @@ namespace ST_HMI
 
         private void PSDPopup_click(object sender, MouseButtonEventArgs e)
         {
-            PSDPopup psdPopupWindow = new PSDPopup();
-            string psdDoor = ((Image)sender).Tag.ToString();
-            psdPopupWindow.psdSubTitlePopup.Text = psdDoor;
-            string doorNum = psdDoor.Substring(3);
-            psdPopupWindow.psdTitlePopup.Text = $"Door {doorNum} - South Bound";
-            psdPopupWindow.Show();
+            if (!REMOVE_PSD)
+            {
+                PSDPopup psdPopupWindow = new PSDPopup();
+                string psdDoor = ((Image)sender).Tag.ToString();
+                psdPopupWindow.psdSubTitlePopup.Text = psdDoor;
+                string doorNum = psdDoor.Substring(3);
+                psdPopupWindow.psdTitlePopup.Text = $"Door {doorNum} - South Bound";
+                psdPopupWindow.Show();
+            }
         }
 
         private void Animation(object sender, EventArgs e)
@@ -338,6 +341,7 @@ namespace ST_HMI
             btn_addPSD.Visibility = Visibility.Visible;
             btn_removePSD.Visibility = Visibility.Visible;
             btn_UneditPSD.Visibility = Visibility.Visible;
+            REMOVE_PSD = !REMOVE_PSD;
         }
 
         void UnEdit_mode(object sender, RoutedEventArgs e)
@@ -345,13 +349,21 @@ namespace ST_HMI
             btn_UneditPSD.Visibility = Visibility.Hidden;
             btn_editPSD.Visibility = Visibility.Visible;
             btn_addPSD.Visibility = Visibility.Hidden;
-            btn_removePSD.Visibility = Visibility.Hidden;
+            btn_removePSD.Visibility = Visibility.Collapsed;
         }
 
         void Remove_PSD(object sender, EventArgs e)
         {
+            string doorNum = "";
+
             System.Diagnostics.Debug.WriteLine("trying to remove door");
-            string doorNum = ((TextBlock)sender).Text;
+            if (sender is TextBlock)
+            {
+                doorNum = ((TextBlock)sender).Text;
+            }else if (sender is Button)
+            {
+                doorNum = ((Button)sender).Tag.ToString();
+            }
 
             if (REMOVE_PSD)
             {
