@@ -25,7 +25,7 @@ namespace ST_HMI
         public MainWindow()
         {
             InitializeComponent();
-
+            this.DataContext = this;
         }
 
         void change_language(object sender, EventArgs e)
@@ -112,6 +112,7 @@ namespace ST_HMI
             Canvas.SetZIndex(GridAlarmsOver, 1);
             Canvas.SetZIndex(GridFirmwareUpdate, 1);
             Canvas.SetZIndex(GridUserProf, 1);
+            this.windowTitle.Content = "System Overview";
         }
 
         private void Sysintbtn_MouseDown(object sender, MouseButtonEventArgs e)
@@ -123,6 +124,7 @@ namespace ST_HMI
             Canvas.SetZIndex(GridAnalyticsOver, 1);
             Canvas.SetZIndex(GridFirmwareUpdate, 1);
             Canvas.SetZIndex(GridUserProf, 1);
+            this.windowTitle.Content = "System Interface";
         }
         private void SlidingDoorbtn_MouseDown(object sender, MouseButtonEventArgs e)
         {
@@ -133,6 +135,7 @@ namespace ST_HMI
             Canvas.SetZIndex(GridAnalyticsOver, 1);
             Canvas.SetZIndex(GridFirmwareUpdate, 1);
             Canvas.SetZIndex(GridUserProf, 1);
+            this.windowTitle.Content = "Platform Overview";
         }
 
         private void UserProfilebtn_MouseDown(object sender, MouseButtonEventArgs e)
@@ -144,6 +147,7 @@ namespace ST_HMI
             Canvas.SetZIndex(GridAlarmsOver, 1);
             Canvas.SetZIndex(GridFirmwareUpdate, 1);
             Canvas.SetZIndex(GridUserProf, 99);
+            this.windowTitle.Content = "Profile";
         }
 
         private void AlarmsOverviewbtn_MouseDown(object sender, MouseButtonEventArgs e)
@@ -155,6 +159,7 @@ namespace ST_HMI
             Canvas.SetZIndex(GridAlarmsOver, 99);
             Canvas.SetZIndex(GridFirmwareUpdate, 1);
             Canvas.SetZIndex(GridUserProf, 1);
+            this.windowTitle.Content = "Alarms";
         }
 
         private void AnalyticsOverviewbtn_MouseDown(object sender, MouseButtonEventArgs e)
@@ -166,6 +171,8 @@ namespace ST_HMI
             Canvas.SetZIndex(GridAlarmsOver, 1);
             Canvas.SetZIndex(GridFirmwareUpdate, 1);
             Canvas.SetZIndex(GridUserProf, 1);
+            this.windowTitle.Content = "Data Analytics";
+
         }
 
         private void FirmwareUpdatebtn_MouseDown(object sender, MouseButtonEventArgs e)
@@ -177,6 +184,7 @@ namespace ST_HMI
             Canvas.SetZIndex(GridAlarmsOver, 1);
             Canvas.SetZIndex(GridFirmwareUpdate, 99);
             Canvas.SetZIndex(GridUserProf, 1);
+            this.windowTitle.Content = "Firmware";
         }
     }
 }

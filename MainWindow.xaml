@@ -183,7 +183,7 @@
                 </Grid.Background>
                 <Rectangle Height="47" VerticalAlignment="Top" Fill="#384955" Margin="10,0,0,0" HorizontalAlignment="Stretch"/>
                 <Label x:Name="datetime_text" Content="Thursday, Mar 18 2021, 02:25:06" HorizontalContentAlignment="Center" HorizontalAlignment="Right" Height="37" Margin="0,5,50,0" VerticalAlignment="Top" Width="244" FontFamily="Ebrima" FontSize="13" FontWeight="Bold" Foreground="White" VerticalContentAlignment="Center"/>
-                <Label Content="Loading..." HorizontalContentAlignment="Left" HorizontalAlignment="Left" Margin="80,4,0,0" VerticalAlignment="Top" FontFamily="Ebrima" FontSize="22" Foreground="White" FontWeight="Bold"/>
+                <Label x:Name = "windowTitle" Content="System Overview" HorizontalContentAlignment="Left" HorizontalAlignment="Left" Margin="80,4,0,0" VerticalAlignment="Top" FontFamily="Ebrima" FontSize="22" Foreground="White" FontWeight="Bold"/>
                 <Button Click="change_language" x:Name="language_btn" BorderBrush="Transparent" Background="Transparent" HorizontalAlignment="Right" Margin="0,9,370,0" VerticalAlignment="Top">
                     <Image Source="Assets/img_language.png"/>
                 </Button>

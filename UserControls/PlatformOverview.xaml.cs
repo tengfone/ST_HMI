@@ -182,9 +182,6 @@ namespace ST_HMI
         private void platform_status_change(object sender, EventArgs e)
         {
             // should create platform class array 
-            Label[] platformStatusTitles = { platform1StatusTitle, platform2StatusTitle, platform3StatusTitle };
-            Label[] platformStatusContent = { platform1StatusContent, platform2StatusContent, platform3StatusContent };
-     
             if (platformStatusCounter == 0)
             {
 
