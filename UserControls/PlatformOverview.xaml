@@ -90,7 +90,7 @@
                 <RowDefinition Height="6*"/>
                 <RowDefinition Height="*"/>
             </Grid.RowDefinitions>
-            <ScrollViewer HorizontalScrollBarVisibility="Visible" VerticalScrollBarVisibility="Auto" 
+            <ScrollViewer HorizontalScrollBarVisibility="Visible" VerticalScrollBarVisibility="Hidden" 
                           Grid.Row="0" Grid.Column="0" Margin="50 10" Background="#DADDE2">
                 <ItemsControl x:Name="DoorsDataBinding" Grid.Row="0">
                     <ItemsControl.ItemsPanel>
@@ -100,7 +100,7 @@
                     </ItemsControl.ItemsPanel>
                     <ItemsControl.ItemTemplate>
                         <DataTemplate>
-                            <Border BorderBrush="Transparent" BorderThickness="1" Margin="50 30" Padding="30">
+                            <Border BorderBrush="Transparent" BorderThickness="1" Margin="60 40">
                                 <StackPanel Orientation="Vertical">
                                     <Image Source="{Binding URI}" Tag="{Binding DoorNum}" MouseUp="PSDPopup_click"/>
                                     <TextBlock Text="{Binding DoorNum}" FontSize="20" HorizontalAlignment="Center"  MouseLeftButtonDown="Remove_PSD"/>
@@ -143,9 +143,9 @@
                 <!-- Row 1 -->
                 <StackPanel MouseLeftButtonDown="ChangePlatform1" Grid.Row="0" Grid.Column="0"  Orientation="Horizontal" Background="White" Margin="10 10 10 10" HorizontalAlignment="Stretch">
                     <Grid>
-                        <Label Content="Signaling Status" FontSize="20" FontWeight="Bold"/>
+                        <Label x:Name="platform1StatusTitle" Content="Signalling Status" FontSize="20" FontWeight="Bold"/>
                         <Label Content="last twenty seconds" FontSize="15" FontWeight="Light" Margin="0,24,0,-24"/>
-                        <Label Content="HEALTHY" FontSize="20" FontWeight="Bold" Margin="46,56,-48,-56" Foreground="Green"/>
+                        <Label x:Name="platform1StatusContent" Content="Healthy" FontSize="20" FontWeight="Bold" Margin="46,56,-48,-56" Foreground="Green"/>
                     </Grid>
                 </StackPanel>
                 <ScrollViewer HorizontalScrollBarVisibility="Visible" VerticalScrollBarVisibility="Auto" 
@@ -159,7 +159,7 @@
                             </ItemsControl.ItemsPanel>
                             <ItemsControl.ItemTemplate>
                                 <DataTemplate>
-                                        <Border BorderBrush="Transparent" BorderThickness="1" Margin="50 30 0 0" Padding="30">
+                                        <Border BorderBrush="Transparent" BorderThickness="1" Margin="50 30 0 0">
                                         <StackPanel Orientation="Vertical" VerticalAlignment="Bottom">
                                             <Image Source="{Binding URI}" Tag="{Binding DoorNum}" MouseUp="PSDPopup_click"/>
                                             <TextBlock Text="{Binding DoorNum}" FontSize="10" HorizontalAlignment="Center"/>
@@ -174,9 +174,9 @@
                 <!-- Row 2 -->
                 <StackPanel MouseLeftButtonDown="ChangePlatform2" Grid.Row="1" Grid.Column="0"  Orientation="Horizontal" Background="White" Margin="10 10 10 10" HorizontalAlignment="Stretch">
                     <Grid>
-                        <Label Content="Input Status" FontSize="20" FontWeight="Bold"/>
+                        <Label x:Name ="platform2StatusTitle" Content="Signalling Status" FontSize="20" FontWeight="Bold"/>
                         <Label Content="last twenty seconds" FontSize="15" FontWeight="Light" Margin="0,24,0,-24"/>
-                        <Label Content="LIVE" FontSize="20" FontWeight="Bold" Margin="65,54,-67,-54" Foreground="Green"/>
+                        <Label x:Name ="platform2StatusContent"  Content="Healthy" FontSize="20" FontWeight="Bold" Margin="65,54,-67,-54" Foreground="Green"/>
                     </Grid>
                 </StackPanel>
                 <ScrollViewer HorizontalScrollBarVisibility="Visible" VerticalScrollBarVisibility="Auto" 
@@ -190,7 +190,7 @@
                             </ItemsControl.ItemsPanel>
                             <ItemsControl.ItemTemplate>
                                 <DataTemplate>
-                                    <Border BorderBrush="Transparent" BorderThickness="1" Margin="50 30 0 0" Padding="30">
+                                    <Border BorderBrush="Transparent" BorderThickness="1" Margin="50 30 0 0">
                                         <StackPanel Orientation="Vertical" VerticalAlignment="Bottom">
                                             <Image Source="{Binding URI}" Tag="{Binding DoorNum}" MouseUp="PSDPopup_click"/>
                                             <TextBlock Text="{Binding DoorNum}" FontSize="10" HorizontalAlignment="Center"/>
@@ -205,9 +205,9 @@
                 <!-- Row 3 -->
                 <StackPanel MouseLeftButtonDown="ChangePlatform3" Grid.Row="2" Grid.Column="0"  Orientation="Horizontal" Background="White" Margin="10 10 10 10" HorizontalAlignment="Stretch">
                     <Grid>
-                        <Label Content="C and L Status" FontSize="20" FontWeight="Bold"/>
+                        <Label x:Name ="platform3StatusTitle" Content="Signalling Status" FontSize="20" FontWeight="Bold"/>
                         <Label Content="last twenty seconds" FontSize="15" FontWeight="Light" Margin="0,24,0,-24"/>
-                        <Label Content="-" FontSize="20" FontWeight="Bold" Margin="74,58,-78,-58" />
+                        <Label x:Name="platform3StatusContent" Content="Healthy" FontSize="20" FontWeight="Bold" Margin="74,58,-78,-58"   Foreground="Green"/>
                     </Grid>
                 </StackPanel>
                 <ScrollViewer HorizontalScrollBarVisibility="Visible" VerticalScrollBarVisibility="Auto" 
@@ -221,7 +221,7 @@
                             </ItemsControl.ItemsPanel>
                             <ItemsControl.ItemTemplate>
                                 <DataTemplate>
-                                    <Border BorderBrush="Transparent" BorderThickness="1" Margin="50 30 0 0" Padding="30">
+                                    <Border BorderBrush="Transparent" BorderThickness="1" Margin="50 50 0 0">
                                         <StackPanel Orientation="Vertical" VerticalAlignment="Bottom">
                                             <Image Source="{Binding URI}" Tag="{Binding DoorNum}" MouseUp="PSDPopup_click"/>
                                             <TextBlock Text="{Binding DoorNum}" FontSize="10" HorizontalAlignment="Center"/>

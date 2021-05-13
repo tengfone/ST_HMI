@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ST_HMI.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -21,6 +22,9 @@ namespace ST_HMI
     /// </summary>
     public partial class PlatformOverview : UserControl
     {
+        // need to work on this
+        List<Platform> platforms = new List<Platform>();
+
         List<DoorModel> items_1 = new List<DoorModel>();
         List<DoorModel> items_2 = new List<DoorModel>();
         List<DoorModel> items_3 = new List<DoorModel>();
@@ -35,18 +39,32 @@ namespace ST_HMI
 
         List<DoorModel> items3 = new List<DoorModel>();
         List<SummaryValues> platformValues;
+
         List<DoorIndicator> indicators = new List<DoorIndicator>();
         List<DoorIndicator> indicators2 = new List<DoorIndicator>();
         List<DoorIndicator> indicators3 = new List<DoorIndicator>();
+
+        int platformStatusCounter = 0;
         int summaryValuesCounter = 0;
 
         DispatcherTimer dispatcherTimer = new DispatcherTimer(DispatcherPriority.Send);
+        DispatcherTimer platformStatusTimer = new DispatcherTimer { Interval = TimeSpan.FromSeconds(5) };
+
 
         Boolean REMOVE_PSD = false;
 
         public PlatformOverview()
         {
             InitializeComponent();
+
+
+            platformStatusTimer.Tick += new EventHandler(platform_status_change);
+            platformStatusTimer.Start();
+
+            platforms.Add(new Platform() { platformStatuses = new PlatformStatusModel() { cLStatus = "Live", inputStatus = "-", signalingStatus = "Healthy" } });
+            platforms.Add(new Platform() { platformStatuses = new PlatformStatusModel() { cLStatus = "Live", inputStatus = "-", signalingStatus = "Healthy" } });
+            platforms.Add(new Platform() { platformStatuses = new PlatformStatusModel() { cLStatus = "Live", inputStatus = "-", signalingStatus = "Healthy" } });
+
 
             items_1.Add(new DoorModel() { DoorNum = "PSD1", URI = "../Assets/Animation/fd1.png" });
             items_1.Add(new DoorModel() { DoorNum = "PSD2", URI = "../Assets/Animation/fd1.png" });
@@ -159,6 +177,62 @@ namespace ST_HMI
 
             // Initialize for Counter
             backbtn.IsEnabled = false;
+        }
+
+        private void platform_status_change(object sender, EventArgs e)
+        {
+            // should create platform class array 
+            Label[] platformStatusTitles = { platform1StatusTitle, platform2StatusTitle, platform3StatusTitle };
+            Label[] platformStatusContent = { platform1StatusContent, platform2StatusContent, platform3StatusContent };
+     
+            if (platformStatusCounter == 0)
+            {
+
+                foreach (var platformT in platforms)
+                {
+                    platform1StatusTitle.Content = "Signalling Status";
+                    platform2StatusTitle.Content = "Signalling Status";
+                    platform3StatusTitle.Content = "Signalling Status";
+
+                    platform1StatusContent.Content = platformT.platformStatuses.signalingStatus;
+                    platform2StatusContent.Content = platformT.platformStatuses.signalingStatus;
+                    platform3StatusContent.Content = platformT.platformStatuses.signalingStatus;
+
+                }
+                platformStatusCounter++;
+
+            }
+            else if (platformStatusCounter == 1)
+            {
+                foreach (var platformT in platforms)
+                {
+                    platform1StatusTitle.Content = "C & L Status";
+                    platform2StatusTitle.Content = "C & L Status";
+                    platform3StatusTitle.Content = "C & L Status";
+
+                    platform1StatusContent.Content = platformT.platformStatuses.cLStatus;
+                    platform2StatusContent.Content = platformT.platformStatuses.cLStatus;
+                    platform3StatusContent.Content = platformT.platformStatuses.cLStatus;
+
+                }
+                platformStatusCounter++;
+            }
+            else if (platformStatusCounter == 2)
+            {
+                foreach (var platformT in platforms)
+                {
+                    platform1StatusTitle.Content = "Input Status";
+                    platform2StatusTitle.Content = "Input Status";
+                    platform3StatusTitle.Content = "Input Status";
+
+                    platform1StatusContent.Content = platformT.platformStatuses.inputStatus;
+                    platform2StatusContent.Content = platformT.platformStatuses.inputStatus;
+                    platform3StatusContent.Content = platformT.platformStatuses.inputStatus;
+
+                }
+                platformStatusCounter = 0;
+            }
+          
         }
 
 
