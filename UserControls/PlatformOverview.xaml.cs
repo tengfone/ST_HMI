@@ -356,6 +356,7 @@ namespace ST_HMI
             btn_editPSD.Visibility = Visibility.Visible;
             btn_addPSD.Visibility = Visibility.Hidden;
             btn_removePSD.Visibility = Visibility.Collapsed;
+            REMOVE_PSD = !REMOVE_PSD;
         }
 
         void Remove_PSD(object sender, EventArgs e)
