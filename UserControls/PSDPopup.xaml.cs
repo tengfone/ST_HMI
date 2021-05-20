@@ -33,15 +33,15 @@ namespace ST_HMI
         public PSDPopup()
         {
             InitializeComponent();
-            List<Alarms> alarms = new List<Alarms>();
-            alarms.Add(new Alarms() { date = "<ON>    02-08 17:27:07    PSD DSI  FAILURE", alarmType = "GOOD", actionRequired = "Immediate action required by Administrator" });
-            alarms.Add(new Alarms() { date = "<ON>    02-08 17:27:07    PSD DSI  FAILURE", alarmType = "WARN", actionRequired = "Immediate action required by Administrator" });
-            alarms.Add(new Alarms() { date = "<ON>    02-08 17:27:07    PSD DSI  FAILURE", alarmType = "GOOD", actionRequired = "Immediate action required by Administrator" });
-            alarms.Add(new Alarms() { date = "<ON>    02-08 17:27:07    PSD DSI  FAILURE", alarmType = "WARN", actionRequired = "Immediate action required by Administrator" });
-            alarms.Add(new Alarms() { date = "<ON>    02-08 17:27:07    PSD DSI  FAILURE", alarmType = "GOOD", actionRequired = "Immediate action required by Administrator" });
-            alarms.Add(new Alarms() { date = "<ON>    02-08 17:27:07    PSD DSI  FAILURE", alarmType = "GOOD", actionRequired = "Immediate action required by Administrator" });
-            alarms.Add(new Alarms() { date = "<ON>    02-08 17:27:07    PSD DSI  FAILURE", alarmType = "GOOD", actionRequired = "Immediate action required by Administrator" });
-            alarms.Add(new Alarms() { date = "<ON>    02-08 17:27:07    PSD DSI  FAILURE", alarmType = "GOOD", actionRequired = "Immediate action required by Administrator" });
+            List<AlarmsModel> alarms = new List<AlarmsModel>();
+            alarms.Add(new AlarmsModel() { date = "<ON>    02-08 17:27:07    PSD DSI  FAILURE", alarmType = "GOOD", actionRequired = "Immediate action required by Administrator" });
+            alarms.Add(new AlarmsModel() { date = "<ON>    02-08 17:27:07    PSD DSI  FAILURE", alarmType = "WARN", actionRequired = "Immediate action required by Administrator" });
+            alarms.Add(new AlarmsModel() { date = "<ON>    02-08 17:27:07    PSD DSI  FAILURE", alarmType = "GOOD", actionRequired = "Immediate action required by Administrator" });
+            alarms.Add(new AlarmsModel() { date = "<ON>    02-08 17:27:07    PSD DSI  FAILURE", alarmType = "WARN", actionRequired = "Immediate action required by Administrator" });
+            alarms.Add(new AlarmsModel() { date = "<ON>    02-08 17:27:07    PSD DSI  FAILURE", alarmType = "GOOD", actionRequired = "Immediate action required by Administrator" });
+            alarms.Add(new AlarmsModel() { date = "<ON>    02-08 17:27:07    PSD DSI  FAILURE", alarmType = "GOOD", actionRequired = "Immediate action required by Administrator" });
+            alarms.Add(new AlarmsModel() { date = "<ON>    02-08 17:27:07    PSD DSI  FAILURE", alarmType = "GOOD", actionRequired = "Immediate action required by Administrator" });
+            alarms.Add(new AlarmsModel() { date = "<ON>    02-08 17:27:07    PSD DSI  FAILURE", alarmType = "GOOD", actionRequired = "Immediate action required by Administrator" });
             alarmsDataGrid.ItemsSource = alarms;
 
             dispatcherTimer.Tick += Animation;

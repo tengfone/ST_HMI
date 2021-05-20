@@ -23,7 +23,11 @@ namespace ST_HMI
     public partial class PlatformOverview : UserControl
     {
         // need to work on this
-        List<Platform> platforms = new List<Platform>();
+        Dictionary<int, PlatformModel> platforms = new Dictionary<int, PlatformModel>();
+        
+        Dictionary<int, DoorModel> psdDict1 = new Dictionary<int, DoorModel>();
+        PlatformStatusModel platformStatusModel1 = new PlatformStatusModel();
+        List<AlarmsModel> alarmsGeneric = new List<AlarmsModel>(); 
 
         List<DoorModel> items_1 = new List<DoorModel>();
         List<DoorModel> items_2 = new List<DoorModel>();
@@ -38,7 +42,7 @@ namespace ST_HMI
         List<DoorModel> items2_5 = new List<DoorModel>();
 
         List<DoorModel> items3 = new List<DoorModel>();
-        List<SummaryValues> platformValues;
+        List<OverviewModel> platformValues;
 
         List<DoorIndicator> indicators = new List<DoorIndicator>();
         List<DoorIndicator> indicators2 = new List<DoorIndicator>();
@@ -57,14 +61,28 @@ namespace ST_HMI
         {
             InitializeComponent();
 
-
             platformStatusTimer.Tick += new EventHandler(platform_status_change);
             platformStatusTimer.Start();
 
-            platforms.Add(new Platform() { platformStatuses = new PlatformStatusModel() { cLStatus = "Live", inputStatus = "-", signalingStatus = "Healthy" } });
-            platforms.Add(new Platform() { platformStatuses = new PlatformStatusModel() { cLStatus = "Live", inputStatus = "-", signalingStatus = "Healthy" } });
-            platforms.Add(new Platform() { platformStatuses = new PlatformStatusModel() { cLStatus = "Live", inputStatus = "-", signalingStatus = "Healthy" } });
+            // Placeholder for alarms 
+            alarmsGeneric.Add(new AlarmsModel { date = "<ON>    03-08 16:27:07    PSD DSI  SUCCESS", alarmType = "GOOD", actionRequired = "Immediate action required by Administrator" });
+            alarmsGeneric.Add(new AlarmsModel { date = "<OFF>    02-03 15:27:07    PSD DSI  FAILURE", alarmType = "GOOD", actionRequired = "Immediate action required by Administrator" });
+            alarmsGeneric.Add(new AlarmsModel { date = "<ON>    01-01 14:27:07    PSD DSI  SUCCESS", alarmType = "GOOD", actionRequired = "Immediate action required by Administrator" });
+            alarmsGeneric.Add(new AlarmsModel { date = "<OFF>    01-08 13:22:07    PSD DSI  FAILURE", alarmType = "GOOD", actionRequired = "Immediate action required by Administrator" });
+            alarmsGeneric.Add(new AlarmsModel { date = "<ON>    01-08 12:27:07    PSD DSI  SUCCESS", alarmType = "GOOD", actionRequired = "Immediate action required by Administrator" });
 
+            // ONE PLATFORM
+            platformStatusModel1 = new PlatformStatusModel() { cLStatus = "Live", inputStatus = "-", signalingStatus = "Healthy" };
+            psdDict1.Add(1, new DoorModel() { DoorNum = "PSD1", URI = "../Assets/Animation/fd1.png", URI_I = "../Assets/PSD_fullheight.png", alarmsList = alarmsGeneric });
+            psdDict1.Add(2, new DoorModel() { DoorNum = "PSD2", URI = "../Assets/Animation/fd1.png", URI_I = "../Assets/PSD_fullheight.png", alarmsList = alarmsGeneric });
+            psdDict1.Add(3, new DoorModel() { DoorNum = "PSD3", URI = "../Assets/Animation/fd1.png", URI_I = "../Assets/PSD_fullheight.png", alarmsList = alarmsGeneric });
+            psdDict1.Add(4, new DoorModel() { DoorNum = "PSD4", URI = "../Assets/Animation/fd1.png", URI_I = "../Assets/PSD_fullheight.png", alarmsList = alarmsGeneric });
+            psdDict1.Add(5, new DoorModel() { DoorNum = "PSD5", URI = "../Assets/Animation/fd1.png", URI_I = "../Assets/PSD_fullheight.png", alarmsList = alarmsGeneric });
+            platforms.Add(1, new PlatformModel() { platformStatuses = platformStatusModel1, psdDict = psdDict1 });
+
+
+
+       
 
             items_1.Add(new DoorModel() { DoorNum = "PSD1", URI = "../Assets/Animation/fd1.png" });
             items_1.Add(new DoorModel() { DoorNum = "PSD2", URI = "../Assets/Animation/fd1.png" });
@@ -160,14 +178,16 @@ namespace ST_HMI
             indicators3.Add(new DoorIndicator() { DoorNum = "PSD4", URI = "../Assets/EED_halfheight.png" });
             indicators3.Add(new DoorIndicator() { DoorNum = "PSD4", URI = "../Assets/EED_halfheight.png" });
 
-            platformValues = new List<SummaryValues>();
-            platformValues.Add(new SummaryValues() { titleLabel = "Doors Failed to Open/close", valueLabel = "1" });
-            platformValues.Add(new SummaryValues() { titleLabel = "Platform Voltage", valueLabel = "80V" });
+            platformValues = new List<OverviewModel>();
+            platformValues.Add(new OverviewModel() { titleLabel = "Doors Failed to Open/close", valueLabel = "1" });
+            platformValues.Add(new OverviewModel() { titleLabel = "Platform Voltage", valueLabel = "80V" });
             titleLabel.Content = platformValues[0].titleLabel;
             valueLabel.Content = platformValues[0].valueLabel;
 
-            DoorsDataBinding.ItemsSource = items_1;
-            IndicatorsDataBinding.ItemsSource = indicators;
+            DoorsDataBinding.ItemsSource = platforms[1].psdDict;
+            IndicatorsDataBinding.ItemsSource = platforms[1].psdDict;
+
+
             IndicatorsDataBinding2.ItemsSource = indicators2;
             IndicatorsDataBinding3.ItemsSource = indicators3;
 
@@ -184,16 +204,15 @@ namespace ST_HMI
             // should create platform class array 
             if (platformStatusCounter == 0)
             {
-
-                foreach (var platformT in platforms)
+                foreach (KeyValuePair<int, PlatformModel> platformT in platforms)
                 {
                     platform1StatusTitle.Content = "Signalling Status";
                     platform2StatusTitle.Content = "Signalling Status";
                     platform3StatusTitle.Content = "Signalling Status";
 
-                    platform1StatusContent.Content = platformT.platformStatuses.signalingStatus;
-                    platform2StatusContent.Content = platformT.platformStatuses.signalingStatus;
-                    platform3StatusContent.Content = platformT.platformStatuses.signalingStatus;
+                    platform1StatusContent.Content = platformT.Value.platformStatuses.signalingStatus;
+                    platform2StatusContent.Content = platformT.Value.platformStatuses.signalingStatus;
+                    platform3StatusContent.Content = platformT.Value.platformStatuses.signalingStatus;
 
                 }
                 platformStatusCounter++;
@@ -207,9 +226,9 @@ namespace ST_HMI
                     platform2StatusTitle.Content = "C & L Status";
                     platform3StatusTitle.Content = "C & L Status";
 
-                    platform1StatusContent.Content = platformT.platformStatuses.cLStatus;
-                    platform2StatusContent.Content = platformT.platformStatuses.cLStatus;
-                    platform3StatusContent.Content = platformT.platformStatuses.cLStatus;
+                    platform1StatusContent.Content = platformT.Value.platformStatuses.cLStatus;
+                    platform2StatusContent.Content = platformT.Value.platformStatuses.cLStatus;
+                    platform3StatusContent.Content = platformT.Value.platformStatuses.cLStatus;
 
                 }
                 platformStatusCounter++;
@@ -222,9 +241,9 @@ namespace ST_HMI
                     platform2StatusTitle.Content = "Input Status";
                     platform3StatusTitle.Content = "Input Status";
 
-                    platform1StatusContent.Content = platformT.platformStatuses.inputStatus;
-                    platform2StatusContent.Content = platformT.platformStatuses.inputStatus;
-                    platform3StatusContent.Content = platformT.platformStatuses.inputStatus;
+                    platform1StatusContent.Content = platformT.Value.platformStatuses.inputStatus;
+                    platform2StatusContent.Content = platformT.Value.platformStatuses.inputStatus;
+                    platform3StatusContent.Content = platformT.Value.platformStatuses.inputStatus;
 
                 }
                 platformStatusCounter = 0;
@@ -242,6 +261,7 @@ namespace ST_HMI
                 psdPopupWindow.psdSubTitlePopup.Text = psdDoor;
                 string doorNum = psdDoor.Substring(3);
                 psdPopupWindow.psdTitlePopup.Text = $"Door {doorNum} - South Bound";
+                // psdPopupWindow.alarmsDataGrid.ItemsSource = 
                 psdPopupWindow.Show();
             }
         }
@@ -293,11 +313,6 @@ namespace ST_HMI
             }
         }
 
-        class DoorModel
-        {
-            public string DoorNum { get; set; }
-            public string URI { get; set; }
-        }
 
         class DoorIndicator
         {
@@ -305,13 +320,6 @@ namespace ST_HMI
             public string URI { get; set; }
 
             public string Visibility { get; set; }
-        }
-
-        class SummaryValues
-        {
-            public string titleLabel { get; set; }
-            public string valueLabel { get; set; }
-
         }
 
         void Add_PSD(object sender, EventArgs e)

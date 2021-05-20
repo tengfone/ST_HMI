@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace ST_HMI.Models
 {
-    class Alarms
+    class AlarmsModel
     {
         public string date { get; set; }
         public string alarmType { get; set; }
