@@ -4,8 +4,11 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:ST_HMI"
-             mc:Ignorable="d" Width="{Binding ElementName=xGrid,Path=ActualWidth}" Height="{Binding ElementName=xGrid,Path=ActualHeight}">
+             >
+
     <UserControl.Resources>
+        <BooleanToVisibilityConverter x:Key="BoolToVis" />
+
         <!--// Text font style //-->
 
         <Style x:Key="font_style" TargetType="{x:Type TextBlock}">
@@ -161,7 +164,7 @@
                                 <DataTemplate>
                                         <Border BorderBrush="Transparent" BorderThickness="1" Margin="50 30 0 0">
                                         <StackPanel Orientation="Vertical" VerticalAlignment="Bottom">
-                                            <Button x:Name="btn_removePSD" Visibility="Visible" Width="20" Height="20" Margin="5" Tag ="{Binding DoorNum}" Click="Remove_PSD" IsCancel="True">-</Button>
+                                            <Button x:Name="btn_removePSD" Width="20" Height="20" Margin="5" Tag ="{Binding DoorNum}" Click="Remove_PSD" IsCancel="True">-</Button>
                                             <Image Source="{Binding URI}" Tag="{Binding DoorNum}" MouseUp="PSDPopup_click"/>
                                             <TextBlock Text="{Binding DoorNum}" FontSize="10" HorizontalAlignment="Center"/>
                                         </StackPanel>

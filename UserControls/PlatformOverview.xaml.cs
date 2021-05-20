@@ -97,11 +97,11 @@ namespace ST_HMI
             items_5.Add(new DoorModel() { DoorNum = "PSD5", URI = "../Assets/Animation/fd5.png" });
 
             // platform 1 indicators
-            indicators.Add(new DoorIndicator() { DoorNum = "PSD1", URI = "../Assets/PSD_fullheight.png" });
-            indicators.Add(new DoorIndicator() { DoorNum = "PSD2", URI = "../Assets/PSD_fullheight.png" });
-            indicators.Add(new DoorIndicator() { DoorNum = "PSD3", URI = "../Assets/PSD_fullheight.png" });
-            indicators.Add(new DoorIndicator() { DoorNum = "PSD4", URI = "../Assets/PSD_fullheight.png" });
-            indicators.Add(new DoorIndicator() { DoorNum = "PSD5", URI = "../Assets/PSD_fullheight.png" });
+            indicators.Add(new DoorIndicator() { DoorNum = "PSD1", URI = "../Assets/PSD_fullheight.png", Visibility = "Collapsed" });
+            indicators.Add(new DoorIndicator() { DoorNum = "PSD2", URI = "../Assets/PSD_fullheight.png", Visibility = "Collapsed" });
+            indicators.Add(new DoorIndicator() { DoorNum = "PSD3", URI = "../Assets/PSD_fullheight.png", Visibility = "Collapsed" });
+            indicators.Add(new DoorIndicator() { DoorNum = "PSD4", URI = "../Assets/PSD_fullheight.png", Visibility = "Collapsed" });
+            indicators.Add(new DoorIndicator() { DoorNum = "PSD5", URI = "../Assets/PSD_fullheight.png", Visibility = "Collapsed" });
 
             // platform 2 doors
             items2_1.Add(new DoorModel() { DoorNum = "PSD1", URI = "../Assets/Animation/fd5.png" });
@@ -303,6 +303,8 @@ namespace ST_HMI
         {
             public string DoorNum { get; set; }
             public string URI { get; set; }
+
+            public string Visibility { get; set; }
         }
 
         class SummaryValues
@@ -337,6 +339,10 @@ namespace ST_HMI
 
         void Edit_mode(object sender, RoutedEventArgs e)
         {
+            foreach (var i in indicators)
+            {
+                i.Visibility = "Visible";
+            }
             btn_editPSD.Visibility = Visibility.Hidden;
             btn_addPSD.Visibility = Visibility.Visible;
             btn_removePSD.Visibility = Visibility.Visible;
