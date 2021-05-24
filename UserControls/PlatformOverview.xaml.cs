@@ -1,6 +1,7 @@
 ﻿using ST_HMI.Models;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -24,8 +25,8 @@ namespace ST_HMI
     {
         // need to work on this
         Dictionary<int, PlatformModel> platforms = new Dictionary<int, PlatformModel>();
-        
-        Dictionary<int, DoorModel> psdDict1 = new Dictionary<int, DoorModel>();
+
+        ObservableCollection<DoorModel> psdCollection1 = new ObservableCollection<DoorModel>();
         PlatformStatusModel platformStatusModel1 = new PlatformStatusModel();
         List<AlarmsModel> alarmsGeneric = new List<AlarmsModel>(); 
 
@@ -50,6 +51,7 @@ namespace ST_HMI
 
         int platformStatusCounter = 0;
         int summaryValuesCounter = 0;
+        int doorAnimationCounter = 1;
 
         DispatcherTimer dispatcherTimer = new DispatcherTimer(DispatcherPriority.Send);
         DispatcherTimer platformStatusTimer = new DispatcherTimer { Interval = TimeSpan.FromSeconds(5) };
@@ -73,12 +75,12 @@ namespace ST_HMI
 
             // ONE PLATFORM
             platformStatusModel1 = new PlatformStatusModel() { cLStatus = "Live", inputStatus = "-", signalingStatus = "Healthy" };
-            psdDict1.Add(1, new DoorModel() { DoorNum = "PSD1", URI = "../Assets/Animation/fd1.png", URI_I = "../Assets/PSD_fullheight.png", alarmsList = alarmsGeneric });
-            psdDict1.Add(2, new DoorModel() { DoorNum = "PSD2", URI = "../Assets/Animation/fd1.png", URI_I = "../Assets/PSD_fullheight.png", alarmsList = alarmsGeneric });
-            psdDict1.Add(3, new DoorModel() { DoorNum = "PSD3", URI = "../Assets/Animation/fd1.png", URI_I = "../Assets/PSD_fullheight.png", alarmsList = alarmsGeneric });
-            psdDict1.Add(4, new DoorModel() { DoorNum = "PSD4", URI = "../Assets/Animation/fd1.png", URI_I = "../Assets/PSD_fullheight.png", alarmsList = alarmsGeneric });
-            psdDict1.Add(5, new DoorModel() { DoorNum = "PSD5", URI = "../Assets/Animation/fd1.png", URI_I = "../Assets/PSD_fullheight.png", alarmsList = alarmsGeneric });
-            platforms.Add(1, new PlatformModel() { platformStatuses = platformStatusModel1, psdDict = psdDict1 });
+            psdCollection1.Add(new DoorModel() { DoorNum = "PSD1", URI = "../Assets/Animation/fd1.png", URI_I = "../Assets/PSD_fullheight.png", alarmsList = alarmsGeneric });
+            psdCollection1.Add(new DoorModel() { DoorNum = "PSD2", URI = "../Assets/Animation/fd1.png", URI_I = "../Assets/PSD_fullheight.png", alarmsList = alarmsGeneric });
+            psdCollection1.Add(new DoorModel() { DoorNum = "PSD3", URI = "../Assets/Animation/fd1.png", URI_I = "../Assets/PSD_fullheight.png", alarmsList = alarmsGeneric });
+            psdCollection1.Add(new DoorModel() { DoorNum = "PSD4", URI = "../Assets/Animation/fd1.png", URI_I = "../Assets/PSD_fullheight.png", alarmsList = alarmsGeneric });
+            psdCollection1.Add(new DoorModel() { DoorNum = "PSD5", URI = "../Assets/Animation/fd1.png", URI_I = "../Assets/PSD_fullheight.png", alarmsList = alarmsGeneric });
+            platforms.Add(1, new PlatformModel() { platformStatuses = platformStatusModel1, psdCollection = psdCollection1 });
 
 
 
@@ -184,8 +186,8 @@ namespace ST_HMI
             titleLabel.Content = platformValues[0].titleLabel;
             valueLabel.Content = platformValues[0].valueLabel;
 
-            DoorsDataBinding.ItemsSource = platforms[1].psdDict;
-            IndicatorsDataBinding.ItemsSource = platforms[1].psdDict;
+            DoorsDataBinding.ItemsSource = platforms[1].psdCollection;
+            IndicatorsDataBinding.ItemsSource = platforms[1].psdCollection;
 
 
             IndicatorsDataBinding2.ItemsSource = indicators2;
@@ -268,51 +270,77 @@ namespace ST_HMI
 
         private void Animation(object sender, EventArgs e)
         {
-            /*Platform 1 door animation*/
-            if (DoorsDataBinding.ItemsSource == items_1)
+           /*Dictionary<int, DoorModel> dict = DoorsDataBinding.ItemsSource as Dictionary<int, DoorModel>;*/
+            //System.Diagnostics.Debug.WriteLine(platforms[1].psdCollection.);
+            /* Platform 1 door animation*/
+            if (doorAnimationCounter == 1)
             {
-                DoorsDataBinding.ItemsSource = items_2;
-            }
-            else if (DoorsDataBinding.ItemsSource == items_2)
-            {
-                DoorsDataBinding.ItemsSource = items_3;
-            }
-            else if (DoorsDataBinding.ItemsSource == items_3)
-            {
-                DoorsDataBinding.ItemsSource = items_4;
-            }
-            else if (DoorsDataBinding.ItemsSource == items_4)
-            {
-                DoorsDataBinding.ItemsSource = items_5;
-            }
-            else if (DoorsDataBinding.ItemsSource == items_5)
+                foreach (var doorModel in platforms[1].psdCollection)
                 {
-                    DoorsDataBinding.ItemsSource = items_1;
+                    doorModel.URI = "../Assets/Animation/fd2.png";
+                }
+                doorAnimationCounter++;
+            } else if (doorAnimationCounter == 2)
+            {
+                foreach (var doorModel in platforms[1].psdCollection)
+                {
+                    doorModel.URI = "../Assets/Animation/fd3.png";
+                }
+                doorAnimationCounter++;
+            }
+            else if (doorAnimationCounter == 3)
+            {
+                foreach (var doorModel in platforms[1].psdCollection)
+                {
+                    doorModel.URI = "../Assets/Animation/fd4.png";
+                }
+                doorAnimationCounter++;
+            }
+            else if (doorAnimationCounter == 4)
+            {
+                foreach (var doorModel in platforms[1].psdCollection)
+                {
+                    doorModel.URI = "../Assets/Animation/fd5.png";
+                }
+                doorAnimationCounter++;
+            }
+            else if (doorAnimationCounter == 5)
+            {
+                foreach (var doorModel in platforms[1].psdCollection)
+                {
+                    doorModel.URI = "../Assets/Animation/fd1.png";
+                }
+                doorAnimationCounter = 1;
             }
 
-            /*Platform 2 door animtaion*/
-            if (DoorsDataBinding.ItemsSource == items2_1)
+            /*Dictionary<int, DoorModel> dict = DoorsDataBinding.ItemsSource as Dictionary<int, DoorModel>;
+            System.Diagnostics.Debug.WriteLine(dict[1].URI);
+            if (dict[1].URI == "../Assets/Animation/fd1.png")
             {
-                DoorsDataBinding.ItemsSource = items2_2;
+                platforms[1].psdDict[1].URI = "../Assets/Animation/fd2.png";
+                DoorsDataBinding.ItemsSource = platforms[1].psdDict;
             }
-            else if (DoorsDataBinding.ItemsSource == items2_2)
+            else if (dict[1].URI == "../Assets/Animation/fd2.png")
             {
-                DoorsDataBinding.ItemsSource = items2_3;
+                platforms[1].psdDict[1].URI = "../Assets/Animation/fd3.png";
+                DoorsDataBinding.ItemsSource = platforms[1].psdDict;
             }
-            else if (DoorsDataBinding.ItemsSource == items2_3)
+            else if (dict[1].URI == "../Assets/Animation/fd3.png")
             {
-                DoorsDataBinding.ItemsSource = items2_4;
+                platforms[1].psdDict[1].URI = "../Assets/Animation/fd4.png";
+                DoorsDataBinding.ItemsSource = platforms[1].psdDict;
             }
-            else if (DoorsDataBinding.ItemsSource == items2_4)
+            else if (dict[1].URI == "../Assets/Animation/fd4.png")
             {
-                DoorsDataBinding.ItemsSource = items2_5;
+                platforms[1].psdDict[1].URI = "../Assets/Animation/fd5.png";
+                DoorsDataBinding.ItemsSource = platforms[1].psdDict;
             }
-            else if (DoorsDataBinding.ItemsSource == items2_5)
+            else if (dict[1].URI == "../Assets/Animation/fd5.png")
             {
-                DoorsDataBinding.ItemsSource = items2_1;
-            }
+                platforms[1].psdDict[1].URI = "../Assets/Animation/fd1.png";
+                DoorsDataBinding.ItemsSource = platforms[1].psdDict;
+            }*/
         }
-
 
         class DoorIndicator
         {

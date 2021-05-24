@@ -105,8 +105,8 @@
                         <DataTemplate>
                             <Border BorderBrush="Transparent" BorderThickness="1" Margin="60 40">
                                 <StackPanel Orientation="Vertical">
-                                    <Image Source="{Binding Path=Value.URI}" Tag="{Binding Value.DoorNum}" MouseUp="PSDPopup_click" />
-                                    <TextBlock Text="{Binding Value.DoorNum}" FontSize="20" HorizontalAlignment="Center"  MouseLeftButtonDown="Remove_PSD"/>
+                                    <Image Source="{Binding Path=URI}" Tag="{Binding DoorNum}" MouseUp="PSDPopup_click" />
+                                    <TextBlock Text="{Binding DoorNum}" FontSize="20" HorizontalAlignment="Center"  MouseLeftButtonDown="Remove_PSD"/>
                                 </StackPanel>
                             </Border>
                         </DataTemplate>
@@ -164,9 +164,9 @@
                                 <DataTemplate>
                                         <Border BorderBrush="Transparent" BorderThickness="1" Margin="50 30 0 0">
                                         <StackPanel Orientation="Vertical" VerticalAlignment="Bottom">
-                                            <Button x:Name="btn_removePSD" Width="20" Height="20" Margin="5" Tag ="{Binding Path=Value.DoorNum}" Click="Remove_PSD" IsCancel="True">-</Button>
-                                            <Image Source="{Binding Path=Value.URI_I}" Tag="{Binding Path=Value.DoorNum }" MouseUp="PSDPopup_click"/>
-                                            <TextBlock Text="{Binding Path=Value.DoorNum}" FontSize="10" HorizontalAlignment="Center"/>
+                                            <Button x:Name="btn_removePSD" Width="20" Height="20" Margin="5" Tag ="{Binding Path=DoorNum}" Click="Remove_PSD" IsCancel="True">-</Button>
+                                            <Image Source="{Binding Path=URI_I}" Tag="{Binding Path=DoorNum }" MouseUp="PSDPopup_click"/>
+                                            <TextBlock Text="{Binding Path=DoorNum}" FontSize="10" HorizontalAlignment="Center"/>
                                         </StackPanel>
                                     </Border>
                                 </DataTemplate>
