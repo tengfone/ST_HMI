@@ -4,7 +4,7 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:ST_HMI"
-             >
+             mc:Ignorable="d" Width="{Binding ElementName=xGrid,Path=ActualWidth}" Height="{Binding ElementName=xGrid,Path=ActualHeight}">
 
     <UserControl.Resources>
         <BooleanToVisibilityConverter x:Key="BoolToVis" />
@@ -162,13 +162,20 @@
                             </ItemsControl.ItemsPanel>
                             <ItemsControl.ItemTemplate>
                                 <DataTemplate>
-                                        <Border BorderBrush="Transparent" BorderThickness="1" Margin="50 30 0 0">
-                                        <StackPanel Orientation="Vertical" VerticalAlignment="Bottom">
-                                            <Button x:Name="btn_removePSD" Width="20" Height="20" Margin="5" Tag ="{Binding Path=DoorNum}" Click="Remove_PSD" IsCancel="True">-</Button>
-                                            <Image Source="{Binding Path=URI_I}" Tag="{Binding Path=DoorNum }" MouseUp="PSDPopup_click"/>
-                                            <TextBlock Text="{Binding Path=DoorNum}" FontSize="10" HorizontalAlignment="Center"/>
-                                        </StackPanel>
-                                    </Border>
+                                    <Grid>
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="9*"/>
+                                            <ColumnDefinition Width="*"/>
+                                        </Grid.ColumnDefinitions>
+                                        <Border Grid.Column="0" BorderBrush="Transparent" BorderThickness="1" Margin="40 5 -20 0">
+                                            <StackPanel Orientation="Vertical" VerticalAlignment="Bottom">
+                                                <Button x:Name="btn_removePSD" Visibility="{Binding Visibility}" Width="20" Height="20" Margin="5" Tag ="{Binding DoorNum}" Click="Remove_PSD" IsCancel="True">-</Button>
+                                                <Image Source="{Binding URI_I}" Tag="{Binding DoorNum}" MouseUp="PSDPopup_click"/>
+                                                <TextBlock Text="{Binding DoorNum}" FontSize="10" HorizontalAlignment="Center"/>
+                                            </StackPanel>
+                                        </Border>
+                                        <Button x:Name="btn_addPSD" Visibility="{Binding Visibility}" Margin="40,10,-20,0" Width="20" Height="20" Grid.Column="1" Tag="{Binding DoorNum}" Click="Add_PSD">+</Button>
+                                    </Grid>
                                 </DataTemplate>
                             </ItemsControl.ItemTemplate>
                         </ItemsControl>
@@ -194,12 +201,20 @@
                             </ItemsControl.ItemsPanel>
                             <ItemsControl.ItemTemplate>
                                 <DataTemplate>
-                                    <Border BorderBrush="Transparent" BorderThickness="1" Margin="50 30 0 0">
-                                        <StackPanel Orientation="Vertical" VerticalAlignment="Bottom">
-                                            <Image Source="{Binding URI}" Tag="{Binding DoorNum}" MouseUp="PSDPopup_click"/>
-                                            <TextBlock Text="{Binding DoorNum}" FontSize="10" HorizontalAlignment="Center"/>
-                                        </StackPanel>
-                                    </Border>
+                                    <Grid>
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="9*"/>
+                                            <ColumnDefinition Width="*"/>
+                                        </Grid.ColumnDefinitions>
+                                        <Border Grid.Column="0" BorderBrush="Transparent" BorderThickness="1" Margin="40 5 -20 0">
+                                            <StackPanel Orientation="Vertical" VerticalAlignment="Bottom">
+                                                <Button x:Name="btn_removePSD" Visibility="{Binding Visibility}" Width="20" Height="20" Margin="5" Tag ="{Binding DoorNum}" Click="Remove_PSD" IsCancel="True">-</Button>
+                                                <Image Source="{Binding URI_I}" Tag="{Binding DoorNum}" MouseUp="PSDPopup_click"/>
+                                                <TextBlock Text="{Binding DoorNum}" FontSize="10" HorizontalAlignment="Center"/>
+                                            </StackPanel>
+                                        </Border>
+                                        <Button x:Name="btn_addPSD" Visibility="{Binding Visibility}" Margin="40,10,-20,0" Width="20" Height="20" Grid.Column="1" Tag="{Binding DoorNum}" Click="Add_PSD">+</Button>
+                                    </Grid>
                                 </DataTemplate>
                             </ItemsControl.ItemTemplate>
                         </ItemsControl>
@@ -225,12 +240,20 @@
                             </ItemsControl.ItemsPanel>
                             <ItemsControl.ItemTemplate>
                                 <DataTemplate>
-                                    <Border BorderBrush="Transparent" BorderThickness="1" Margin="50 50 0 0">
-                                        <StackPanel Orientation="Vertical" VerticalAlignment="Bottom">
-                                            <Image Source="{Binding URI}" Tag="{Binding DoorNum}" MouseUp="PSDPopup_click"/>
-                                            <TextBlock Text="{Binding DoorNum}" FontSize="10" HorizontalAlignment="Center"/>
-                                        </StackPanel>
-                                    </Border>
+                                    <Grid>
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="9*"/>
+                                            <ColumnDefinition Width="*"/>
+                                        </Grid.ColumnDefinitions>
+                                        <Border Grid.Column="0" BorderBrush="Transparent" BorderThickness="1" Margin="40 5 -20 0">
+                                            <StackPanel Orientation="Vertical" VerticalAlignment="Bottom">
+                                                <Button x:Name="btn_removePSD" Visibility="{Binding Visibility}" Width="20" Height="20" Margin="5" Tag ="{Binding DoorNum}" Click="Remove_PSD" IsCancel="True">-</Button>
+                                                <Image Source="{Binding URI_I}" Tag="{Binding DoorNum}" MouseUp="PSDPopup_click"/>
+                                                <TextBlock Text="{Binding DoorNum}" FontSize="10" HorizontalAlignment="Center"/>
+                                            </StackPanel>
+                                        </Border>
+                                        <Button x:Name="btn_addPSD" Visibility="{Binding Visibility}" Margin="40,10,-20,0" Width="20" Height="20" Grid.Column="1" Tag="{Binding DoorNum}" Click="Add_PSD">+</Button>
+                                    </Grid>
                                 </DataTemplate>
                             </ItemsControl.ItemTemplate>
                         </ItemsControl>
@@ -251,8 +274,6 @@
                 </Grid.ColumnDefinitions>
                 <Button Grid.Column="0" x:Name="btn_editPSD" Background="BlueViolet" Margin="50,0,0,0" Click="Edit_mode">Edit</Button>
                 <Button Grid.Column="0" x:Name="btn_UneditPSD" Visibility="Hidden" Background="BlueViolet" Margin="50,0,0,0" Click="UnEdit_mode">Back</Button>
-                <Button Grid.Column="1" x:Name="btn_addPSD" Visibility="Hidden" Background="BlueViolet" Margin="50,0,0,0" Click="Add_PSD">Add PSD</Button>
-                <Button Grid.Column="2" x:Name="btn_removePSD" Visibility="Hidden" Background="BlueViolet" Margin="50,0,0,0" Click="Remove_PSD_True">Remove PSD</Button>
             </Grid>
         </Grid>
     </Grid>

@@ -26,6 +26,9 @@ namespace ST_HMI.Models
         }
 
         public string URI_I { get; set; }
+
+        public string Visibility { get; set; }
+
         public List<AlarmsModel> alarmsList { get; set; }
 
         public event PropertyChangedEventHandler PropertyChanged;
