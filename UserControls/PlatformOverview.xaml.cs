@@ -47,6 +47,8 @@ namespace ST_HMI
 
         Boolean REMOVE_PSD = false;
 
+        int CURRENT_PLATFORM = 1;
+
         public PlatformOverview()
         {
             InitializeComponent();
@@ -252,18 +254,50 @@ namespace ST_HMI
 
         }
 
-
         void Add_PSD(object sender, EventArgs e)
         {
             if (REMOVE_PSD)
             {
                 ObservableCollection<DoorModel> doorItems = (ObservableCollection<DoorModel>)DoorsDataBinding.ItemsSource;
-                String doorNum_temp = ((Button)sender).Tag.ToString();
-                char c = doorNum_temp.Last();
-                int num = (int)Char.GetNumericValue(c);
-                string doorNum = "NEW_PSD" + (num + 1).ToString();
+                System.Diagnostics.Debug.Write(doorItems.Count());
+                if (CURRENT_PLATFORM == 1)
+                {
+                    String doorNum_temp = ((Button)sender).Tag.ToString();
+                    char c = doorNum_temp.Last();
+                    int num = (int)Char.GetNumericValue(c);
+                    string doorNum = "NEW_PSD" + (num + 1).ToString();
 
-                doorItems.Insert(num, new DoorModel() { DoorNum = doorNum, URI = "../Assets/Animation/fd1.png", URI_I = "../Assets/PSD_fullheight.png", alarmsList = alarmsGeneric });
+                    psdCollection1.Insert(num, new DoorModel() { DoorNum = doorNum, URI = "../Assets/Animation/fd1.png", URI_I = "../Assets/PSD_fullheight.png", alarmsList = alarmsGeneric });
+                }
+                else if (CURRENT_PLATFORM == 2)
+                {
+                    String doorNum_temp = ((Button)sender).Tag.ToString();
+                    char c = doorNum_temp.Last();
+                    int num = (int)Char.GetNumericValue(c);
+                    string doorNum = "NEW_PSD" + (num + 1).ToString();
+
+                    psdCollection2.Insert(num, new DoorModel() { DoorNum = doorNum, URI = "../Assets/Animation/fd1.png", URI_I = "../Assets/PSD_fullheight.png", alarmsList = alarmsGeneric });
+                }
+            }
+        }
+
+        void Remove_PSD(object sender, EventArgs e)
+        {
+            string doorNum = ((Button)sender).Tag.ToString();
+
+            System.Diagnostics.Debug.WriteLine("trying to remove door");
+
+            if (REMOVE_PSD)
+            {
+                ObservableCollection<DoorModel> doorItems = (ObservableCollection<DoorModel>)DoorsDataBinding.ItemsSource;
+                if (CURRENT_PLATFORM == 1)
+                {
+                    foreach (var doorModel in psdCollection1.Where(item => item.DoorNum == doorNum).ToArray()) psdCollection1.Remove(doorModel);
+                }
+                else if (CURRENT_PLATFORM == 2)
+                {
+                    foreach (var doorModel in psdCollection2.Where(item => item.DoorNum == doorNum).ToArray()) psdCollection2.Remove(doorModel);
+                }
             }
         }
 
@@ -293,25 +327,14 @@ namespace ST_HMI
             REMOVE_PSD = !REMOVE_PSD;
         }
 
-        void Remove_PSD(object sender, EventArgs e)
-        {
-            string doorNum = ((Button)sender).Tag.ToString();
-
-            System.Diagnostics.Debug.WriteLine("trying to remove door");
-
-            if (REMOVE_PSD)
-            {
-                System.Diagnostics.Debug.WriteLine("removing door");
-                foreach (var doorModel in platforms[1].psdCollection.Where(item => item.DoorNum == doorNum).ToArray()) platforms[1].psdCollection.Remove(doorModel);
-            }
-        }
-
         void ChangePlatform1(object sender, EventArgs e)
         {
+            CURRENT_PLATFORM = 1;
             DoorsDataBinding.ItemsSource = psdCollection1;
         }
         void ChangePlatform2(object sender, EventArgs e)
         {
+            CURRENT_PLATFORM = 2;
             DoorsDataBinding.ItemsSource = psdCollection2;
         }
 
