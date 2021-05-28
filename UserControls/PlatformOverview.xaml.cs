@@ -65,19 +65,16 @@ namespace ST_HMI
 
             // PLATFORM ONE
             platformStatusModel1 = new PlatformStatusModel() { cLStatus = "Live", inputStatus = "-", signalingStatus = "Healthy" };
-            psdCollection1.Add(new DoorModel() { DoorNum = "PSD1", URI = "../Assets/Animation/fd1.png", URI_I = "../Assets/PSD_fullheight.png", alarmsList = alarmsGeneric, Visibility = "Visible" });
-            psdCollection1.Add(new DoorModel() { DoorNum = "PSD2", URI = "../Assets/Animation/fd1.png", URI_I = "../Assets/PSD_fullheight.png", alarmsList = alarmsGeneric, Visibility = "Visible" });
-            psdCollection1.Add(new DoorModel() { DoorNum = "PSD3", URI = "../Assets/Animation/fd1.png", URI_I = "../Assets/PSD_fullheight.png", alarmsList = alarmsGeneric, Visibility = "Visible" });
-            psdCollection1.Add(new DoorModel() { DoorNum = "PSD4", URI = "../Assets/Animation/fd1.png", URI_I = "../Assets/PSD_fullheight.png", alarmsList = alarmsGeneric, Visibility = "Visible" });
-            psdCollection1.Add(new DoorModel() { DoorNum = "PSD5", URI = "../Assets/Animation/fd1.png", URI_I = "../Assets/PSD_fullheight.png", alarmsList = alarmsGeneric, Visibility = "Visible" });
-            platforms.Add(1, new PlatformModel() { platformStatuses = platformStatusModel1, psdCollection = psdCollection1 });
-
-            // PLATFORM TWO
-            platformStatusModel2 = new PlatformStatusModel() { cLStatus = "Live", inputStatus = "-", signalingStatus = "Healthy" };
-            psdCollection2.Add(new DoorModel() { DoorNum = "PSD1", URI = "../Assets/Animation/fd1.png", URI_I = "../Assets/PSD_fullheight.png", alarmsList = alarmsGeneric, Visibility = "Visible" });
-            psdCollection2.Add(new DoorModel() { DoorNum = "PSD2", URI = "../Assets/Animation/fd1.png", URI_I = "../Assets/PSD_fullheight.png", alarmsList = alarmsGeneric, Visibility = "Visible" });
-            psdCollection2.Add(new DoorModel() { DoorNum = "PSD3", URI = "../Assets/Animation/fd1.png", URI_I = "../Assets/PSD_fullheight.png", alarmsList = alarmsGeneric, Visibility = "Visible" });
-            psdCollection2.Add(new DoorModel() { DoorNum = "PSD4", URI = "../Assets/Animation/fd1.png", URI_I = "../Assets/PSD_fullheight.png", alarmsList = alarmsGeneric, Visibility = "Visible" });
+            psdCollection1.Add(new DoorModel() { DoorNum = "PSD1", URI = "../Assets/Animation/fd1.png", URI_I = "../Assets/PSD_fullheight.png", alarmsList = alarmsGeneric, Visibility = "Hidden" });
+            psdCollection1.Add(new DoorModel() { DoorNum = "PSD2", URI = "../Assets/Animation/fd1.png", URI_I = "../Assets/PSD_fullheight.png", alarmsList = alarmsGeneric, Visibility = "Hidden" });
+            psdCollection1.Add(new DoorModel() { DoorNum = "PSD3", URI = "../Assets/Animation/fd1.png", URI_I = "../Assets/PSD_fullheight.png", alarmsList = alarmsGeneric, Visibility = "Hidden" });
+            psdCollection1.Add(new DoorModel() { DoorNum = "PSD4", URI = "../Assets/Animation/fd1.png", URI_I = "../Assets/PSD_fullheight.png", alarmsList = alarmsGeneric, Visibility = "Hidden" });
+            psdCollection1.Add(new DoorModel() { DoorNum = "PSD5", URI = "../Assets/Animation/fd1.png", URI_I = "../Assets/PSD_fullheight.png", alarmsList = alarmsGeneric, Visibility = "Hidden" });
+            platforms.Add(1, new PlatformModel() { platformStatuses = platformStatusModel1, psdCollection = psdCollection1 });                                                            
+            psdCollection2.Add(new DoorModel() { DoorNum = "PSD1", URI = "../Assets/Animation/fd1.png", URI_I = "../Assets/PSD_fullheight.png", alarmsList = alarmsGeneric, Visibility = "Hidden" });
+            psdCollection2.Add(new DoorModel() { DoorNum = "PSD2", URI = "../Assets/Animation/fd1.png", URI_I = "../Assets/PSD_fullheight.png", alarmsList = alarmsGeneric, Visibility = "Hidden" });
+            psdCollection2.Add(new DoorModel() { DoorNum = "PSD3", URI = "../Assets/Animation/fd1.png", URI_I = "../Assets/PSD_fullheight.png", alarmsList = alarmsGeneric, Visibility = "Hidden" });
+            psdCollection2.Add(new DoorModel() { DoorNum = "PSD4", URI = "../Assets/Animation/fd1.png", URI_I = "../Assets/PSD_fullheight.png", alarmsList = alarmsGeneric, Visibility = "Hidden" });
             
             platforms.Add(2, new PlatformModel() { platformStatuses = platformStatusModel2, psdCollection = psdCollection2 });
 
@@ -259,7 +256,7 @@ namespace ST_HMI
             if (REMOVE_PSD)
             {
                 ObservableCollection<DoorModel> doorItems = (ObservableCollection<DoorModel>)DoorsDataBinding.ItemsSource;
-                System.Diagnostics.Debug.Write(doorItems.Count());
+                System.Diagnostics.Debug.WriteLine(psdCollection1[3].DoorNum);
                 if (CURRENT_PLATFORM == 1)
                 {
                     String doorNum_temp = ((Button)sender).Tag.ToString();
@@ -267,7 +264,16 @@ namespace ST_HMI
                     int num = (int)Char.GetNumericValue(c);
                     string doorNum = "NEW_PSD" + (num + 1).ToString();
 
+                    foreach (var doorModel in psdCollection1.Where(item => (int)Char.GetNumericValue(item.DoorNum.Last()) > num))
+                    {
+                        System.Diagnostics.Trace.WriteLine(num);
+                        System.Diagnostics.Trace.WriteLine("Door is:" + doorModel.DoorNum);
+                        int new_num = (int)Char.GetNumericValue(doorModel.DoorNum.Last()) + 1;
+                        string new_doorNum = "PSD" + new_num.ToString();
+                        doorModel.DoorNum = new_doorNum;
+                    }
                     psdCollection1.Insert(num, new DoorModel() { DoorNum = doorNum, URI = "../Assets/Animation/fd1.png", URI_I = "../Assets/PSD_fullheight.png", alarmsList = alarmsGeneric });
+                    System.Diagnostics.Trace.WriteLine(psdCollection1[3].DoorNum);
                 }
                 else if (CURRENT_PLATFORM == 2)
                 {
@@ -305,12 +311,21 @@ namespace ST_HMI
         {
             System.Diagnostics.Debug.WriteLine("Edit Mode");
             System.Diagnostics.Debug.WriteLine(psdCollection1[1].Visibility);
-
-            foreach (var doorModel in psdCollection1)
+            if (CURRENT_PLATFORM == 1)
             {
-                doorModel.Visibility = "Visible";
+                foreach (var doorModel in psdCollection1)
+                {
+                    doorModel.Visibility = "Visible";
+                }
             }
-            System.Diagnostics.Debug.WriteLine(psdCollection1[1].Visibility);
+            else if (CURRENT_PLATFORM == 2)
+            {
+                foreach (var doorModel in psdCollection2)
+                {
+                    doorModel.Visibility = "Visible";
+                }
+            }
+
             btn_editPSD.Visibility = Visibility.Hidden;
             btn_UneditPSD.Visibility = Visibility.Visible;
             REMOVE_PSD = !REMOVE_PSD;

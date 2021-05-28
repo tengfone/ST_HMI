@@ -9,7 +9,18 @@ namespace ST_HMI.Models
 {
     class DoorModel : INotifyPropertyChanged
     {
-        public string DoorNum { get; set; }
+        public string doorNum;
+
+        public string DoorNum {
+            get { return this.doorNum; }
+            set
+            {
+                if (this.doorNum != value){
+                    this.doorNum = value;
+                    NotifyPropertyChanged("DoorNum");
+                }
+            }
+        }
 
         private string uri;
         public string URI
@@ -27,7 +38,19 @@ namespace ST_HMI.Models
 
         public string URI_I { get; set; }
 
-        public string Visibility { get; set; }
+        public string visibility;
+
+        public string Visibility
+        {
+            get { return this.visibility; }
+            set
+            {
+                if (this.visibility != value){
+                    this.visibility = value;
+                    NotifyPropertyChanged("Visibility");
+                }
+            }
+        }
 
         public List<AlarmsModel> alarmsList { get; set; }
 
