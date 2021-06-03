@@ -93,6 +93,7 @@
                 <RowDefinition Height="6*"/>
                 <RowDefinition Height="*"/>
             </Grid.RowDefinitions>
+            <TextBlock Grid.Column="0" Grid.Row="0" Height="30" Width="150" Panel.ZIndex="2" Background="#384955" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="40 5 0 0" Text="" x:Name="platformName" FontSize="20" Foreground="White" TextAlignment="Center"/>
             <ScrollViewer HorizontalScrollBarVisibility="Visible" VerticalScrollBarVisibility="Hidden" 
                           Grid.Row="0" Grid.Column="0" Margin="50 10" Background="#DADDE2">
                 <ItemsControl x:Name="DoorsDataBinding" Grid.Row="0">
@@ -151,9 +152,10 @@
                         <Label x:Name="platform1StatusContent" Content="Healthy" FontSize="20" FontWeight="Bold" Margin="46,56,-48,-56" Foreground="Green"/>
                     </Grid>
                 </StackPanel>
-                <ScrollViewer HorizontalScrollBarVisibility="Visible" VerticalScrollBarVisibility="Auto" 
+                <ScrollViewer HorizontalScrollBarVisibility="Visible" VerticalScrollBarVisibility="Auto" x:Name="platform1bg"  
                           Grid.Row="0" Grid.Column="1" Margin="0 0 0 5" Background="#DADDE2">
-                    <StackPanel Orientation="Horizontal">
+                    <StackPanel Orientation="Horizontal" MouseLeftButtonDown="ChangePlatform1">
+                        <Button x:Name="firstAddPsdButton" Margin="40,10,-20,0" Width="20" Height="20" Grid.Column="1" Click="Add_PSD" Tag ="0" Visibility="Hidden"> + </Button>
                         <ItemsControl x:Name="IndicatorsDataBinding" Grid.Row="0">
                             <ItemsControl.ItemsPanel>
                                 <ItemsPanelTemplate>
@@ -190,9 +192,10 @@
                         <Label x:Name ="platform2StatusContent"  Content="Healthy" FontSize="20" FontWeight="Bold" Margin="65,54,-67,-54" Foreground="Green"/>
                     </Grid>
                 </StackPanel>
-                <ScrollViewer HorizontalScrollBarVisibility="Visible" VerticalScrollBarVisibility="Auto" 
+                <ScrollViewer HorizontalScrollBarVisibility="Visible" VerticalScrollBarVisibility="Auto"  x:Name="platform2bg"
                           Grid.Row="1" Grid.Column="1" Margin="0 0 0 5" Background="#DADDE2">
-                    <StackPanel Orientation="Horizontal">
+                    <StackPanel Orientation="Horizontal" MouseLeftButtonDown="ChangePlatform2">
+                        <Button x:Name="secondAddPsdButton" Margin="40,10,-20,0" Width="20" Height="20" Grid.Column="1" Click="Add_PSD" Tag ="0" Visibility="Hidden">+</Button>
                         <ItemsControl x:Name="IndicatorsDataBinding2" Grid.Row="0">
                             <ItemsControl.ItemsPanel>
                                 <ItemsPanelTemplate>
@@ -206,6 +209,7 @@
                                             <ColumnDefinition Width="9*"/>
                                             <ColumnDefinition Width="*"/>
                                         </Grid.ColumnDefinitions>
+                                        
                                         <Border Grid.Column="0" BorderBrush="Transparent" BorderThickness="1" Margin="40 5 -20 0">
                                             <StackPanel Orientation="Vertical" VerticalAlignment="Bottom">
                                                 <Button x:Name="btn_removePSD" Visibility="{Binding Visibility}" Width="20" Height="20" Margin="5" Tag ="{Binding DoorNum}" Click="Remove_PSD" IsCancel="True">-</Button>

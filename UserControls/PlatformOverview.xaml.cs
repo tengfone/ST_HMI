@@ -1,4 +1,5 @@
 ﻿using ST_HMI.Models;
+using ST_HMI.UserControls;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -75,8 +76,10 @@ namespace ST_HMI
             psdCollection2.Add(new DoorModel() { DoorNum = "PSD2", URI = "../Assets/Animation/fd1.png", URI_I = "../Assets/PSD_fullheight.png", alarmsList = alarmsGeneric, Visibility = "Hidden" });
             psdCollection2.Add(new DoorModel() { DoorNum = "PSD3", URI = "../Assets/Animation/fd1.png", URI_I = "../Assets/PSD_fullheight.png", alarmsList = alarmsGeneric, Visibility = "Hidden" });
             psdCollection2.Add(new DoorModel() { DoorNum = "PSD4", URI = "../Assets/Animation/fd1.png", URI_I = "../Assets/PSD_fullheight.png", alarmsList = alarmsGeneric, Visibility = "Hidden" });
-            
+
+            platformStatusModel2 = new PlatformStatusModel() { cLStatus = "Live", inputStatus = "-", signalingStatus = "Healthy" };
             platforms.Add(2, new PlatformModel() { platformStatuses = platformStatusModel2, psdCollection = psdCollection2 });
+
 
             platformValues = new List<OverviewModel>();
             platformValues.Add(new OverviewModel() { titleLabel = "Doors Failed to Open/close", valueLabel = "1" });
@@ -97,6 +100,11 @@ namespace ST_HMI
 
             // Initialize for Counter
             backbtn.IsEnabled = false;
+
+            // platform 1 selected by default
+            platform1bg.Background = new SolidColorBrush(Color.FromRgb(160, 160, 160));
+            platformName.Text = "Platform 1";
+
         }
 
         private void platform_status_change(object sender, EventArgs e)
@@ -259,21 +267,33 @@ namespace ST_HMI
                 System.Diagnostics.Debug.WriteLine(psdCollection1[3].DoorNum);
                 if (CURRENT_PLATFORM == 1)
                 {
-                    String doorNum_temp = ((Button)sender).Tag.ToString();
-                    char c = doorNum_temp.Last();
-                    int num = (int)Char.GetNumericValue(c);
-                    string doorNum = "NEW_PSD" + (num + 1).ToString();
 
-                    foreach (var doorModel in psdCollection1.Where(item => (int)Char.GetNumericValue(item.DoorNum.Last()) > num))
+                    PSDSelection psdSelection = new PSDSelection();
+                    var result = psdSelection.ShowDialog();
+
+                    if ((bool)result)
                     {
-                        System.Diagnostics.Trace.WriteLine(num);
-                        System.Diagnostics.Trace.WriteLine("Door is:" + doorModel.DoorNum);
-                        int new_num = (int)Char.GetNumericValue(doorModel.DoorNum.Last()) + 1;
-                        string new_doorNum = "PSD" + new_num.ToString();
-                        doorModel.DoorNum = new_doorNum;
+                        switch (psdSelection.psdType)
+                        {
+                            case "Full Height PSD":
+                                String doorNum_temp = ((Button)sender).Tag.ToString();
+                                char c = doorNum_temp.Last();
+                                int num = (int)Char.GetNumericValue(c);
+                                string doorNum = "NEW_PSD" + (num + 1).ToString();
+
+                                foreach (var doorModel in psdCollection1.Where(item => (int)Char.GetNumericValue(item.DoorNum.Last()) > num))
+                                {
+                                    System.Diagnostics.Trace.WriteLine(num);
+                                    System.Diagnostics.Trace.WriteLine("Door is:" + doorModel.DoorNum);
+                                    int new_num = (int)Char.GetNumericValue(doorModel.DoorNum.Last()) + 1;
+                                    string new_doorNum = "PSD" + new_num.ToString();
+                                    doorModel.DoorNum = new_doorNum;
+                                }
+                                psdCollection1.Insert(num, new DoorModel() { DoorNum = doorNum, URI = "../Assets/Animation/fd1.png", URI_I = "../Assets/PSD_fullheight.png", alarmsList = alarmsGeneric });
+                                System.Diagnostics.Trace.WriteLine(psdCollection1[3].DoorNum);
+                                break;
+                        }
                     }
-                    psdCollection1.Insert(num, new DoorModel() { DoorNum = doorNum, URI = "../Assets/Animation/fd1.png", URI_I = "../Assets/PSD_fullheight.png", alarmsList = alarmsGeneric });
-                    System.Diagnostics.Trace.WriteLine(psdCollection1[3].DoorNum);
                 }
                 else if (CURRENT_PLATFORM == 2)
                 {
@@ -313,6 +333,7 @@ namespace ST_HMI
             System.Diagnostics.Debug.WriteLine(psdCollection1[1].Visibility);
             if (CURRENT_PLATFORM == 1)
             {
+                firstAddPsdButton.Visibility = Visibility.Visible;
                 foreach (var doorModel in psdCollection1)
                 {
                     doorModel.Visibility = "Visible";
@@ -320,6 +341,7 @@ namespace ST_HMI
             }
             else if (CURRENT_PLATFORM == 2)
             {
+                secondAddPsdButton.Visibility = Visibility.Visible;
                 foreach (var doorModel in psdCollection2)
                 {
                     doorModel.Visibility = "Visible";
@@ -333,9 +355,24 @@ namespace ST_HMI
 
         void UnEdit_mode(object sender, RoutedEventArgs e)
         {
-            foreach (var doorModel in psdCollection1)
+            if (CURRENT_PLATFORM == 1)
             {
-                doorModel.Visibility = "Hidden";
+                foreach (var doorModel in psdCollection1)
+                {
+                    doorModel.Visibility = "Hidden";
+                    firstAddPsdButton.Visibility = Visibility.Hidden;
+
+                }
+            }
+            else if (CURRENT_PLATFORM == 2)
+            {
+                foreach (var doorModel in psdCollection1)
+                {
+                    doorModel.Visibility = "Hidden";
+                    secondAddPsdButton.Visibility = Visibility.Hidden;
+
+                }
+
             }
             btn_UneditPSD.Visibility = Visibility.Hidden;
             btn_editPSD.Visibility = Visibility.Visible;
@@ -345,11 +382,17 @@ namespace ST_HMI
         void ChangePlatform1(object sender, EventArgs e)
         {
             CURRENT_PLATFORM = 1;
+            platformName.Text = "Platform " + CURRENT_PLATFORM;
+            platform1bg.Background = new SolidColorBrush(Color.FromRgb(160, 160, 160));
+            platform2bg.Background = new SolidColorBrush(Color.FromRgb(218, 221, 226));
             DoorsDataBinding.ItemsSource = psdCollection1;
         }
         void ChangePlatform2(object sender, EventArgs e)
         {
             CURRENT_PLATFORM = 2;
+            platformName.Text = "Platform " + CURRENT_PLATFORM;
+            platform2bg.Background = new SolidColorBrush(Color.FromRgb(160, 160, 160));
+            platform1bg.Background = new SolidColorBrush(Color.FromRgb(218, 221, 226));
             DoorsDataBinding.ItemsSource = psdCollection2;
         }
 

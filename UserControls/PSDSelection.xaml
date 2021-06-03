@@ -1,0 +1,15 @@
+﻿<Window x:Class="ST_HMI.UserControls.PSDSelection"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:ST_HMI.UserControls"
+        mc:Ignorable="d"
+          Title="PSDSelection" Height="200" Width="312">
+    <Grid>
+        <ComboBox x:Name ="psdTypes" HorizontalAlignment="Center" Margin="0,55,0,0" VerticalAlignment="Top" Width="175" SelectionChanged="psdTypes_SelectionChanged"/>
+        <Label Content="Type" HorizontalAlignment="Left" Margin="31,56,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.449,2.686"/>
+        <Button  Click="selectPSD" Content="OK" HorizontalAlignment="Left" Margin="68,109,0,0" VerticalAlignment="Top"/>
+        <Button  Click="cancelPSDSelection" Content="Cancel" HorizontalAlignment="Left" Margin="156,109,0,0" VerticalAlignment="Top" />
+    </Grid>
+</Window>
