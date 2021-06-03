@@ -12,6 +12,11 @@
     <None Remove="Assets\Animation\fd3.png" />
     <None Remove="Assets\Animation\fd4.png" />
     <None Remove="Assets\Animation\fd5.png" />
+    <None Remove="Assets\Animation\hd1.png" />
+    <None Remove="Assets\Animation\hd2.png" />
+    <None Remove="Assets\Animation\hd3.png" />
+    <None Remove="Assets\Animation\hd4.png" />
+    <None Remove="Assets\Animation\hd5.png" />
     <None Remove="Assets\closeBtn_default.png" />
     <None Remove="Assets\closeBtn_MouseOver.png" />
     <None Remove="Assets\EEDLock.png" />
@@ -41,9 +46,18 @@
     <None Remove="Assets\PSDOpening.png" />
     <None Remove="Assets\PSD_fullheight.png" />
     <None Remove="Assets\PSD_fullheight_faulty.png" />
+    <None Remove="Assets\PSD_halfheight.png" />
     <None Remove="Assets\tgBtn_default.png" />
     <None Remove="Assets\tgBtn_MouseOver.png" />
     <None Remove="img_language.png" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Resource Include="Assets\Animation\hd1.png" />
+    <Resource Include="Assets\Animation\hd2.png" />
+    <Resource Include="Assets\Animation\hd3.png" />
+    <Resource Include="Assets\Animation\hd4.png" />
+    <Resource Include="Assets\Animation\hd5.png" />
   </ItemGroup>
 
   <ItemGroup>
@@ -87,6 +101,7 @@
     <Resource Include="Assets\PSDOpening.png" />
     <Resource Include="Assets\PSD_fullheight.png" />
     <Resource Include="Assets\PSD_fullheight_faulty.png" />
+    <Resource Include="Assets\PSD_halfheight.png" />
     <Resource Include="Assets\tgBtn_default.png" />
     <Resource Include="Assets\tgBtn_MouseOver.png" />
     <Resource Include="img_language.png" />

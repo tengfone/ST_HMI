@@ -71,11 +71,13 @@ namespace ST_HMI
             psdCollection1.Add(new DoorModel() { DoorNum = "PSD3", URI = "../Assets/Animation/fd1.png", URI_I = "../Assets/PSD_fullheight.png", alarmsList = alarmsGeneric, Visibility = "Hidden" });
             psdCollection1.Add(new DoorModel() { DoorNum = "PSD4", URI = "../Assets/Animation/fd1.png", URI_I = "../Assets/PSD_fullheight.png", alarmsList = alarmsGeneric, Visibility = "Hidden" });
             psdCollection1.Add(new DoorModel() { DoorNum = "PSD5", URI = "../Assets/Animation/fd1.png", URI_I = "../Assets/PSD_fullheight.png", alarmsList = alarmsGeneric, Visibility = "Hidden" });
-            platforms.Add(1, new PlatformModel() { platformStatuses = platformStatusModel1, psdCollection = psdCollection1 });                                                            
-            psdCollection2.Add(new DoorModel() { DoorNum = "PSD1", URI = "../Assets/Animation/fd1.png", URI_I = "../Assets/PSD_fullheight.png", alarmsList = alarmsGeneric, Visibility = "Hidden" });
-            psdCollection2.Add(new DoorModel() { DoorNum = "PSD2", URI = "../Assets/Animation/fd1.png", URI_I = "../Assets/PSD_fullheight.png", alarmsList = alarmsGeneric, Visibility = "Hidden" });
-            psdCollection2.Add(new DoorModel() { DoorNum = "PSD3", URI = "../Assets/Animation/fd1.png", URI_I = "../Assets/PSD_fullheight.png", alarmsList = alarmsGeneric, Visibility = "Hidden" });
-            psdCollection2.Add(new DoorModel() { DoorNum = "PSD4", URI = "../Assets/Animation/fd1.png", URI_I = "../Assets/PSD_fullheight.png", alarmsList = alarmsGeneric, Visibility = "Hidden" });
+            platforms.Add(1, new PlatformModel() { platformStatuses = platformStatusModel1, psdCollection = psdCollection1 });
+
+            // PLATFORM TWO
+            psdCollection2.Add(new DoorModel() { DoorNum = "PSD1", URI = "../Assets/Animation/hd1.png", URI_I = "../Assets/PSD_halfheight.png", alarmsList = alarmsGeneric, Visibility = "Hidden" });
+            psdCollection2.Add(new DoorModel() { DoorNum = "PSD2", URI = "../Assets/Animation/hd1.png", URI_I = "../Assets/PSD_halfheight.png", alarmsList = alarmsGeneric, Visibility = "Hidden" });
+            psdCollection2.Add(new DoorModel() { DoorNum = "PSD3", URI = "../Assets/Animation/hd1.png", URI_I = "../Assets/PSD_halfheight.png", alarmsList = alarmsGeneric, Visibility = "Hidden" });
+            psdCollection2.Add(new DoorModel() { DoorNum = "PSD4", URI = "../Assets/Animation/hd1.png", URI_I = "../Assets/PSD_halfheight.png", alarmsList = alarmsGeneric, Visibility = "Hidden" });
 
             platformStatusModel2 = new PlatformStatusModel() { cLStatus = "Live", inputStatus = "-", signalingStatus = "Healthy" };
             platforms.Add(2, new PlatformModel() { platformStatuses = platformStatusModel2, psdCollection = psdCollection2 });
@@ -104,6 +106,7 @@ namespace ST_HMI
             // platform 1 selected by default
             platform1bg.Background = new SolidColorBrush(Color.FromRgb(160, 160, 160));
             platformName.Text = "Platform 1";
+
 
         }
 
@@ -181,77 +184,59 @@ namespace ST_HMI
             /* Platform 1 door animation*/
             if (doorItems == psdCollection1)
             {
-                if (doorItems[1].URI == "../Assets/Animation/fd1.png")
+                string current_path = doorItems[1].URI;
+                int current_keyframe = int.Parse(current_path.Substring(current_path.Length-5, 1));
+ 
+                if (current_keyframe < 5)
                 {
+                    
+                    int next_keyframe = current_keyframe + 1;
+                    string next_path = current_path;
+                    next_path = next_path.Remove(current_path.Length - 5, 1).Insert(current_path.Length - 5, next_keyframe.ToString());
                     foreach (var doorModel in platforms[1].psdCollection)
                     {
-                        doorModel.URI = "../Assets/Animation/fd2.png";
+                        doorModel.URI = next_path;
                     }
                 }
-                else if (doorItems[1].URI == "../Assets/Animation/fd2.png")
+                else if (current_keyframe == 5)
                 {
+                    int next_keyframe = 1;
+                    string next_path = current_path;
+                    next_path = next_path.Remove(current_path.Length - 5, 1).Insert(current_path.Length - 5, next_keyframe.ToString());
                     foreach (var doorModel in platforms[1].psdCollection)
-                    {
-                        doorModel.URI = "../Assets/Animation/fd3.png";
+                    { 
+                        doorModel.URI = next_path;
                     }
                 }
-                else if (doorItems[1].URI == "../Assets/Animation/fd3.png")
-                {
-                    foreach (var doorModel in platforms[1].psdCollection)
-                    {
-                        doorModel.URI = "../Assets/Animation/fd4.png";
-                    }
-                }
-                else if (doorItems[1].URI == "../Assets/Animation/fd4.png")
-                {
-                    foreach (var doorModel in platforms[1].psdCollection)
-                    {
-                        doorModel.URI = "../Assets/Animation/fd5.png";
-                    }
-                }
-                else if (doorItems[1].URI == "../Assets/Animation/fd5.png")
-                {
-                    foreach (var doorModel in platforms[1].psdCollection)
-                    {
-                        doorModel.URI = "../Assets/Animation/fd1.png";
-                    }
-                }
-            }else if (doorItems == psdCollection2)
+
+            }
+            /* Platform 2 door animation*/
+            else if (doorItems == psdCollection2)
             {
-                /* Platform 2 door animation*/
-                if (doorItems[1].URI == "../Assets/Animation/fd5.png")
+                string current_path = doorItems[1].URI;
+                int current_keyframe = int.Parse(current_path.Substring(current_path.Length - 5, 1));
+
+                if (current_keyframe > 1)
                 {
+
+                    int next_keyframe = current_keyframe - 1;
+                    string next_path = current_path;
+                    System.Diagnostics.Debug.WriteLine("old" + next_path);
+                    next_path = next_path.Remove(current_path.Length - 5, 1).Insert(current_path.Length - 5, next_keyframe.ToString());
+                    System.Diagnostics.Debug.WriteLine("new" + next_path);
                     foreach (var doorModel in platforms[2].psdCollection)
                     {
-                        doorModel.URI = "../Assets/Animation/fd4.png";
+                        doorModel.URI = next_path;
                     }
                 }
-                else if (doorItems[1].URI == "../Assets/Animation/fd4.png")
+                else if (current_keyframe == 1)
                 {
+                    int next_keyframe = 5;
+                    string next_path = current_path;
+                    next_path = next_path.Remove(current_path.Length - 5, 1).Insert(current_path.Length - 5, next_keyframe.ToString());
                     foreach (var doorModel in platforms[2].psdCollection)
                     {
-                        doorModel.URI = "../Assets/Animation/fd3.png";
-                    }
-                }
-                else if (doorItems[1].URI == "../Assets/Animation/fd3.png")
-                {
-                    foreach (var doorModel in platforms[2].psdCollection)
-                    {
-                        doorModel.URI = "../Assets/Animation/fd2.png";
-                    }
-                }
-                else if (doorItems[1].URI == "../Assets/Animation/fd2.png")
-                {
-                    foreach (var doorModel in platforms[2].psdCollection)
-                    {
-                        doorModel.URI = "../Assets/Animation/fd1.png";
-                    }
-                }
-                else if (doorItems[1].URI == "../Assets/Animation/fd1.png")
-                {
-                    foreach (var doorModel in platforms[2].psdCollection)
-                    {
-                        doorModel.URI = "../Assets/Animation/fd5.png";
+                        doorModel.URI = next_path;
                     }
                 }
             }
@@ -264,7 +249,6 @@ namespace ST_HMI
             if (REMOVE_PSD)
             {
                 ObservableCollection<DoorModel> doorItems = (ObservableCollection<DoorModel>)DoorsDataBinding.ItemsSource;
-                System.Diagnostics.Debug.WriteLine(psdCollection1[3].DoorNum);
                 if (CURRENT_PLATFORM == 1)
                 {
 
@@ -279,12 +263,11 @@ namespace ST_HMI
                                 String doorNum_temp = ((Button)sender).Tag.ToString();
                                 char c = doorNum_temp.Last();
                                 int num = (int)Char.GetNumericValue(c);
-                                string doorNum = "NEW_PSD" + (num + 1).ToString();
+                                string doorNum = "FH_PSD" + (num + 1).ToString();
 
                                 foreach (var doorModel in psdCollection1.Where(item => (int)Char.GetNumericValue(item.DoorNum.Last()) > num))
                                 {
-                                    System.Diagnostics.Trace.WriteLine(num);
-                                    System.Diagnostics.Trace.WriteLine("Door is:" + doorModel.DoorNum);
+
                                     int new_num = (int)Char.GetNumericValue(doorModel.DoorNum.Last()) + 1;
                                     string new_doorNum = "PSD" + new_num.ToString();
                                     doorModel.DoorNum = new_doorNum;
@@ -292,17 +275,68 @@ namespace ST_HMI
                                 psdCollection1.Insert(num, new DoorModel() { DoorNum = doorNum, URI = "../Assets/Animation/fd1.png", URI_I = "../Assets/PSD_fullheight.png", alarmsList = alarmsGeneric });
                                 System.Diagnostics.Trace.WriteLine(psdCollection1[3].DoorNum);
                                 break;
+
+                            case "Half Height PSD":
+                                String doorNum_temp2 = ((Button)sender).Tag.ToString();
+                                char c2 = doorNum_temp2.Last();
+                                int num2 = (int)Char.GetNumericValue(c2);
+                                string doorNum2 = "HH_PSD" + (num2 + 1).ToString();
+
+                                foreach (var doorModel in psdCollection1.Where(item => (int)Char.GetNumericValue(item.DoorNum.Last()) > num2))
+                                {
+
+                                    int new_num = (int)Char.GetNumericValue(doorModel.DoorNum.Last()) + 1;
+                                    string new_doorNum = "PSD" + new_num.ToString();
+                                    doorModel.DoorNum = new_doorNum;
+                                }
+                                psdCollection1.Insert(num2, new DoorModel() { DoorNum = doorNum2, URI = "../Assets/Animation/hd1.png", URI_I = "../Assets/PSD_halfheight.png", alarmsList = alarmsGeneric });
+                                System.Diagnostics.Trace.WriteLine(psdCollection1[3].DoorNum);
+                                break;
                         }
                     }
                 }
                 else if (CURRENT_PLATFORM == 2)
                 {
-                    String doorNum_temp = ((Button)sender).Tag.ToString();
-                    char c = doorNum_temp.Last();
-                    int num = (int)Char.GetNumericValue(c);
-                    string doorNum = "NEW_PSD" + (num + 1).ToString();
+                    PSDSelection psdSelection = new PSDSelection();
+                    var result = psdSelection.ShowDialog();
 
-                    psdCollection2.Insert(num, new DoorModel() { DoorNum = doorNum, URI = "../Assets/Animation/fd1.png", URI_I = "../Assets/PSD_fullheight.png", alarmsList = alarmsGeneric });
+                    if ((bool)result)
+                    {
+                        switch (psdSelection.psdType)
+                        {
+                            case "Full Height PSD":
+                                String doorNum_temp = ((Button)sender).Tag.ToString();
+                                char c = doorNum_temp.Last();
+                                int num = (int)Char.GetNumericValue(c);
+                                string doorNum = "FH_PSD" + (num + 1).ToString();
+
+                                foreach (var doorModel in psdCollection2.Where(item => (int)Char.GetNumericValue(item.DoorNum.Last()) > num))
+                                {
+
+                                    int new_num = (int)Char.GetNumericValue(doorModel.DoorNum.Last()) + 1;
+                                    string new_doorNum = "PSD" + new_num.ToString();
+                                    doorModel.DoorNum = new_doorNum;
+                                }
+                                psdCollection2.Insert(num, new DoorModel() { DoorNum = doorNum, URI = "../Assets/Animation/fd1.png", URI_I = "../Assets/PSD_fullheight.png", alarmsList = alarmsGeneric });
+                                break;
+
+                            case "Half Height PSD":
+                                String doorNum_temp2 = ((Button)sender).Tag.ToString();
+                                char c2 = doorNum_temp2.Last();
+                                int num2 = (int)Char.GetNumericValue(c2);
+                                string doorNum2 = "HH_PSD" + (num2 + 1).ToString();
+
+                                foreach (var doorModel in psdCollection2.Where(item => (int)Char.GetNumericValue(item.DoorNum.Last()) > num2))
+                                {
+
+                                    int new_num = (int)Char.GetNumericValue(doorModel.DoorNum.Last()) + 1;
+                                    string new_doorNum = "PSD" + new_num.ToString();
+                                    doorModel.DoorNum = new_doorNum;
+                                }
+                                psdCollection2.Insert(num2, new DoorModel() { DoorNum = doorNum2, URI = "../Assets/Animation/hd1.png", URI_I = "../Assets/PSD_halfheight.png", alarmsList = alarmsGeneric });
+                                break;
+                        }
+                    }
                 }
             }
         }
@@ -357,6 +391,7 @@ namespace ST_HMI
         {
             if (CURRENT_PLATFORM == 1)
             {
+                firstAddPsdButton.Visibility = Visibility.Hidden;
                 foreach (var doorModel in psdCollection1)
                 {
                     doorModel.Visibility = "Hidden";
@@ -366,7 +401,8 @@ namespace ST_HMI
             }
             else if (CURRENT_PLATFORM == 2)
             {
-                foreach (var doorModel in psdCollection1)
+                firstAddPsdButton.Visibility = Visibility.Hidden;
+                foreach (var doorModel in psdCollection2)
                 {
                     doorModel.Visibility = "Hidden";
                     secondAddPsdButton.Visibility = Visibility.Hidden;

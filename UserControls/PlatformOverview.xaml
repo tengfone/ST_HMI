@@ -217,7 +217,7 @@
                                                 <TextBlock Text="{Binding DoorNum}" FontSize="10" HorizontalAlignment="Center"/>
                                             </StackPanel>
                                         </Border>
-                                        <Button x:Name="btn_addPSD" Visibility="{Binding Visibility}" Margin="40,10,-20,0" Width="20" Height="20" Grid.Column="1" Tag="{Binding DoorNum}" Click="Add_PSD">+</Button>
+                                        <Button x:Name="btn_addPSD" Visibility="{Binding Visibility}" Margin="40,62,-20,0" Width="20" Height="20" Grid.Column="1" Tag="{Binding DoorNum}" Click="Add_PSD">+</Button>
                                     </Grid>
                                 </DataTemplate>
                             </ItemsControl.ItemTemplate>
