@@ -184,27 +184,22 @@ namespace ST_HMI
             /* Platform 1 door animation*/
             if (doorItems == psdCollection1)
             {
-                string current_path = doorItems[1].URI;
-                int current_keyframe = int.Parse(current_path.Substring(current_path.Length-5, 1));
- 
-                if (current_keyframe < 5)
+                foreach (var doorModel in platforms[1].psdCollection)
                 {
-                    
-                    int next_keyframe = current_keyframe + 1;
-                    string next_path = current_path;
-                    next_path = next_path.Remove(current_path.Length - 5, 1).Insert(current_path.Length - 5, next_keyframe.ToString());
-                    foreach (var doorModel in platforms[1].psdCollection)
+                    string current_path = doorModel.URI;
+                    int current_keyframe = int.Parse(current_path.Substring(current_path.Length - 5, 1));
+                    if (current_keyframe < 5)
                     {
+                        int next_keyframe = current_keyframe + 1;
+                        string next_path = current_path;
+                        next_path = next_path.Remove(current_path.Length - 5, 1).Insert(current_path.Length - 5, next_keyframe.ToString());
                         doorModel.URI = next_path;
                     }
-                }
-                else if (current_keyframe == 5)
-                {
-                    int next_keyframe = 1;
-                    string next_path = current_path;
-                    next_path = next_path.Remove(current_path.Length - 5, 1).Insert(current_path.Length - 5, next_keyframe.ToString());
-                    foreach (var doorModel in platforms[1].psdCollection)
-                    { 
+                    else if (current_keyframe == 5)
+                    {
+                        int next_keyframe = 1;
+                        string next_path = current_path;
+                        next_path = next_path.Remove(current_path.Length - 5, 1).Insert(current_path.Length - 5, next_keyframe.ToString());
                         doorModel.URI = next_path;
                     }
                 }
@@ -213,29 +208,22 @@ namespace ST_HMI
             /* Platform 2 door animation*/
             else if (doorItems == psdCollection2)
             {
-                string current_path = doorItems[1].URI;
-                int current_keyframe = int.Parse(current_path.Substring(current_path.Length - 5, 1));
-
-                if (current_keyframe > 1)
+                foreach (var doorModel in platforms[2].psdCollection)
                 {
-
-                    int next_keyframe = current_keyframe - 1;
-                    string next_path = current_path;
-                    System.Diagnostics.Debug.WriteLine("old" + next_path);
-                    next_path = next_path.Remove(current_path.Length - 5, 1).Insert(current_path.Length - 5, next_keyframe.ToString());
-                    System.Diagnostics.Debug.WriteLine("new" + next_path);
-                    foreach (var doorModel in platforms[2].psdCollection)
+                    string current_path = doorModel.URI;
+                    int current_keyframe = int.Parse(current_path.Substring(current_path.Length - 5, 1));
+                    if (current_keyframe > 1)
                     {
+                        int next_keyframe = current_keyframe - 1;
+                        string next_path = current_path;
+                        next_path = next_path.Remove(current_path.Length - 5, 1).Insert(current_path.Length - 5, next_keyframe.ToString());
                         doorModel.URI = next_path;
                     }
-                }
-                else if (current_keyframe == 1)
-                {
-                    int next_keyframe = 5;
-                    string next_path = current_path;
-                    next_path = next_path.Remove(current_path.Length - 5, 1).Insert(current_path.Length - 5, next_keyframe.ToString());
-                    foreach (var doorModel in platforms[2].psdCollection)
+                    else if (current_keyframe == 1)
                     {
+                        int next_keyframe = 5;
+                        string next_path = current_path;
+                        next_path = next_path.Remove(current_path.Length - 5, 1).Insert(current_path.Length - 5, next_keyframe.ToString());
                         doorModel.URI = next_path;
                     }
                 }
